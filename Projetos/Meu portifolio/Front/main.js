@@ -22,8 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     console.log(
         `%c${isEnglish 
-            ? "Thanks for inspecting my code! Feel free to connect on LinkedIn or check my GitHub." 
-            : "Obrigado por inspecionar meu código! Fique à vontade para me mandar uma mensagem no LinkedIn ou WhatsApp."}`,
+            ? "Thanks for inspecting my code! Feel free to check my GitHub." 
+            : "Obrigado por inspecionar meu código! Fique à vontade para me mandar uma mensagem no WhatsApp."}`,
         "color: #94a3b8; font-size: 12px;"
     );
 
