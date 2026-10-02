@@ -1,95 +1,57 @@
-// Matriz de SLA expressa em minutos para facilitar os cálculos matemáticos
-const SLA_MATRIX = {
-  "Acessos / Permissões": { Crítico: 30, Alto: 120, Médio: 480, Baixo: 1440 },
-  "Infraestrutura / Redes": { Crítico: 60, Alto: 240, Médio: 720, Baixo: 1440 },
-  "Software / Sistemas":   { Crítico: 120, Alto: 360, Médio: 960, Baixo: 2160 },
-  "Hardware":              { Crítico: 120, Alto: 480, Médio: 1440, Baixo: 2880 }
-};
+import { test, describe, before, after } from 'node:test';
+import assert from 'node:assert';
+import { server } from './server.js';
 
-/**
- * Calcula a data de expiração do SLA com base na categoria e impacto.
- * Trata horas corridas (Crítico/Alto) vs horas úteis simplificadas (Médio/Baixo).
- */
-function calculateSla(category, impact, startDate) {
-  const minutesToAdd = SLA_MATRIX[category]?.[impact] || 1440; // Default 24h se falhar
-  const expiration = new Date(startDate.getTime());
+describe('Suíte de Testes - Criar Chamado (Nativo)', () => {
+  let baseUrl;
 
-  if (impact === "Crítico" || impact === "Alto") {
-    // Horas Corridas: Soma direta simples
-    expiration.setMinutes(expiration.getMinutes() + minutesToAdd);
-  } else {
-    // Horas Úteis Simplificadas: Se cair no fim de semana, empurra para segunda-feira
-    expiration.setMinutes(expiration.getMinutes() + minutesToAdd);
-    const day = expiration.getDay(); 
-    if (day === 6) expiration.setDate(expiration.getDate() + 2); // Sábado -> Segunda
-    if (day === 0) expiration.setDate(expiration.getDate() + 1); // Domingo -> Segunda
-  }
+  before(() => {
+    server.listen(0); // Abre em uma porta aleatória disponível
+    const { port } = server.address();
+    baseUrl = `http://localhost:${port}/api/v1/tickets`;
+  });
 
-  return expiration;
-}
+  after(() => {
+    server.close();
+  });
 
-export const createTicket = async (req, res) => {
-  try {
-    const { title, description, category, impact } = req.body;
-    const files = req.files || [];
+  test('Deve criar um chamado com sucesso e retornar o SLA calculado', async () => {
+    const payload = {
+      title: "Falha na VPN de produção",
+      description: "Não consigo conectar ao gateway principal a partir do escritório doméstico.",
+      category: "Infraestrutura / Redes",
+      impact: "Alto"
+    };
 
-    // 1. Validações de campos obrigatórios e tamanhos mínimos (Conforme Markdown)
-    if (!title || title.length < 10 || title.length > 100) {
-      return res.status(400).json({
-        success: false,
-        error: "ValidationFailed",
-        message: "O campo 'title' é obrigatório e deve ter entre 10 e 100 caracteres."
-      });
-    }
-
-    if (!description || description.length < 30) {
-      return res.status(400).json({
-        success: false,
-        error: "ValidationFailed",
-        message: "O campo 'description' é obrigatório e deve ter no mínimo 30 caracteres."
-      });
-    }
-
-    if (!SLA_MATRIX[category] || !SLA_MATRIX[category][impact]) {
-      return res.status(400).json({
-        success: false,
-        error: "ValidationFailed",
-        message: "Categoria ou Impacto inválidos informados."
-      });
-    }
-
-    // 2. Processamento dos metadados do Chamado
-    const createdAt = new Date();
-    const slaExpiration = calculateSla(category, impact, createdAt);
-    const ticketId = `TK-${Math.floor(10000 + Math.random() * 90000)}`; // Simulação de ID único
-
-    // 3. Gatilho de Alerta de Contenção (Regra Crítica do Markdown)
-    if (impact === "Crítico") {
-      console.warn(`[CONTAINMENT-REQUIRED] Alerta Máximo! Chamado crítico criado: ${ticketId}`);
-    }
-
-    // Mapeia os caminhos dos arquivos salvos para retorno/persistência
-    const attachmentPaths = files.map(file => file.path);
-
-    // [Aqui entraria a query de persistência no Banco de Dados via ORM ou Driver]
-
-    return res.status(201).json({
-      success: true,
-      message: "Chamado criado com sucesso.",
-      data: {
-        ticketId,
-        status: "Aberto",
-        createdAt: createdAt.toISOString(),
-        slaExpiration: slaExpiration.toISOString(),
-        attachmentsCount: attachmentPaths.length
-      }
+    const response = await fetch(baseUrl, {
+      method: 'POST',
+      body: JSON.stringify(payload)
     });
 
-  } catch (error) {
-    return res.status(500).json({
-      success: false,
-      error: "InternalServerError",
-      message: "Erro interno ao processar a criação do chamado."
+    const body = await response.json();
+
+    assert.strictEqual(response.status, 201);
+    assert.strictEqual(body.success, true);
+    assert.strictEqual(body.data.status, "Aberto");
+    assert.ok(body.data.slaExpiration);
+  });
+
+  test('Deve rejeitar se o título for curto demais', async () => {
+    const payload = {
+      title: "Curto",
+      description: "Descrição longa o suficiente para passar na validação de tamanho mínimo.",
+      category: "Software / Sistemas",
+      impact: "Baixo"
+    };
+
+    const response = await fetch(baseUrl, {
+      method: 'POST',
+      body: JSON.stringify(payload)
     });
-  }
-};
+
+    const body = await response.json();
+
+    assert.strictEqual(response.status, 400);
+    assert.strictEqual(body.error, "ValidationFailed");
+  });
+});
