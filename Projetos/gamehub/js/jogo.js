@@ -68,10 +68,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Textos e Traduções
   const nomeExibido = isEn ? (jogo.nome_en || jogo.nome) : jogo.nome;
-  const categoriaExibida = isEn ? (jogo.categoria_en || jogo.categoria) : jogo.categoria;
-  const descricaoLongaExibida = isEn 
+  const categoriaExibida = obterCategoriaExibida(jogo, isEn);
+  const lancamentoExibido = jogo.lancamento === "Lançado"
+    ? (isEn ? "Released" : "Lançado")
+    : jogo.lancamento;
+  const descricaoLongaCandidata = isEn
     ? (jogo.descricaoLonga_en || jogo.descricaoLonga || jogo.descricaoCurta_en || jogo.descricaoCurta) 
     : (jogo.descricaoLonga || jogo.descricaoCurta || "Descrição indisponível.");
+  const descricaoLongaExibida = descricaoDeJogoEhGenerica(descricaoLongaCandidata)
+    ? ""
+    : descricaoLongaCandidata;
+  const mostrarDesenvolvedora = jogo.desenvolvedora
+    && !jogo.desenvolvedora.toLowerCase().startsWith("estúdio reconhecido da indústria");
+  const mostrarPlataformas = jogo.plataformas && jogo.plataformas !== "PC, PlayStation, Xbox";
+  const mostrarIdiomas = jogo.idiomas_en !== "English, Portuguese (Brazil)";
   const idiomasExibidos = isEn 
     ? (jogo.idiomas_en || jogo.idiomas || "English, Portuguese, Spanish, French, German, Japanese")
     : (jogo.idiomas || "Português (Brasil), Inglês, Espanhol, Francês, Alemão, Japonês");
@@ -81,7 +91,6 @@ document.addEventListener("DOMContentLoaded", function () {
   
   // Extração do vídeo oficial
   const videoId = extrairIdYoutube(jogo.trailer || jogo.trailerUrl);
-  const trailerUrlDireta = jogo.trailerUrl || (videoId ? `https://www.youtube.com/watch?v=${videoId}` : "");
 
   // Imagens
   const imagemCapa = jogo.imagem || "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/library_600x900_2x.jpg";
@@ -89,18 +98,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Lojas Oficiais
   const termoBuscaLoja = encodeURIComponent(jogo.nome);
-  const plataformasJogo = (jogo.plataformas || "").toLowerCase();
+  const plataformasJogo = (mostrarPlataformas ? jogo.plataformas : "").toLowerCase();
   const ehNintendo = plataformasJogo.includes("nintendo") || plataformasJogo.includes("switch") || plataformasJogo.includes("wii") || plataformasJogo.includes("3ds") || plataformasJogo.includes("ds");
   const temSteam = plataformasJogo.includes("pc");
   const temPlayStation = plataformasJogo.includes("playstation") || plataformasJogo.includes("ps4") || plataformasJogo.includes("ps5");
   const temXbox = plataformasJogo.includes("xbox");
-  const linkSteam = `https://store.steampowered.com/search/?term=${termoBuscaLoja}`;
+  const linkSteam = jogo.steamAppId
+    ? `https://store.steampowered.com/app/${jogo.steamAppId}/`
+    : `https://store.steampowered.com/search/?term=${termoBuscaLoja}`;
   const linkPsn = `https://store.playstation.com/search/${termoBuscaLoja}`;
   const linkXbox = `https://www.xbox.com/search?q=${termoBuscaLoja}`;
   const linkNintendo = `https://www.nintendo.com/us/search/#q=${termoBuscaLoja}`;
+  const mostrarLinkSteam = temSteam || (!temPlayStation && !temXbox && !ehNintendo);
 
   // Status de Lançamento e Avaliação
-  const ehLancado = jogo.lancado !== false && jogo.nota !== null;
+  const ehLancado = jogo.lancado !== false;
+  const notaValida = Number.isFinite(jogo.nota);
 
   // Comentários
   let comentarios = obterComentariosDoJogo(jogo.id, jogo.comentariosPadrao || []);
@@ -129,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
               <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 12px;">
                 <div>
                   <h1 style="font-size: 32px; line-height: 1.15; color: var(--texto); font-weight: 700; margin-bottom: 6px;">${escapeHtml(nomeExibido)}</h1>
-                  <span style="font-size: 13px; color: var(--laranja); font-family: var(--fonte-tecnica); text-transform: uppercase;">${escapeHtml(jogo.desenvolvedora)}</span>
+                  ${mostrarDesenvolvedora ? `<span style="font-size: 13px; color: var(--laranja); font-family: var(--fonte-tecnica); text-transform: uppercase;">${escapeHtml(jogo.desenvolvedora)}</span>` : ""}
                 </div>
                 
                 <!-- BOTÃO SALVAR NA BIBLIOTECA -->
@@ -140,24 +153,24 @@ document.addEventListener("DOMContentLoaded", function () {
               </div>
 
               <!-- STATUS DE LANÇAMENTO & AVALIAÇÃO -->
-              ${ehLancado ? `
+              ${ehLancado && notaValida ? `
                 <div style="color: var(--verde); font-weight: 600; font-size: 15px; margin-bottom: 14px; display: flex; align-items: center; gap: 6px;">
                   ⭐ <span class="nota" style="font-size: 16px; font-weight: 700;">${jogo.nota}</span> ${isEn ? 'player rating' : 'de avaliação dos jogadores'}
                 </div>
-              ` : `
+              ` : !ehLancado ? `
                 <div class="box-jogo-unreleased">
                   <div class="badge-unreleased">
                     <i class="fa-solid fa-clock"></i> ${isEn ? 'Upcoming / In Development' : 'Aguardando Lançamento Oficial'}
                   </div>
                   <div class="info-unreleased">
-                    ⭐ <strong>N/A</strong> — ${isEn ? 'Ratings will be available after the official release in ' + jogo.lancamento : 'Avaliações estarão disponíveis após o lançamento oficial previsto para ' + jogo.lancamento}
+                    ⭐ <strong>N/A</strong> — ${isEn ? 'Ratings will be available after the official release in ' + lancamentoExibido : 'Avaliações estarão disponíveis após o lançamento oficial previsto para ' + lancamentoExibido}
                   </div>
                 </div>
-              `}
+              ` : ""}
 
               <div class="jogo-tags" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">
                 <span class="jogo-tag" style="background: var(--bg-card); border: 1px solid var(--linha); padding: 4px 10px; border-radius: 4px; font-size: 12px; color: var(--verde); font-weight: 600;">${escapeHtml(categoriaExibida)}</span>
-                <span class="jogo-tag" style="background: var(--bg-card); border: 1px solid var(--linha); padding: 4px 10px; border-radius: 4px; font-size: 12px; color: var(--texto-fraco);">${escapeHtml(jogo.plataformas)}</span>
+                ${mostrarPlataformas ? `<span class="jogo-tag" style="background: var(--bg-card); border: 1px solid var(--linha); padding: 4px 10px; border-radius: 4px; font-size: 12px; color: var(--texto-fraco);">${escapeHtml(jogo.plataformas)}</span>` : ""}
               </div>
             </div>
           </div>
@@ -175,42 +188,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
             <!-- ABA 1: VISÃO GERAL & IDIOMAS -->
             <div id="aba-sobre" class="aba-conteudo ativa">
-              <h3 style="font-size: 18px; color: var(--texto); margin-bottom: 12px; font-weight: 700;">
-                ${isEn ? 'About the Game' : 'Sobre o Jogo'}
-              </h3>
-              <p class="jogo-descricao" style="line-height: 1.75; font-size: 15px; color: var(--texto); margin-bottom: 24px;">
-                ${escapeHtml(descricaoLongaExibida)}
-              </p>
+              ${descricaoLongaExibida ? `
+                <h3 style="font-size: 18px; color: var(--texto); margin-bottom: 12px; font-weight: 700;">
+                  ${isEn ? 'About the Game' : 'Sobre o Jogo'}
+                </h3>
+                <p class="jogo-descricao" style="line-height: 1.75; font-size: 15px; color: var(--texto); margin-bottom: 24px;">
+                  ${escapeHtml(descricaoLongaExibida)}
+                </p>
+              ` : ""}
 
               <!-- SEÇÃO DE IDIOMAS DISPONÍVEIS -->
-              <div class="secao-idiomas" style="background: var(--bg-card); border: 1px solid var(--linha); border-radius: 10px; padding: 20px; margin-bottom: 24px;">
+              ${mostrarIdiomas ? `<div class="secao-idiomas" style="background: var(--bg-card); border: 1px solid var(--linha); border-radius: 10px; padding: 20px; margin-bottom: 24px;">
                 <h4 style="font-size: 15px; color: var(--texto); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
-                  <i class="fa-solid fa-language" style="color: var(--laranja);"></i> ${isEn ? 'Available Languages & Localization' : 'Idiomas Disponíveis & Localização'}
+                  <i class="fa-solid fa-language" style="color: var(--laranja);"></i> ${isEn ? 'Languages' : 'Idiomas'}
                 </h4>
                 
-                <div class="grid-idiomas-badges" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px;">
-                  <span class="badge-idioma ${jogo.dublado !== false ? 'destaque' : ''}">
-                    <i class="fa-solid fa-microphone"></i> ${isEn ? (jogo.dublado !== false ? 'Audio: PT-BR & English' : 'Audio: English') : (jogo.dublado !== false ? 'Áudio: Dublado em PT-BR & EN' : 'Áudio Original em Inglês')}
-                  </span>
-                  <span class="badge-idioma destaque">
-                    <i class="fa-solid fa-closed-captioning"></i> ${isEn ? 'Subtitles: PT-BR, EN & Multiple' : 'Legendas: PT-BR, EN & Múltiplos'}
-                  </span>
-                  <span class="badge-idioma">
-                    <i class="fa-solid fa-desktop"></i> ${isEn ? 'Interface: 100% Translated' : 'Interface: 100% Traduzida'}
-                  </span>
-                </div>
-
                 <div style="font-size: 13px; color: var(--texto-fraco); line-height: 1.6;">
-                  <strong style="color: var(--texto);">${isEn ? 'Full list of supported languages:' : 'Lista completa de idiomas suportados:'}</strong><br />
+                  <strong style="color: var(--texto);">${isEn ? 'Available languages:' : 'Idiomas disponíveis:'}</strong><br />
                   ${escapeHtml(idiomasExibidos)}
-                </div>
+                </div>` : ""}
               </div>
 
               <!-- LINKS PARA DOWNLOAD NAS LOJAS OFICIAIS -->
               <div class="secao-lojas">
                 <h3><i class="fa-solid fa-download" style="color: var(--laranja);"></i> ${isEn ? 'Get / Wishlist on Official Stores' : 'Baixar / Lista de Desejos nas Lojas Oficiais'}</h3>
                 <div class="lojas-grid">
-                  ${temSteam ? `<a href="${linkSteam}" target="_blank" rel="noopener noreferrer" class="btn-loja btn-loja-steam">
+                  ${mostrarLinkSteam ? `<a href="${linkSteam}" target="_blank" rel="noopener noreferrer" class="btn-loja btn-loja-steam">
                     <i class="fa-brands fa-steam"></i> Steam (PC)
                   </a>` : ""}
                   ${temPlayStation ? `<a href="${linkPsn}" target="_blank" rel="noopener noreferrer" class="btn-loja btn-loja-psn">
@@ -233,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   ${isEn ? 'Community Reviews' : 'Avaliações e Comentários'}
                 </h3>
                 <div style="font-size: 14px; color: var(--texto-fraco);">
-                  ⭐ <strong style="color: var(--texto);" id="media-comentarios">${ehLancado ? jogo.nota : 'N/A'}</strong> ${isEn ? 'community score' : 'média da comunidade'}
+                  ⭐                   <strong style="color: var(--texto);" id="media-comentarios">${notaValida ? jogo.nota : 'N/A'}</strong> ${isEn ? 'community score' : 'média da comunidade'}
                 </div>
               </div>
 
@@ -284,14 +287,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         <!-- BARRA LATERAL COM TRAILER E METADADOS -->
         <aside class="jogo-lateral" style="background: var(--bg-card); border: 1px solid var(--linha); border-radius: 12px; padding: 24px; box-shadow: var(--shadow);">
-          <div class="jogo-lateral-linha" style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--linha); font-size: 13px;">
+          ${mostrarDesenvolvedora ? `<div class="jogo-lateral-linha" style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--linha); font-size: 13px;">
             <span style="color: var(--texto-fraco);">${isEn ? 'Developer' : 'Desenvolvedora'}</span>
             <strong style="color: var(--texto);">${escapeHtml(jogo.desenvolvedora)}</strong>
-          </div>
+          </div>` : ""}
 
           <div class="jogo-lateral-linha" style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--linha); font-size: 13px;">
             <span style="color: var(--texto-fraco);">${isEn ? 'Release Date' : 'Lançamento'}</span>
-            <strong style="color: ${ehLancado ? 'var(--texto)' : 'var(--laranja)'};">${escapeHtml(jogo.lancamento)}</strong>
+            <strong style="color: ${ehLancado ? 'var(--texto)' : 'var(--laranja)'};">${escapeHtml(lancamentoExibido)}</strong>
           </div>
 
           <div class="jogo-lateral-linha" style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--linha); font-size: 13px;">
@@ -299,10 +302,10 @@ document.addEventListener("DOMContentLoaded", function () {
             <strong style="color: var(--texto);">${escapeHtml(categoriaExibida)}</strong>
           </div>
 
-          <div class="jogo-lateral-linha" style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--linha); font-size: 13px;">
+          ${mostrarPlataformas ? `<div class="jogo-lateral-linha" style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--linha); font-size: 13px;">
             <span style="color: var(--texto-fraco);">${isEn ? 'Platforms' : 'Plataformas'}</span>
             <strong style="color: var(--texto); text-align: right; max-width: 160px;">${escapeHtml(jogo.plataformas)}</strong>
-          </div>
+          </div>` : ""}
 
           <div class="jogo-trailer" style="margin-top: 24px;">
             <h2 style="font-size: 16px; margin-bottom: 12px; color: var(--texto); display: flex; align-items: center; gap: 8px;">
@@ -310,12 +313,6 @@ document.addEventListener("DOMContentLoaded", function () {
             </h2>
             
             <div id="player-trailer-jogo"></div>
-
-            ${trailerUrlDireta ? `
-              <a href="${trailerUrlDireta}" target="_blank" rel="noopener noreferrer" class="btn-youtube-watch">
-                <i class="fa-brands fa-youtube"></i> ${isEn ? 'Watch on YouTube' : 'Assistir no YouTube'}
-              </a>
-            ` : ''}
           </div>
         </aside>
 
@@ -335,7 +332,7 @@ document.addEventListener("DOMContentLoaded", function () {
       autoplay: false,
       muted: false
     });
-    mediaPlayer.carregarMidia(jogo.trailer || videoId || trailerUrlDireta, trailerUrlDireta);
+    mediaPlayer.carregarMidia(jogo.trailer || videoId || jogo.trailerUrl);
   }
 
   const abaBotoes = document.querySelectorAll(".aba-btn");

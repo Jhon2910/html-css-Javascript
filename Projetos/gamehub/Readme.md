@@ -16,7 +16,7 @@ GameHub é um portal web desenvolvido para fins acadêmicos, com foco na exibiç
 
 ## 🕹️ Jogos Disponíveis
 
-O catálogo inclui diversos títulos populares, como:
+O catálogo mostra 380 títulos únicos. Além das fichas existentes, foram adicionados 100 jogos para PC com resumos em português e inglês, capas da Steam e links diretos para as respectivas páginas de compra. As fichas também apresentam links para lojas compatíveis com as plataformas informadas.
 
 * Grand Theft Auto VI
 * Red Dead Redemption 2
@@ -43,7 +43,7 @@ O catálogo inclui diversos títulos populares, como:
 
 ## 📰 Notícias
 
-A seção de notícias apresenta conteúdos relacionados ao universo gamer, incluindo:
+A seção de notícias reúne títulos e resumos curtos dos feeds RSS públicos de Flow Games, IGN Brasil e Adrenaline. Na versão em inglês, as fontes são IGN, GameSpot e PC Gamer. Cada cartão direciona para a matéria original; o conteúdo completo permanece no site da publicação. O GameHub atualiza o cache a cada cinco minutos e permite solicitar uma atualização pelo botão da página.
 
 * GTA VI
 * Resident Evil
@@ -126,6 +126,8 @@ Abra o GameHub por um servidor local, como o Live Server, para evitar restriçõ
 ## 👨‍💻 Autor
 
 Projeto desenvolvido para fins de estudo na disciplina de Desenvolvimento Web.
+
+- **LinkedIn:** [Jonathan Rodrigues](https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442)
 
 GameHub © 2026
 # 🎮 GameHub

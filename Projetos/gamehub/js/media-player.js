@@ -42,13 +42,13 @@ class GameHubMediaPlayer {
     `;
   }
 
-  renderizarEmbed(youtubeIdOuUrl, linkDireto = "") {
+  renderizarEmbed(youtubeIdOuUrl) {
     if (!this.container) return;
 
     const videoId = GameHubMediaPlayer.extrairYoutubeId(youtubeIdOuUrl);
 
     if (!videoId) {
-      this.renderizarPosterFallback(linkDireto);
+      this.renderizarPosterFallback();
       return;
     }
 
@@ -76,29 +76,22 @@ class GameHubMediaPlayer {
     `;
   }
 
-  renderizarPosterFallback(linkDireto = "") {
+  renderizarPosterFallback() {
     if (!this.container) return;
-
-    const urlDestino = linkDireto || "https://www.youtube.com";
 
     this.container.innerHTML = `
       <div class="gamehub-media-frame gamehub-poster-fallback" style="background-image: url('${this.options.poster}');">
         <div class="gamehub-poster-overlay">
-          <a href="${urlDestino}" target="_blank" rel="noopener noreferrer" class="gamehub-play-btn-large" title="${this.options.isEn ? 'Watch Trailer' : 'Assistir Trailer'}">
-            <i class="fa-solid fa-play"></i>
-          </a>
           <span class="gamehub-poster-titulo">${this.options.titulo}</span>
-          <a href="${urlDestino}" target="_blank" rel="noopener noreferrer" class="btn-assistir-externo">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i> ${this.options.isEn ? 'Watch on Official Source' : 'Assistir no Canal Oficial'}
-          </a>
+          <span class="gamehub-trailer-unavailable">${this.options.isEn ? 'Trailer unavailable for in-page playback.' : 'Trailer indisponível para reprodução nesta página.'}</span>
         </div>
       </div>
     `;
   }
 
-  carregarMidia(fonteVideo, linkFallback = "") {
+  carregarMidia(fonteVideo) {
     if (!fonteVideo) {
-      this.renderizarPosterFallback(linkFallback);
+      this.renderizarPosterFallback();
       return;
     }
 
@@ -107,9 +100,9 @@ class GameHubMediaPlayer {
     if (fonte.endsWith(".mp4") || fonte.endsWith(".webm") || fonte.includes("/video/") || fonte.includes("steamstatic.com")) {
       this.renderizarVideoNativo(fonte);
     } else if (fonte.includes("youtube") || fonte.includes("youtu.be") || fonte.length === 11) {
-      this.renderizarEmbed(fonte, linkFallback);
+      this.renderizarEmbed(fonte);
     } else {
-      this.renderizarPosterFallback(linkFallback);
+      this.renderizarPosterFallback();
     }
   }
 }

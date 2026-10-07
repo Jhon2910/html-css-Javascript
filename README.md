@@ -60,4 +60,4 @@ O portfólio está configurado na raiz do repositório e hospedado via **GitHub 
 
 Desenvolvido por **Jonathan Alexandre Rodrigues Alves**  
 - **GitHub:** [@Jhon2910](https://github.com/Jhon2910)
-- **LinkedIn:** [Jonathan Rodrigues](https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442)
+- **LinkedIn:** [LinkedIn de Jonathan](https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442)

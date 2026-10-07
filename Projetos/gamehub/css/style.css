@@ -937,26 +937,6 @@ ul {
   border: 1px solid #ff3344;
 }
 
-.btn-youtube-watch {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  background: #e50914;
-  color: #ffffff !important;
-  padding: 11px 16px;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 600;
-  margin-top: 10px;
-  transition: opacity 0.2s;
-}
-
-.btn-youtube-watch:hover {
-  opacity: 0.9;
-}
-
 /* =======================================================
    INTERFACE DE CONTATO PROFISSIONAL
 ======================================================= */
@@ -1118,6 +1098,13 @@ textarea.input-custom {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+}
+
+.news-empty-state {
+  grid-column: 1 / -1;
+  padding: 32px 16px;
+  color: var(--texto-fraco);
+  text-align: center;
 }
 
 .card-noticia {
@@ -1422,26 +1409,6 @@ textarea.input-custom {
   backdrop-filter: blur(2px);
 }
 
-.gamehub-play-btn-large {
-  width: 64px;
-  height: 64px;
-  background: var(--laranja);
-  color: #fff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  box-shadow: 0 4px 20px rgba(255, 123, 0, 0.5);
-  transition: transform 0.2s ease, background 0.2s ease;
-  text-decoration: none;
-}
-
-.gamehub-play-btn-large:hover {
-  transform: scale(1.1);
-  background: #ff9429;
-}
-
 .gamehub-poster-titulo {
   color: #fff;
   font-size: 14px;
@@ -1449,25 +1416,10 @@ textarea.input-custom {
   text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 
-.btn-assistir-externo {
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+.gamehub-trailer-unavailable {
   color: #fff;
   font-size: 12px;
-  font-weight: 600;
-  padding: 8px 16px;
-  border-radius: 6px;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.btn-assistir-externo:hover {
-  background: var(--laranja);
-  border-color: var(--laranja);
-  color: #fff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 
 /* =======================================================
@@ -1564,4 +1516,3 @@ textarea.input-custom {
   align-items: center;
   gap: 4px;
 }
-

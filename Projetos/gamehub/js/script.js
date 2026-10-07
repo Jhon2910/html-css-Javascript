@@ -61,16 +61,75 @@ function configurarMenuMobile() {
   });
 }
 
+function obterCategoriaExibida(jogo, isEn) {
+  if (!isEn) return jogo.categoria;
+
+  const traducoes = {
+    "Ação/Aventura": "Action/Adventure",
+    "Plataforma/Indie": "Platformer/Indie",
+    "Tiro (FPS/TPS)": "Shooter (FPS/TPS)",
+    "RPG (Role-Playing Game)": "RPG",
+    "Aventura/Indie": "Adventure/Indie",
+    "Simulação": "Simulation",
+    "Aventura/Sandbox": "Adventure/Sandbox",
+    "Sobrevivência": "Survival",
+    "Puzzle": "Puzzle",
+    "Estratégia/Simulação": "Strategy/Simulation",
+    "Terror": "Horror",
+    "Esportes/Corrida": "Sports/Racing"
+  };
+
+  return traducoes[jogo.categoria] || jogo.categoria_en || jogo.categoria;
+}
+
+function obterTituloNormalizado(titulo) {
+  return (titulo || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim()
+    .replace(/\s+/g, " ")
+    .toLowerCase();
+}
+
+function pontuarFichaJogo(jogo) {
+  let pontuacao = 0;
+  if (jogo.descricaoCurta && !descricaoDeJogoEhGenerica(jogo.descricaoCurta)) pontuacao += 2;
+  if (jogo.descricaoLonga && !descricaoDeJogoEhGenerica(jogo.descricaoLonga)) pontuacao += 2;
+  if (jogo.desenvolvedora && !jogo.desenvolvedora.toLowerCase().startsWith("estúdio reconhecido da indústria")) pontuacao += 1;
+  if (jogo.plataformas && jogo.plataformas !== "PC, PlayStation, Xbox") pontuacao += 1;
+  if (jogo.idiomas_en && jogo.idiomas_en !== "English, Portuguese (Brazil)") pontuacao += 1;
+  if (jogo.trailer || jogo.trailerUrl) pontuacao += 2;
+  return pontuacao;
+}
+
+function obterCatalogoUnico(jogos) {
+  const jogosPorTitulo = new Map();
+
+  jogos.forEach(jogo => {
+    const chave = obterTituloNormalizado(jogo.nome);
+    const atual = jogosPorTitulo.get(chave);
+    if (!atual || pontuarFichaJogo(jogo) > pontuarFichaJogo(atual)) {
+      jogosPorTitulo.set(chave, jogo);
+    }
+  });
+
+  return Array.from(jogosPorTitulo.values()).sort((a, b) => a.id - b.id);
+}
+
 function criarCardJogo(jogo) {
   const favoritado = typeof ehFavorito === "function" && ehFavorito(jogo.id);
   const isEn = document.documentElement.lang === "en" || window.location.pathname.includes("_en.html");
 
   const nomeExibido = isEn ? (jogo.nome_en || jogo.nome) : jogo.nome;
-  const categoriaExibida = isEn ? (jogo.categoria_en || jogo.categoria) : jogo.categoria;
+  const categoriaExibida = obterCategoriaExibida(jogo, isEn);
   const descricaoExibida = isEn ? (jogo.descricaoCurta_en || jogo.descricaoCurta) : jogo.descricaoCurta;
+  const mostrarDescricao = descricaoExibida && !descricaoDeJogoEhGenerica(descricaoExibida);
+  const mostrarDesenvolvedora = jogo.desenvolvedora
+    && !jogo.desenvolvedora.toLowerCase().startsWith("estúdio reconhecido da indústria");
   const linkJogo = isEn ? `jogo_en.html?id=${jogo.id}` : `jogo.html?id=${jogo.id}`;
 
-  const ehLancado = jogo.lancado !== false && jogo.nota !== null;
+  const ehLancado = jogo.lancado !== false;
+  const notaValida = Number.isFinite(jogo.nota);
 
   return `
     <div class="card-jogo">
@@ -81,13 +140,15 @@ function criarCardJogo(jogo) {
         </div>
         <div class="card-jogo-corpo">
           <h3>${escapeHtml(nomeExibido)}</h3>
-          <p>${escapeHtml(descricaoExibida)}</p>
+          ${mostrarDescricao ? `<p>${escapeHtml(descricaoExibida)}</p>` : ""}
           <div class="card-jogo-nota">
-            ${ehLancado 
+            ${ehLancado && notaValida
               ? `<span>⭐ <span class="nota">${jogo.nota}</span></span>` 
-              : `<span style="color: var(--laranja); font-weight: 600; font-size: 11px;"><i class="fa-solid fa-clock"></i> ${isEn ? 'Upcoming (' + jogo.lancamento + ')' : 'Em Breve (' + jogo.lancamento + ')'}</span>`
+              : ehLancado
+                ? `<span style="color: var(--texto-fraco); font-size: 11px;">${isEn ? 'Released' : 'Lançado'}</span>`
+                : `<span style="color: var(--laranja); font-weight: 600; font-size: 11px;"><i class="fa-solid fa-clock"></i> ${isEn ? 'Upcoming (' + jogo.lancamento + ')' : 'Em Breve (' + jogo.lancamento + ')'}</span>`
             }
-            <span style="color: var(--texto-fraco); font-size: 11px;">${escapeHtml(jogo.desenvolvedora)}</span>
+            ${mostrarDesenvolvedora ? `<span style="color: var(--texto-fraco); font-size: 11px;">${escapeHtml(jogo.desenvolvedora)}</span>` : ""}
           </div>
         </div>
       </a>
@@ -142,7 +203,7 @@ function configurarCatalogo() {
     return;
   }
 
-  const jogosDisponiveis = () => window.listaDeJogos || listaDeJogos;
+  const jogosDisponiveis = () => obterCatalogoUnico(window.listaDeJogos || listaDeJogos);
 
   const campoBusca = document.getElementById("campo-busca");
   const botoesFiltro = document.querySelectorAll(".filtro-btn");
@@ -194,7 +255,8 @@ function configurarCatalogo() {
         const catPt = (j.categoria || "").toLowerCase();
         const catEn = (j.categoria_en || "").toLowerCase();
         const catAlvo = categoriaAtiva.toLowerCase();
-        return catPt.includes(catAlvo) || catEn.includes(catAlvo);
+        const categoriaTraduzida = obterCategoriaExibida(j, true).toLowerCase();
+        return catPt.includes(catAlvo) || catEn.includes(catAlvo) || categoriaTraduzida.includes(catAlvo);
       });
     }
 
@@ -248,26 +310,34 @@ function configurarCatalogo() {
 
 function criarCardNoticia(noticia) {
   const isEn = document.documentElement.lang === "en" || window.location.pathname.includes("_en.html");
-  const fonte = noticia.fonte || (isEn ? "GAMING RADAR" : "RADAR GAMER");
+  let linkDaNoticia = "";
+  try {
+    const link = new URL(noticia.link);
+    if (link.protocol === "https:") linkDaNoticia = link.href;
+  } catch {
+    linkDaNoticia = "";
+  }
 
   return `
     <article class="card-noticia">
       <div>
         <div class="card-noticia-header">
           <span class="card-noticia-data">${escapeHtml(noticia.data)}</span>
-          <span class="card-noticia-source"><i class="fa-solid fa-bolt"></i> ${escapeHtml(fonte)}</span>
+          <span class="card-noticia-source">${escapeHtml(noticia.fonte)}</span>
         </div>
         <h3>${escapeHtml(noticia.titulo)}</h3>
         <p>${escapeHtml(noticia.resumo)}</p>
       </div>
-      <a href="${noticia.link || '#'}" target="_blank" rel="noopener noreferrer" class="card-noticia-link">
-        ${isEn ? 'Read full article on source' : 'Ler matéria completa na fonte'} →
-      </a>
+      ${linkDaNoticia ? `
+        <a href="${linkDaNoticia}" target="_blank" rel="noopener noreferrer" class="card-noticia-link">
+          ${isEn ? 'Read full article' : 'Ler matéria completa'} →
+        </a>
+      ` : ""}
     </article>
   `;
 }
 
-async function carregarEExibirNoticias(idDoElemento, limite = null) {
+async function carregarEExibirNoticias(idDoElemento, limite = null, atualizar = false) {
   const elemento = document.getElementById(idDoElemento);
   if (!elemento) return;
 
@@ -281,10 +351,23 @@ async function carregarEExibirNoticias(idDoElemento, limite = null) {
   `;
 
   let noticias = [];
-  if (typeof buscarNoticiasTempoReal === "function") {
-    noticias = await buscarNoticiasTempoReal(isEn);
+  if (typeof buscarNoticiasTempoReal !== "function") {
+    console.error("News feed loader is unavailable.");
   } else {
-    noticias = isEn ? listaDeNoticiasEN : listaDeNoticiasPT;
+    try {
+      noticias = await buscarNoticiasTempoReal(isEn, atualizar);
+    } catch (erro) {
+      console.error("Não foi possível carregar as notícias:", erro);
+    }
+  }
+
+  if (!Array.isArray(noticias) || noticias.length === 0) {
+    elemento.innerHTML = `
+      <p class="news-empty-state" role="status">
+        ${isEn ? "News are temporarily unavailable. Please try again later." : "As notícias estão temporariamente indisponíveis. Tente novamente mais tarde."}
+      </p>
+    `;
+    return;
   }
 
   if (limite && noticias.length > limite) {
@@ -301,13 +384,21 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
+function descricaoDeJogoEhGenerica(texto) {
+  const descricao = (texto || "").trim().toLowerCase();
+  return descricao.startsWith("um dos jogos mais famosos do gênero ")
+    || descricao.startsWith("one of the most famous games in the ")
+    || (descricao.startsWith("explore ") && descricao.includes(" em uma experiência marcante para fãs de videogames."))
+    || (descricao.startsWith("experience ") && descricao.includes(", a memorable game for fans around the world."));
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   initThemeGamehub();
   configurarMenuMobile();
 
   const gradeDestaque = document.getElementById("grade-jogos-destaque");
   if (gradeDestaque && typeof listaDeJogos !== "undefined") {
-    mostrarJogos(listaDeJogos.slice(0, 8), "grade-jogos-destaque");
+    mostrarJogos(obterCatalogoUnico(listaDeJogos).slice(0, 8), "grade-jogos-destaque");
   }
 
   const noticiasDestaque = document.getElementById("grade-noticias-destaque");
@@ -322,8 +413,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const btnRefreshNews = document.getElementById("btn-refresh-news");
   if (btnRefreshNews) {
-    btnRefreshNews.addEventListener("click", () => {
-      carregarEExibirNoticias("grade-noticias-completa");
+    btnRefreshNews.addEventListener("click", async () => {
+      btnRefreshNews.disabled = true;
+      try {
+        await carregarEExibirNoticias("grade-noticias-completa", null, true);
+      } finally {
+        btnRefreshNews.disabled = false;
+      }
     });
   }
 
