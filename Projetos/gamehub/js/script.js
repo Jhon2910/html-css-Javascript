@@ -43,8 +43,21 @@ function configurarMenuMobile() {
 
   if (!botaoMenu || !menuNav) return;
 
-  botaoMenu.addEventListener("click", function () {
+  botaoMenu.addEventListener("click", function (e) {
+    e.stopPropagation();
     menuNav.classList.toggle("aberto");
+  });
+
+  menuNav.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      menuNav.classList.remove("aberto");
+    });
+  });
+
+  document.addEventListener("click", function (e) {
+    if (!menuNav.contains(e.target) && !botaoMenu.contains(e.target)) {
+      menuNav.classList.remove("aberto");
+    }
   });
 }
 

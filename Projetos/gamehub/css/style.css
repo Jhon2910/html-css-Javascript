@@ -144,6 +144,55 @@ ul {
   border-left: 1px solid var(--linha);
 }
 
+.btn-voltar-portfolio {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--laranja);
+  background: rgba(255, 92, 57, 0.08);
+  border: 1px solid rgba(255, 92, 57, 0.28);
+  padding: 5px 11px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-voltar-portfolio:hover {
+  background: var(--laranja);
+  color: #ffffff;
+  border-color: var(--laranja);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 92, 57, 0.2);
+}
+
+.btn-voltar-portfolio:focus-visible,
+.header-icon-link:focus-visible,
+.contato-info-text a:focus-visible,
+.footer-links a:focus-visible {
+  outline: 2px solid var(--laranja);
+  outline-offset: 3px;
+}
+
+.header-icon-link {
+  color: var(--texto-fraco);
+  font-size: 16px;
+  padding: 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, transform 0.2s ease;
+  text-decoration: none;
+}
+
+.header-icon-link:hover {
+  color: var(--texto);
+  transform: scale(1.12);
+}
+
 .lang-toggle {
   font-size: 13px;
   font-weight: 600;
@@ -977,6 +1026,11 @@ ul {
   color: var(--laranja);
 }
 
+.contato-info-text a {
+  display: inline-block;
+  overflow-wrap: anywhere;
+}
+
 .form-contato-box {
   background: var(--bg-card);
   border: 1px solid var(--linha);
@@ -1153,11 +1207,18 @@ textarea.input-custom {
 
 .footer-links {
   display: flex;
-  gap: 20px;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .footer-links a:hover {
   color: var(--laranja);
+}
+
+.contato-info-icon.linkedin {
+  color: #0077b5;
+  background: rgba(0, 119, 181, 0.12);
 }
 
 /* =======================================================
@@ -1266,6 +1327,14 @@ textarea.input-custom {
 
   .hero h1 {
     font-size: 30px;
+  }
+
+  .btn-voltar-portfolio span {
+    display: none;
+  }
+
+  .btn-voltar-portfolio {
+    padding: 6px 9px;
   }
 }
 
@@ -1495,5 +1564,4 @@ textarea.input-custom {
   align-items: center;
   gap: 4px;
 }
-
 
