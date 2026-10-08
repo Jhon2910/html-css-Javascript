@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GameHub — Sua biblioteca e catálogo de jogos</title>
-
-  <!-- Previne flash de tema ao navegar -->
   <script>
     (function() {
       const saved = localStorage.getItem("theme") || localStorage.getItem("portfolio_theme");
@@ -18,8 +16,6 @@
   <link rel="icon" type="image/png" href="img/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <link rel="stylesheet" href="css/style.css" />
@@ -40,6 +36,14 @@
         </nav>
 
         <div class="header-controls">
+          <a href="../../portfolio.html" class="btn-voltar-portfolio" title="Voltar ao Portfólio">
+            <i class="fa-solid fa-arrow-left"></i> <span>Portfólio</span>
+          </a>
+
+          <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer" class="header-icon-link" title="GitHub (@Jhon2910)" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+
           <a href="index_en.html" class="lang-toggle" title="Switch to English">
             <span class="active">PT</span> / <span>EN</span>
           </a>
@@ -62,9 +66,9 @@
     <div class="container">
       <div>
         <div class="hero-tag">CATÁLOGO & BIBLIOTECA GAMER</div>
-        <h1>Sua próxima <strong>obsessão</strong> está aqui.</h1>
+        <h1>Encontre seu próximo jogo.</h1>
         <p>
-          Descubra lançamentos, assista a trailers oficiais e monte sua biblioteca personalizada com autenticação Google.
+          Explore o catálogo, confira detalhes e salve seus favoritos na biblioteca do navegador.
         </p>
         <div class="acoes-hero">
           <a href="catalogo.html" class="btn btn-primario">Explorar catálogo</a>
@@ -125,10 +129,12 @@
     <div class="container">
       <span>© 2026 GameHub. Desenvolvido por Jonathan Alexandre.</span>
       <div class="footer-links">
-        <a href="../../index.html">← Voltar ao Portfólio Principal</a>
+        <a href="../../portfolio.html"><i class="fa-solid fa-arrow-left"></i> Voltar ao Portfólio</a>
         <a href="catalogo.html">Catálogo</a>
         <a href="perfil.html">Perfil</a>
         <a href="contato.html">Contato</a>
+        <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+        <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
       </div>
     </div>
   </footer>

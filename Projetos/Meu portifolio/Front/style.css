@@ -549,6 +549,7 @@ section {
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
+    scroll-margin-top: 90px;
     transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -1159,12 +1160,13 @@ h3 {
    CORES DOS ÍCONES DE CONTATO
 ======================================================= */
 
-.linkedin i {
-    color: #0077b5;
-}
 
 .github i {
     color: var(--heading);
+}
+
+.linkedin i {
+    color: #0a66c2;
 }
 
 .whatsapp i {

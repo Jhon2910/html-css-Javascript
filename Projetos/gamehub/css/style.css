@@ -144,6 +144,55 @@ ul {
   border-left: 1px solid var(--linha);
 }
 
+.btn-voltar-portfolio {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--laranja);
+  background: rgba(255, 92, 57, 0.08);
+  border: 1px solid rgba(255, 92, 57, 0.28);
+  padding: 5px 11px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-voltar-portfolio:hover {
+  background: var(--laranja);
+  color: #ffffff;
+  border-color: var(--laranja);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 92, 57, 0.2);
+}
+
+.btn-voltar-portfolio:focus-visible,
+.header-icon-link:focus-visible,
+.contato-info-text a:focus-visible,
+.footer-links a:focus-visible {
+  outline: 2px solid var(--laranja);
+  outline-offset: 3px;
+}
+
+.header-icon-link {
+  color: var(--texto-fraco);
+  font-size: 16px;
+  padding: 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, transform 0.2s ease;
+  text-decoration: none;
+}
+
+.header-icon-link:hover {
+  color: var(--texto);
+  transform: scale(1.12);
+}
+
 .lang-toggle {
   font-size: 13px;
   font-weight: 600;
@@ -888,26 +937,6 @@ ul {
   border: 1px solid #ff3344;
 }
 
-.btn-youtube-watch {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  background: #e50914;
-  color: #ffffff !important;
-  padding: 11px 16px;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 600;
-  margin-top: 10px;
-  transition: opacity 0.2s;
-}
-
-.btn-youtube-watch:hover {
-  opacity: 0.9;
-}
-
 /* =======================================================
    INTERFACE DE CONTATO PROFISSIONAL
 ======================================================= */
@@ -975,6 +1004,11 @@ ul {
 
 .contato-info-text a:hover {
   color: var(--laranja);
+}
+
+.contato-info-text a {
+  display: inline-block;
+  overflow-wrap: anywhere;
 }
 
 .form-contato-box {
@@ -1066,6 +1100,13 @@ textarea.input-custom {
   gap: 20px;
 }
 
+.news-empty-state {
+  grid-column: 1 / -1;
+  padding: 32px 16px;
+  color: var(--texto-fraco);
+  text-align: center;
+}
+
 .card-noticia {
   background-color: var(--bg-card);
   border: 1px solid var(--linha);
@@ -1153,11 +1194,18 @@ textarea.input-custom {
 
 .footer-links {
   display: flex;
-  gap: 20px;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .footer-links a:hover {
   color: var(--laranja);
+}
+
+.contato-info-icon.linkedin {
+  color: #0077b5;
+  background: rgba(0, 119, 181, 0.12);
 }
 
 /* =======================================================
@@ -1267,6 +1315,14 @@ textarea.input-custom {
   .hero h1 {
     font-size: 30px;
   }
+
+  .btn-voltar-portfolio span {
+    display: none;
+  }
+
+  .btn-voltar-portfolio {
+    padding: 6px 9px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1353,26 +1409,6 @@ textarea.input-custom {
   backdrop-filter: blur(2px);
 }
 
-.gamehub-play-btn-large {
-  width: 64px;
-  height: 64px;
-  background: var(--laranja);
-  color: #fff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  box-shadow: 0 4px 20px rgba(255, 123, 0, 0.5);
-  transition: transform 0.2s ease, background 0.2s ease;
-  text-decoration: none;
-}
-
-.gamehub-play-btn-large:hover {
-  transform: scale(1.1);
-  background: #ff9429;
-}
-
 .gamehub-poster-titulo {
   color: #fff;
   font-size: 14px;
@@ -1380,25 +1416,10 @@ textarea.input-custom {
   text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 
-.btn-assistir-externo {
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+.gamehub-trailer-unavailable {
   color: #fff;
   font-size: 12px;
-  font-weight: 600;
-  padding: 8px 16px;
-  border-radius: 6px;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.btn-assistir-externo:hover {
-  background: var(--laranja);
-  border-color: var(--laranja);
-  color: #fff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 
 /* =======================================================
@@ -1495,5 +1516,3 @@ textarea.input-custom {
   align-items: center;
   gap: 4px;
 }
-
-

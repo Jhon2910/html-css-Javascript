@@ -36,6 +36,10 @@ O portfólio está configurado na raiz do repositório e hospedado via **GitHub 
 ├── 📂 img/                      # Imagens e ícones do portfólio
 ├── 📄 index.html                # Página inicial do portfólio (Português)
 ├── 📄 index_en.html             # Versão em inglês do portfólio
+├── 📄 portfolio.html            # Página de portfólio detalhada (Português)
+├── 📄 portfolio_en.html         # Página de portfólio detalhada (Inglês)
+├── 📄 noticias.html             # Página de notícias (Português)
+├── 📄 news.html                 # Página de notícias (Inglês)
 ├── 📄 style.css                 # Folha de estilos global do portfólio
 ├── 📄 main.js                   # Scripts e interatividades do portfólio
 └── 📄 README.md                 # Documentação do repositório
@@ -55,5 +59,5 @@ O portfólio está configurado na raiz do repositório e hospedado via **GitHub 
 ## 👨‍💻 Autor
 
 Desenvolvido por **Jonathan Alexandre Rodrigues Alves**  
-- **LinkedIn:** [linkedin.com/in/jonathan-alexandre-660086307](https://www.linkedin.com/in/jonathan-alexandre-660086307/)  
 - **GitHub:** [@Jhon2910](https://github.com/Jhon2910)
+- **LinkedIn:** [LinkedIn de Jonathan](https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442)

@@ -1,3 +1,4 @@
+appmod/java-upgrade-20260902162018
 {
   "jogos_no_arquivo": 325,
   "nomes_unicos": 281,
@@ -10,4 +11,18 @@
   ],
   "nao_encontrados": [],
   "saida": "dados_IGDB.js"
+=======
+{
+  "jogos_no_arquivo": 325,
+  "nomes_unicos": 281,
+  "encontrados_no_indice": 281,
+  "jogos_com_imagem_IGDB": 281,
+  "sem_imagem": [],
+  "sem_fundo": [
+    "Dead Space 2",
+    "Alan Wake 2"
+  ],
+  "nao_encontrados": [],
+  "saida": "dados_IGDB.js"
+  main
 }

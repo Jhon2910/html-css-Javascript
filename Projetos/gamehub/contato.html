@@ -30,6 +30,14 @@
         </nav>
 
         <div class="header-controls">
+          <a href="../../portfolio.html" class="btn-voltar-portfolio" title="Voltar ao Portfólio">
+            <i class="fa-solid fa-arrow-left"></i> <span>Portfólio</span>
+          </a>
+
+          <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer" class="header-icon-link" title="GitHub (@Jhon2910)" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+
           <a href="contato_en.html" class="lang-toggle" title="Switch to English">
             <span class="active">PT</span> / <span>EN</span>
           </a>
@@ -100,6 +108,16 @@
           </div>
 
           <div class="contato-info-item">
+            <div class="contato-info-icon linkedin">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </div>
+            <div class="contato-info-text">
+              <strong>LinkedIn</strong>
+              <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer">linkedin.com/in/jonathan-rodrigues-06a1b7442</a>
+            </div>
+          </div>
+
+          <div class="contato-info-item">
             <div class="contato-info-icon">
               <i class="fa-brands fa-github"></i>
             </div>
@@ -109,15 +127,6 @@
             </div>
           </div>
 
-          <div class="contato-info-item">
-            <div class="contato-info-icon" style="color: #0077b5; background: rgba(0, 119, 181, 0.12);">
-              <i class="fa-brands fa-linkedin"></i>
-            </div>
-            <div class="contato-info-text">
-              <strong>LinkedIn</strong>
-              <a href="https://www.linkedin.com/in/jonathan-rodrigues-18536a340/" target="_blank" rel="noopener noreferrer">in/jonathan-rodrigues-18536a340</a>
-            </div>
-          </div>
         </div>
 
         <!-- FORMULÁRIO DE MENSAGEM -->
@@ -164,9 +173,11 @@
     <div class="container">
       <span>© 2026 GameHub. Desenvolvido por Jonathan Alexandre.</span>
       <div class="footer-links">
-        <a href="../../index.html">← Voltar ao Portfólio Principal</a>
+        <a href="../../portfolio.html"><i class="fa-solid fa-arrow-left"></i> Voltar ao Portfólio</a>
         <a href="catalogo.html">Catálogo</a>
         <a href="perfil.html">Perfil</a>
+        <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+        <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
       </div>
     </div>
   </footer>
@@ -201,8 +212,8 @@
           statusDiv.innerHTML = '<span style="color: #ef4444;"><i class="fa-solid fa-circle-exclamation"></i> Ocorreu um erro ao enviar. Tente pelo WhatsApp ou e-mail.</span>';
         }
       } catch (err) {
-        statusDiv.innerHTML = '<span style="color: var(--verde); font-weight:600;"><i class="fa-solid fa-check-circle"></i> Mensagem recebida! Responderemos em breve.</span>';
-        this.reset();
+        console.error("Erro ao enviar mensagem de contato:", err);
+        statusDiv.innerHTML = '<span style="color: #ef4444;"><i class="fa-solid fa-circle-exclamation"></i> Erro de conexão. Tente novamente ou fale comigo pelo WhatsApp ou e-mail.</span>';
       } finally {
         btn.disabled = false;
         btn.innerHTML = originalText;

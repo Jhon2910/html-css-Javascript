@@ -1,6 +1,5 @@
-// ===================================================================================
-// BASE DE DADOS COMPLETA DO GAMEHUB (125+ JOGOS OFICIAIS STEAMGRIDDB & STEAM VERIFICADOS)
-// ===================================================================================
+
+// Catálogo de jogos do GameHub.
 
 const listaDeJogos = [
   {
@@ -7931,115 +7930,289 @@ const listaDeJogos = [
 
 ];
 
-// =======================================================
-// NOTÍCIAS 100% EM PORTUGUÊS (PARA NOTICIAS.HTML)
-// =======================================================
-const listaDeNoticiasPT = [
-  {
-    id: 1,
-    data: "25 FEV 2026",
-    titulo: "GTA VI: Rockstar Games detalha tecnologia de física de fluidos e IA viva em Vice City",
-    fonte: "IGN BRASIL",
-    resumo: "A Rockstar Games revelou que Vice City terá um ecossistema vivo com simulação de correntes marítimas, clima tropical destrutivo e rotinas autônomas para cada habitante de Leonida.",
-    link: "https://br.ign.com"
-  },
-  {
-    id: 2,
-    data: "22 FEV 2026",
-    titulo: "FromSoftware revela mecânicas cooperativas inéditas para Elden Ring Nightreign",
-    fonte: "VOXEL",
-    resumo: "Hidetaka Miyazaki confirmou que a nova expansão das Terras Intermédias trará novas linhagens de feitiçaria sombria, chefes noturnos colossais e combate refinado.",
-    link: "https://www.tecmundo.com.br/voxel"
-  },
-  {
-    id: 3,
-    data: "18 FEV 2026",
-    titulo: "Crimson Desert impressiona em 20 minutos de gameplay ininterrupto no PC",
-    fonte: "THE ENEMY",
-    resumo: "A Pearl Abyss exibiu uma demonstração técnica mostrando o combate visceral em Pywel com agarrões dinâmicos, magias elementais, física destrutiva e parkour.",
-    link: "https://www.theenemy.com.br"
-  },
-  {
-    id: 4,
-    data: "15 FEV 2026",
-    titulo: "PlayStation confirma suporte nativo a monitores ultrawide e DualSense em ports de PC",
-    fonte: "ADRENALINE",
-    resumo: "A Sony Interactive Entertainment anunciou que seus próximos grandes lançamentos no PC terão taxas de quadros desbloqueadas, proporções 21:9 e 32:9 e resposta tátil completa.",
-    link: "https://www.adrenaline.com.br"
-  }
+const JOGOS_ADICIONAIS = [
+  [753640, "Outer Wilds", "Aventura/Indie", "Investigue um sistema solar preso em um ciclo temporal e reúna pistas para descobrir a origem do fenômeno.", "Explore a solar system trapped in a time loop and piece together clues to uncover its cause."],
+  [553420, "TUNIC", "Ação/Aventura", "Explore ruínas, enfrente criaturas e reconstrua o manual de um mundo que esconde seus próprios segredos.", "Explore ruins, battle strange creatures, and piece together the manual of a world full of secrets."],
+  [1092790, "Inscryption", "Estratégia/Simulação", "Vença partidas de cartas contra um anfitrião misterioso enquanto a campanha mistura enigmas, exploração e terror.", "Outplay a mysterious host in card battles as the campaign blends puzzles, exploration, and horror."],
+  [210970, "The Witness", "Puzzle", "Resolva painéis espalhados por uma ilha aberta e descubra como cada área ensina novas regras de lógica.", "Solve panels across an open island and learn how each area introduces new rules of logic."],
+  [835960, "The Talos Principle 2", "Puzzle", "Supere desafios de lógica em uma cidade de robôs que debate consciência, propósito e o futuro da humanidade.", "Solve logic challenges in a city of robots debating consciousness, purpose, and humanity's future."],
+  [257510, "The Talos Principle", "Puzzle", "Desvende câmaras repletas de lasers, plataformas e gravidade enquanto uma voz questiona o que significa ser humano.", "Solve chambers filled with lasers, platforms, and gravity puzzles while a voice questions what it means to be human."],
+  [653530, "Return of the Obra Dinn", "Puzzle", "Como inspetor, reconstrua o destino da tripulação de um navio desaparecido usando observação e dedução.", "As an insurance investigator, reconstruct the fate of a missing ship's crew through observation and deduction."],
+  [1677770, "The Case of the Golden Idol", "Puzzle", "Examine cenas de crimes e organize nomes, ações e motivos para solucionar uma série de mistérios.", "Examine crime scenes and connect names, actions, and motives to solve a chain of mysteries."],
+  [874260, "The Forgotten City", "Aventura/Indie", "Investigue uma cidade romana presa no tempo e descubra como as escolhas de seus habitantes afetam o destino coletivo.", "Investigate a time-looping Roman city and learn how its citizens' choices shape everyone's fate."],
+  [383870, "Firewatch", "Aventura/Indie", "Trabalhe como vigia em uma floresta isolada e acompanhe, por rádio, uma investigação que altera sua rotina.", "Work as a lookout in an isolated forest and follow a radio investigation that changes your routine."],
+  [501300, "What Remains of Edith Finch", "Aventura/Indie", "Explore a antiga casa dos Finch e conheça, por pequenas histórias interativas, o destino de cada familiar.", "Explore the Finch family home and discover each relative's fate through short interactive stories."],
+  [638230, "Journey", "Aventura/Indie", "Atravesse um deserto em direção a uma montanha distante, encontrando outros viajantes sem diálogos tradicionais.", "Cross a desert toward a distant mountain, meeting other travelers without traditional dialogue."],
+  [384190, "ABZU", "Aventura/Indie", "Mergulhe em ecossistemas submarinos, descubra ruínas antigas e acompanhe a vida marinha em uma jornada contemplativa.", "Dive through underwater ecosystems, uncover ancient ruins, and follow marine life on a contemplative journey."],
+  [683320, "GRIS", "Plataforma/Indie", "Ajude Gris a atravessar paisagens desenhadas à mão enquanto novas habilidades e cores transformam sua jornada.", "Guide Gris through hand-painted landscapes as new abilities and colors reshape her journey."],
+  [2420660, "Neva", "Ação/Aventura", "Acompanhe Alba e uma loba por terras ameaçadas, combinando exploração, plataformas e combate em uma história sobre parceria.", "Follow Alba and a wolf through threatened lands in a story of companionship told through exploration, platforming, and combat."],
+  [1497440, "Cocoon", "Puzzle", "Carregue mundos dentro de orbes e use cada um deles para abrir caminhos em quebra-cabeças interligados.", "Carry worlds inside orbs and use each one to open paths through interconnected puzzles."],
+  [813230, "ANIMAL WELL", "Puzzle", "Explore um labirinto subterrâneo cheio de criaturas e segredos, usando ferramentas de maneiras que o jogo não explica diretamente.", "Explore an underground maze of creatures and secrets, using tools in ways the game never spells out."],
+  [2231450, "Pizza Tower", "Plataforma/Indie", "Corra por fases caóticas, destrua obstáculos e busque pontuações altas em uma plataforma inspirada em desenhos animados.", "Race through chaotic stages, smash obstacles, and chase high scores in a cartoon-inspired platformer."],
+  [1102190, "Monster Train", "Estratégia/Simulação", "Monte equipes de criaturas e defenda vários andares de um trem em combates de cartas que mudam a cada partida.", "Build teams of creatures and defend a multi-floor train in card battles that change with every run."],
+  [212680, "FTL: Faster Than Light", "Estratégia/Simulação", "Comande uma nave em uma rota perigosa, distribua a tripulação e administre recursos durante confrontos espaciais.", "Command a ship on a dangerous route, assign your crew, and manage resources through space battles."],
+  [590380, "Into the Breach", "Estratégia/Simulação", "Proteja cidades de ataques gigantes em combates por turnos nos quais cada inimigo anuncia sua próxima ação.", "Defend cities from giant attacks in turn-based battles where every enemy reveals its next move."],
+  [262060, "Darkest Dungeon", "RPG (Role-Playing Game)", "Lidere um grupo de aventureiros por masmorras, equilibrando combate, suprimentos e o desgaste psicológico da equipe.", "Lead a party through dungeons while balancing combat, supplies, and the team's psychological strain."],
+  [1940340, "Darkest Dungeon II", "RPG (Role-Playing Game)", "Organize uma expedição por terras devastadas e mantenha unidos heróis cuja confiança afeta o resultado das batalhas.", "Lead an expedition across devastated lands and keep heroes together as their relationships shape each battle."],
+  [200510, "XCOM: Enemy Unknown", "Estratégia/Simulação", "Comande a defesa global contra uma invasão alienígena, alternando entre missões táticas e decisões de base.", "Lead Earth's defense against an alien invasion, alternating between tactical missions and strategic base decisions."],
+  [243970, "Invisible, Inc.", "Estratégia/Simulação", "Conduza agentes de espionagem por instalações vigiadas, planejando infiltrações por turnos antes que o alarme dispare.", "Guide spies through guarded facilities, planning turn-based infiltrations before the alarm sounds."],
+  [323190, "Frostpunk", "Estratégia/Simulação", "Mantenha uma cidade viva durante um inverno extremo, decidindo como distribuir calor, trabalho e leis.", "Keep a city alive through an extreme winter by deciding how to distribute heat, labor, and laws."],
+  [1601580, "Frostpunk 2", "Estratégia/Simulação", "Administre uma metrópole congelada décadas após o início da crise, mediando disputas entre facções e necessidades coletivas.", "Manage a frozen metropolis decades into the crisis, balancing faction disputes with the city's needs."],
+  [282070, "This War of Mine", "Sobrevivência", "Ajude civis a sobreviver em uma cidade sitiada, vasculhando recursos e tomando decisões difíceis durante o dia e a noite.", "Help civilians survive in a besieged city by scavenging supplies and making difficult choices day and night."],
+  [457140, "Oxygen Not Included", "Simulação", "Construa uma colônia subterrânea e controle oxigênio, temperatura, alimentos e resíduos para manter seus duplicantes vivos.", "Build an underground colony and manage oxygen, temperature, food, and waste to keep your duplicants alive."],
+  [220200, "Kerbal Space Program", "Simulação", "Projete foguetes, lance uma equipe de pequenos astronautas e aprenda a navegar pela física de um sistema solar.", "Design rockets, launch a crew of little astronauts, and learn to navigate a solar system's physics."],
+  [1366540, "Dyson Sphere Program", "Simulação", "Automatize linhas de produção em vários planetas e transforme recursos locais em uma esfera capaz de aproveitar energia estelar.", "Automate production across multiple planets and turn local resources into a star-powered megastructure."],
+  [703080, "Planet Zoo", "Simulação", "Planeje habitats, cuide de animais e administre as instalações e a conservação de um zoológico detalhado.", "Design habitats, care for animals, and manage the facilities and conservation work of a detailed zoo."],
+  [493340, "Planet Coaster", "Simulação", "Construa parques temáticos, projete montanhas-russas e organize serviços para atender visitantes.", "Build theme parks, design roller coasters, and arrange services for your guests."],
+  [535930, "Two Point Hospital", "Simulação", "Projete hospitais, trate doenças excêntricas e mantenha equipes e pacientes satisfeitos em uma simulação de gestão.", "Design hospitals, treat unusual illnesses, and keep staff and patients happy in a management sim."],
+  [1649080, "Two Point Campus", "Simulação", "Crie um campus universitário com cursos inusitados, salas especializadas e espaços para a vida estudantil.", "Build a university campus with unusual courses, specialized rooms, and places for student life."],
+  [1190970, "House Flipper 2", "Simulação", "Reforme casas: limpe, repare, decore e prepare imóveis para novos moradores ou compradores.", "Renovate homes by cleaning, repairing, and decorating properties for new residents or buyers."],
+  [1290000, "PowerWash Simulator", "Simulação", "Use lavadoras de pressão para limpar objetos e cenários, avançando por trabalhos que revelam histórias locais.", "Use a pressure washer to clean objects and locations, uncovering small stories through each job."],
+  [305620, "The Long Dark", "Sobrevivência", "Sobreviva ao isolamento e ao frio após um desastre geomagnético, explorando a natureza e administrando recursos escassos.", "Survive isolation and freezing weather after a geomagnetic disaster by exploring the wilderness and rationing supplies."],
+  [108600, "Project Zomboid", "Sobrevivência", "Tente sobreviver a uma infestação zumbi em uma simulação aberta de saques, construção, ferimentos e necessidades diárias.", "Try to survive a zombie outbreak in an open-ended simulation of scavenging, crafting, injuries, and daily needs."],
+  [221100, "DayZ", "Sobrevivência", "Procure comida, equipamentos e abrigo em um território contaminado onde outros sobreviventes podem ser aliados ou ameaças.", "Search for food, gear, and shelter in a contaminated region where other survivors may be allies or threats."],
+  [815370, "Green Hell", "Sobrevivência", "Enfrente a floresta amazônica, cuidando de ferimentos, alimentação e orientação enquanto tenta escapar da mata.", "Face the Amazon rainforest by treating injuries, finding food, and keeping your bearings as you seek a way out."],
+  [219740, "Don't Starve", "Sobrevivência", "Reúna recursos, construa ferramentas e mantenha a sanidade em um mundo hostil que muda a cada nova partida.", "Gather resources, craft tools, and protect your sanity in a hostile world that changes with each run."],
+  [2054970, "Dragon's Dogma 2", "RPG (Role-Playing Game)", "Crie um Arisen e viaje por um reino de fantasia com peões aliados, combates de ação e monstros de grande porte.", "Create an Arisen and travel a fantasy realm with pawn allies, action combat, and imposing monsters."],
+  [367500, "Dragon's Dogma: Dark Arisen", "RPG (Role-Playing Game)", "Parta em busca do dragão que tomou seu coração e enfrente criaturas usando diferentes vocações e companheiros controlados por IA.", "Hunt the dragon that took your heart, facing monsters with different vocations and AI-controlled companions."],
+  [606880, "GreedFall", "RPG (Role-Playing Game)", "Explore uma ilha disputada por colonos e povos nativos, negociando alianças e escolhendo como intervir em seus conflitos.", "Explore an island contested by settlers and native peoples, forging alliances and choosing how to shape their conflicts."],
+  [427290, "Vampyr", "RPG (Role-Playing Game)", "Como médico transformado em vampiro, investigue Londres durante a gripe espanhola e decida quem será sua próxima vítima.", "As a doctor turned vampire, investigate London during the Spanish flu and decide who becomes your next victim."],
+  [1041720, "Kingdoms of Amalur: Re-Reckoning", "RPG (Role-Playing Game)", "Explore Amalur como alguém que voltou dos mortos, combinando habilidades de combate e alterando o destino previsto.", "Explore Amalur as someone returned from the dead, combining combat abilities and changing a foretold destiny."],
+  [200710, "Torchlight II", "RPG (Role-Playing Game)", "Escolha uma classe, explore masmorras e reúna equipamentos em uma aventura de ação com exploração cooperativa.", "Choose a class, explore dungeons, and collect gear in an action RPG with cooperative play."],
+  [219990, "Grim Dawn", "RPG (Role-Playing Game)", "Atravesse um mundo devastado por forças sobrenaturais, combinando duas maestrias e enfrentando facções rivais.", "Travel a world ravaged by supernatural forces, combine two masteries, and confront rival factions."],
+  [899770, "Last Epoch", "RPG (Role-Playing Game)", "Viaje por diferentes eras, escolha uma classe avançada e monte combinações de habilidades contra legiões de inimigos.", "Travel across different eras, choose an advanced class, and build skill combinations against enemy hordes."],
+  [2344520, "Diablo IV", "RPG (Role-Playing Game)", "Enfrente as forças de Lilith em Santuário, explorando regiões abertas e aprimorando uma classe por meio de habilidades e equipamentos.", "Face Lilith's forces in Sanctuary, explore open regions, and develop a class through skills and equipment."],
+  [1446650, "Bravely Default II", "RPG (Role-Playing Game)", "Acompanhe quatro heróis em busca dos cristais e combine classes e habilidades em batalhas por turnos.", "Follow four heroes seeking the crystals and combine jobs and abilities in turn-based battles."],
+  [579180, "Ys VIII: Lacrimosa of Dana", "RPG (Role-Playing Game)", "Após um naufrágio, Adol reúne sobreviventes em uma ilha perigosa e descobre a história de Dana em outra era.", "After a shipwreck, Adol gathers survivors on a dangerous island and uncovers Dana's story in another age."],
+  [774361, "Blasphemous", "Plataforma/Indie", "Explore Cvstodia como o Penitente, enfrentando criaturas grotescas em um jogo de ação com combate preciso e exploração.", "Explore Cvstodia as the Penitent One, facing grotesque creatures in an action game built around combat and exploration."],
+  [2114740, "Blasphemous 2", "Plataforma/Indie", "Retorne a Cvstodia com novas armas e movimentos para atravessar áreas interligadas e enfrentar chefes.", "Return to Cvstodia with new weapons and moves as you cross connected regions and face bosses."],
+  [692850, "Bloodstained: Ritual of the Night", "Ação/Aventura", "Explore um castelo tomado por demônios como Miriam, absorvendo poderes de inimigos e abrindo novos caminhos.", "Explore a demon-infested castle as Miriam, gaining enemy powers and unlocking new routes."],
+  [1253920, "Rogue Legacy 2", "Plataforma/Indie", "Enfrente um castelo que muda a cada tentativa e escolha descendentes com características únicas para continuar a aventura.", "Take on a changing castle and choose descendants with distinct traits to continue the adventure."],
+  [239350, "Spelunky", "Plataforma/Indie", "Explore cavernas geradas a cada partida, procurando tesouros e atalhos enquanto desvia de armadilhas e criaturas.", "Explore caves reshaped on every run, seeking treasure and shortcuts while avoiding traps and creatures."],
+  [274190, "Broforce", "Ação/Aventura", "Atravesse fases destrutíveis com um esquadrão de heróis de ação, resgatando aliados e enfrentando forças inimigas.", "Fight through destructible stages as a squad of action heroes, rescuing allies and battling enemy forces."],
+  [534550, "Guacamelee! 2", "Plataforma/Indie", "Lute e salte entre dimensões como Juan, desbloqueando golpes que também servem para explorar o mapa.", "Fight and platform across dimensions as Juan, unlocking moves that also open new routes."],
+  [860950, "Mark of the Ninja: Remastered", "Ação/Aventura", "Infiltre-se em bases como um ninja, usando sombras, distrações e ferramentas para atravessar cada missão sem ser visto.", "Infiltrate enemy bases as a ninja, using shadows, distractions, and tools to slip through each mission unseen."],
+  [946030, "Axiom Verge 2", "Plataforma/Indie", "Explore uma paisagem alienígena e alterne entre combate, exploração e habilidades que transformam o ambiente.", "Explore an alien landscape, alternating between combat, discovery, and abilities that reshape your surroundings."],
+  [1237320, "Sonic Frontiers", "Ação/Aventura", "Corra por ilhas abertas, resolva desafios de exploração e enfrente titãs em uma aventura de Sonic em grande escala.", "Race across open islands, solve exploration challenges, and battle titans in a large-scale Sonic adventure."],
+  [731490, "Crash Bandicoot N. Sane Trilogy", "Plataforma/Indie", "Reviva as três primeiras aventuras de Crash em fases de plataforma que exigem saltos precisos e reflexos rápidos.", "Play through Crash's first three adventures in platforming stages built around precise jumps and quick reactions."],
+  [996580, "Spyro Reignited Trilogy", "Plataforma/Indie", "Explore mundos coloridos como Spyro, resgatando dragões, reunindo tesouros e usando chamas e investidas.", "Explore colorful worlds as Spyro, rescuing dragons, collecting treasure, and using fire and charges."],
+  [242550, "Rayman Legends", "Plataforma/Indie", "Atravesse fases desenhadas à mão e sincronize saltos, ataques e música em desafios para jogar sozinho ou em grupo.", "Run through hand-painted levels, syncing jumps and attacks to music in solo or cooperative challenges."],
+  [2751000, "Prince of Persia: The Lost Crown", "Ação/Aventura", "Explore o Monte Qaf como Sargon, combinando acrobacias, combate e poderes temporais para alcançar novas áreas.", "Explore Mount Qaf as Sargon, combining acrobatics, combat, and time powers to reach new areas."],
+  [607080, "Psychonauts 2", "Plataforma/Indie", "Entre nas mentes de personagens excêntricos como Raz e use poderes psíquicos para enfrentar conflitos internos.", "Enter the minds of eccentric characters as Raz and use psychic abilities to confront inner conflicts."],
+  [1817230, "Hi-Fi RUSH", "Ação/Aventura", "Enfrente uma corporação ao ritmo da música: ataques, desvios e cenários acompanham a batida da trilha sonora.", "Take on a corporation to the beat: attacks, dodges, and environments move with the soundtrack."],
+  [847370, "Sunset Overdrive", "Ação/Aventura", "Atravesse uma cidade caótica deslizando por trilhos e paredes enquanto enfrenta mutantes com armas improvisadas.", "Traverse a chaotic city by grinding rails and walls while fighting mutants with improvised weapons."],
+  [460810, "Vanquish", "Tiro (FPS/TPS)", "Use armadura de propulsão para deslizar pelo campo de batalha e enfrentar máquinas em combates de tiro acelerados.", "Use a boost suit to slide across the battlefield and fight machines in fast-paced shooting encounters."],
+  [460790, "Bayonetta", "Ação/Aventura", "Domine combos e esquivas em combates estilizados enquanto a bruxa Bayonetta enfrenta anjos e revela seu passado.", "Master combos and dodges as the witch Bayonetta battles angels and uncovers her past."],
+  [235460, "Metal Gear Rising: Revengeance", "Ação/Aventura", "Lute como Raiden em confrontos velozes e use a lâmina de alta frequência para cortar inimigos e obstáculos.", "Fight as Raiden in fast encounters, using a high-frequency blade to slice enemies and obstacles."],
+  [2988580, "Yakuza 0 Director's Cut", "Ação/Aventura", "Acompanhe Kiryu e Majima em duas histórias ligadas ao Japão de 1988, entre conflitos criminais e atividades paralelas.", "Follow Kiryu and Majima in two stories set in 1988 Japan, amid criminal conflicts and side activities."],
+  [2058180, "Judgment", "Ação/Aventura", "Investigue crimes em Kamurocho como o detetive Takayuki Yagami, alternando entre investigação e combate nas ruas.", "Investigate crimes in Kamurocho as detective Takayuki Yagami, switching between casework and street fights."],
+  [1144200, "Ready or Not", "Tiro (FPS/TPS)", "Comande uma equipe policial em operações táticas, planejando entradas e avaliando ameaças em ambientes fechados.", "Lead a police squad through tactical operations, planning entries and assessing threats in close quarters."],
+  [548430, "Deep Rock Galactic", "Tiro (FPS/TPS)", "Trabalhe em equipe como anão espacial, minerando cavernas geradas proceduralmente enquanto enfrenta criaturas subterrâneas.", "Team up as a space dwarf, mining procedurally generated caves while fighting underground creatures."],
+  [218620, "PAYDAY 2", "Tiro (FPS/TPS)", "Planeje e execute assaltos cooperativos, escolhendo equipamentos e abordagens furtivas ou barulhentas.", "Plan and carry out cooperative heists, choosing equipment and stealthy or loud approaches."],
+  [1272080, "PAYDAY 3", "Tiro (FPS/TPS)", "Reúna uma equipe para executar assaltos cooperativos e adapte o plano quando a operação sai do controle.", "Assemble a crew for cooperative heists and adapt your plan when the operation goes sideways."],
+  [1238860, "Battlefield 4", "Tiro (FPS/TPS)", "Participe de combates militares em mapas destrutíveis, com veículos e modos multiplayer de grande escala.", "Fight across destructible maps with vehicles and large-scale multiplayer modes."],
+  [1238810, "Battlefield V", "Tiro (FPS/TPS)", "Jogue batalhas da Segunda Guerra Mundial em campanhas curtas e modos multiplayer com infantaria e veículos.", "Play World War II battles in short campaigns and multiplayer modes featuring infantry and vehicles."],
+  [311210, "Call of Duty: Black Ops III", "Tiro (FPS/TPS)", "Enfrente uma campanha futurista, sobreviva a hordas de zumbis e dispute partidas multiplayer com especialistas.", "Play a futuristic campaign, survive zombie rounds, and compete in multiplayer with specialist abilities."],
+  [1097840, "Gears 5", "Tiro (FPS/TPS)", "Acompanhe Kait em uma campanha de ação e use cobertura e cooperação para enfrentar as forças do Enxame.", "Follow Kait in an action campaign and use cover and teamwork against the Swarm."],
+  [1240440, "Halo Infinite", "Tiro (FPS/TPS)", "Explore Zeta Halo como Master Chief e enfrente as forças Banished em uma campanha de tiro em primeira pessoa.", "Explore Zeta Halo as Master Chief and fight the Banished in a first-person shooter campaign."],
+  [1029690, "Sniper Elite 5", "Tiro (FPS/TPS)", "Infiltre-se na França ocupada como Karl Fairburne, usando furtividade e tiros de longa distância para sabotar operações nazistas.", "Infiltrate occupied France as Karl Fairburne, using stealth and long-range shots to disrupt Nazi operations."],
+  [1036890, "Shadow Warrior 3: Definitive Edition", "Tiro (FPS/TPS)", "Combine armas de fogo, katana e movimentos acrobáticos para enfrentar demônios em fases cheias de ação.", "Combine firearms, a katana, and acrobatic movement to fight demons across action-packed stages."],
+  [257420, "Serious Sam 4", "Tiro (FPS/TPS)", "Enfrente hordas de invasores alienígenas em arenas abertas, usando um arsenal pesado e combate direto.", "Battle alien hordes in open arenas with a heavy arsenal and straightforward combat."],
+  [232090, "Killing Floor 2", "Tiro (FPS/TPS)", "Forme um esquadrão e resista a ondas de criaturas mutantes, aprimorando armas entre os confrontos.", "Form a squad and survive waves of mutated creatures, upgrading weapons between encounters."],
+  [699130, "World War Z", "Tiro (FPS/TPS)", "Sobreviva a enxames de zumbis em missões cooperativas ambientadas em diferentes cidades do mundo.", "Survive zombie swarms in cooperative missions set across cities around the world."],
+  [924970, "Back 4 Blood", "Tiro (FPS/TPS)", "Monte uma equipe de exterminadores e enfrente infectados em campanhas cooperativas com cartas que alteram cada partida.", "Build a team of Cleaners and fight the infected in co-op campaigns shaped by cards."],
+  [552500, "Warhammer: Vermintide 2", "Ação/Aventura", "Una forças com quatro heróis em combates cooperativos corpo a corpo contra hordas de Skaven e Caos.", "Join four heroes in cooperative melee battles against hordes of Skaven and Chaos."],
+  [1361210, "Warhammer 40,000: Darktide", "Tiro (FPS/TPS)", "Forme uma equipe de agentes descartáveis e combata cultistas em missões cooperativas no mundo de Warhammer 40,000.", "Team up as expendable agents and fight cultists in cooperative missions set in Warhammer 40,000."],
+  [1038250, "DIRT 5", "Esportes/Corrida", "Dispute corridas off-road em diferentes superfícies, com veículos variados e eventos para jogar sozinho ou online.", "Race off-road across varied surfaces and vehicles, with events for solo or online play."],
+  [1462810, "WRC 10 FIA World Rally Championship", "Esportes/Corrida", "Pilote carros de rali em etapas oficiais, ajustando o veículo para diferentes terrenos e condições climáticas.", "Drive rally cars through official stages, tuning your vehicle for different terrain and weather."],
+  [646910, "The Crew 2", "Esportes/Corrida", "Explore os Estados Unidos em corridas de carro, barco e avião, alternando de veículo durante os eventos.", "Explore the United States in car, boat, and plane races, switching vehicles during events."],
+  [635260, "CarX Drift Racing Online", "Esportes/Corrida", "Ajuste carros para drift, pratique derrapagens em pistas variadas e dispute sessões online com outros pilotos.", "Tune cars for drifting, practice slides on varied tracks, and compete online with other drivers."],
+  [228380, "Wreckfest", "Esportes/Corrida", "Dispute corridas e demolições com carros danificáveis, onde colisões e peças destruídas alteram a disputa.", "Race and wreck cars with detailed damage, where collisions and broken parts change the competition."],
+  [1313140, "Cult of the Lamb", "Ação/Aventura", "Lidere um culto em nome de uma entidade misteriosa, alternando entre expedições de combate e gestão da comunidade.", "Lead a cult for a mysterious entity, alternating between combat expeditions and community management."],
+  [424840, "Little Nightmares", "Terror", "Ajude Six a escapar de uma embarcação sombria, escondendo-se de habitantes ameaçadores em ambientes de plataforma e suspense.", "Help Six escape a dark vessel by hiding from threatening inhabitants in a suspenseful platform adventure."],
+  [1623940, "Bramble: The Mountain King", "Aventura/Indie", "Atravesse uma floresta inspirada no folclore nórdico para resgatar uma criança, evitando criaturas perigosas pelo caminho.", "Cross a forest inspired by Nordic folklore to rescue a child and evade dangerous creatures along the way."]
 ];
 
-// =======================================================
-// NEWS 100% IN ENGLISH (FOR NOTICIAS_EN.HTML)
-// =======================================================
-const listaDeNoticiasEN = [
-  {
-    id: 101,
-    data: "FEB 25, 2026",
-    titulo: "GTA VI: Rockstar Games Details Advanced Fluid Physics & Living AI in Vice City",
-    fonte: "IGN",
-    resumo: "Rockstar Games confirmed that Vice City features a fully simulated living ecosystem with dynamic ocean physics, tropical storms, and autonomous daily NPC schedules.",
-    link: "https://www.ign.com"
-  },
-  {
-    id: 102,
-    data: "FEB 22, 2026",
-    titulo: "FromSoftware Unveils Brand-New Cooperative Mechanics in Elden Ring Nightreign",
-    fonte: "GAMESPOT",
-    resumo: "Hidetaka Miyazaki detailed new dark sorcery trees, colossal night bosses roaming the Lands Between, and refined cooperative multiplayer dynamics.",
-    link: "https://www.gamespot.com"
-  },
-  {
-    id: 103,
-    data: "FEB 18, 2026",
-    titulo: "Crimson Desert Stuns with 20 Minutes of Uninterrupted Gameplay Combat",
-    fonte: "PC GAMER",
-    resumo: "Pearl Abyss showcased extensive combat footage across Pywel highlighting physics-driven environmental destruction, grappling combos, and aerial parkour.",
-    link: "https://www.pcgamer.com"
-  },
-  {
-    id: 104,
-    data: "FEB 15, 2026",
-    titulo: "PlayStation Announces Native Ultrawide & DualSense Support for PC Releases",
-    fonte: "POLYGON",
-    resumo: "Sony Interactive Entertainment confirmed unlocked framerates, native 21:9 and 32:9 aspect ratios, and full DualSense haptic feedback support on PC.",
-    link: "https://www.polygon.com"
-  }
-];
+const CATEGORIAS_EN = {
+  "Ação/Aventura": "Action/Adventure",
+  "Aventura/Indie": "Adventure/Indie",
+  "Plataforma/Indie": "Platformer/Indie",
+  "RPG (Role-Playing Game)": "RPG",
+  "Estratégia/Simulação": "Strategy/Simulation",
+  "Sobrevivência": "Survival",
+  "Simulação": "Simulation",
+  "Puzzle": "Puzzle",
+  "Terror": "Horror",
+  "Tiro (FPS/TPS)": "Shooter (FPS/TPS)",
+  "Esportes/Corrida": "Sports/Racing"
+};
 
-// Motor de Busca de Notícias com Filtro Estrito de Idioma
-async function buscarNoticiasTempoReal(isEn = false) {
-  const rssUrl = isEn
-    ? "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Ffeeds.feedburner.com%2Fign%2Fall"
-    : "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fbr.ign.com%2Ffeed.xml";
+listaDeJogos.push(...JOGOS_ADICIONAIS.map(([steamAppId, nome, categoria, descricaoCurta, descricaoCurta_en], indice) => ({
+  id: 326 + indice,
+  nome,
+  nome_en: nome,
+  categoria,
+  categoria_en: CATEGORIAS_EN[categoria] || categoria,
+  imagem: `https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/${steamAppId}/library_600x900.jpg`,
+  fundo: `https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/${steamAppId}/library_hero.jpg`,
+  lancado: true,
+  nota: null,
+  descricaoCurta,
+  descricaoCurta_en,
+  descricaoLonga: descricaoCurta,
+  descricaoLonga_en: descricaoCurta_en,
+  lancamento: "Lançado",
+  plataformas: "PC",
+  idiomas: "Ver idiomas na loja",
+  idiomas_en: "See store listing for languages",
+  dublado: false,
+  legendado: true,
+  trailer: "",
+  trailerUrl: "",
+  steamAppId
+})));
 
-  try {
-    const resposta = await fetch(rssUrl, { cache: "no-store" });
-    if (!resposta.ok) throw new Error("Erro ao carregar feed");
-    const dados = await resposta.json();
+const FONTES_NOTICIAS = {
+  pt: [
+    { nome: "Flow Games", url: "https://flowgames.gg/feed/" },
+    { nome: "IGN Brasil", url: "https://br.ign.com/feed.xml" },
+    { nome: "Adrenaline", url: "https://www.adrenaline.com.br/feed/" }
+  ],
+  en: [
+    { nome: "IGN", url: "https://feeds.feedburner.com/ign/games-all" },
+    { nome: "GameSpot", url: "https://www.gamespot.com/feeds/news/" },
+    { nome: "PC Gamer", url: "https://www.pcgamer.com/rss/" }
+  ]
+};
 
-    if (dados && dados.items && dados.items.length > 0) {
-      return dados.items.slice(0, 10).map((item, index) => {
-        const dataObj = new Date(item.pubDate);
-        const dataFormatada = isEn
-          ? dataObj.toLocaleDateString("en-US", { day: "2-digit", month: "short", year: "numeric" }).toUpperCase()
-          : dataObj.toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric" }).toUpperCase();
+function limparResumoNoticia(texto) {
+  if (!texto) return "";
 
-        const resumoLimpo = item.description ? item.description.replace(/<[^>]*>?/gm, "").substring(0, 165) + "..." : "";
+  const documento = new DOMParser().parseFromString(texto, "text/html");
+  documento.querySelectorAll("script, style").forEach(elemento => elemento.remove());
+  const resumo = (documento.body.textContent || "").replace(/\s+/g, " ").trim();
+  if (resumo.length <= 180) return resumo;
 
-        return {
-          id: 200 + index,
-          data: dataFormatada,
-          titulo: item.title,
-          fonte: isEn ? "IGN US LIVE" : "IGN BRASIL LIVE",
-          resumo: resumoLimpo,
-          link: item.link || (isEn ? "https://www.ign.com" : "https://br.ign.com")
-        };
-      });
+  const corte = resumo.slice(0, 180);
+  const ultimoEspaco = corte.lastIndexOf(" ");
+  return `${corte.slice(0, ultimoEspaco > 120 ? ultimoEspaco : 180).trimEnd()}…`;
+}
+
+// Converte títulos e links de feeds RSS públicos; a matéria continua hospedada na fonte.
+async function buscarNoticiasTempoReal(isEn = false, atualizar = false) {
+  const fontes = isEn ? FONTES_NOTICIAS.en : FONTES_NOTICIAS.pt;
+  const locale = isEn ? "en-US" : "pt-BR";
+  const chaveCache = `gamehub_noticias_v2_${isEn ? "en" : "pt"}`;
+  const validadeCache = 5 * 60 * 1000;
+
+  if (!atualizar) {
+    try {
+      const cache = JSON.parse(localStorage.getItem(chaveCache) || "null");
+      if (cache && Date.now() - cache.atualizadoEm < validadeCache && Array.isArray(cache.noticias)) {
+        return cache.noticias;
+      }
+    } catch (erro) {
+      console.warn("Não foi possível ler o cache de notícias:", erro);
     }
-  } catch (erro) {
-    console.warn("Utilizando notícias nativas:", erro);
   }
 
-  return isEn ? listaDeNoticiasEN : listaDeNoticiasPT;
+  const resultados = await Promise.all(fontes.map(async fonte => {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 12000);
+
+    try {
+      const endpoint = new URL("https://api.rss2json.com/v1/api.json");
+      endpoint.searchParams.set("rss_url", fonte.url);
+
+      const resposta = await fetch(endpoint, { cache: "no-store", signal: controller.signal });
+      if (!resposta.ok) throw new Error(`HTTP ${resposta.status}`);
+
+      const dados = await resposta.json();
+      if (dados.status !== "ok" || !Array.isArray(dados.items)) {
+        throw new Error(dados.message || "Resposta RSS inválida");
+      }
+
+      return dados.items.flatMap(item => {
+        if (!item.title || !item.link) return [];
+
+        let link;
+        try {
+          link = new URL(item.link);
+        } catch {
+          return [];
+        }
+        if (link.protocol !== "https:") return [];
+
+        const dataPublicacao = new Date(item.pubDate);
+        const dataOrdenacao = Number.isNaN(dataPublicacao.getTime()) ? 0 : dataPublicacao.getTime();
+        const resumo = limparResumoNoticia(item.description || item.content);
+
+        return [{
+          id: `${fonte.nome}-${dataOrdenacao}-${item.title}`,
+          data: dataOrdenacao
+            ? dataPublicacao.toLocaleDateString(locale, { day: "2-digit", month: "short", year: "numeric" }).toUpperCase()
+            : "",
+          titulo: item.title.trim(),
+          fonte: fonte.nome,
+          resumo,
+          link: link.href,
+          dataOrdenacao
+        }];
+      });
+    } catch (erro) {
+      console.warn(`Não foi possível carregar notícias de ${fonte.nome}:`, erro);
+      return [];
+    } finally {
+      clearTimeout(timeout);
+    }
+  }));
+
+  const noticias = resultados.flat();
+  const titulosVistos = new Set();
+  const noticiasUnicas = noticias
+    .sort((a, b) => b.dataOrdenacao - a.dataOrdenacao)
+    .filter(noticia => {
+      const tituloNormalizado = noticia.titulo.normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/[^\p{L}\p{N}]+/gu, " ")
+        .trim();
+      if (titulosVistos.has(tituloNormalizado)) return false;
+      titulosVistos.add(tituloNormalizado);
+      return true;
+    });
+
+  const noticiasPorFonte = new Map();
+  noticiasUnicas.forEach(noticia => {
+    if (!noticiasPorFonte.has(noticia.fonte)) noticiasPorFonte.set(noticia.fonte, []);
+    noticiasPorFonte.get(noticia.fonte).push(noticia);
+  });
+
+  const noticiasEquilibradas = [];
+  for (let indice = 0; noticiasEquilibradas.length < 18; indice += 1) {
+    let encontrouNoticia = false;
+    fontes.forEach(fonte => {
+      const noticia = noticiasPorFonte.get(fonte.nome)?.[indice];
+      if (noticia && noticiasEquilibradas.length < 18) {
+        noticiasEquilibradas.push(noticia);
+        encontrouNoticia = true;
+      }
+    });
+    if (!encontrouNoticia) break;
+  }
+
+  noticiasEquilibradas.sort((a, b) => b.dataOrdenacao - a.dataOrdenacao);
+
+  if (noticiasEquilibradas.length) {
+    try {
+      localStorage.setItem(chaveCache, JSON.stringify({
+        atualizadoEm: Date.now(),
+        noticias: noticiasEquilibradas
+      }));
+    } catch (erro) {
+      console.warn("Não foi possível salvar o cache de notícias:", erro);
+    }
+  }
+
+  return noticiasEquilibradas;
 }

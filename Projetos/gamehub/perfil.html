@@ -63,9 +63,6 @@
       border-color: var(--laranja);
       transform: translateY(-1px);
     }
-      border-color: #9ca3af;
-      transform: translateY(-1px);
-    }
 
     .auth-divider {
       display: flex;
@@ -452,6 +449,12 @@
         </nav>
 
         <div class="header-controls">
+          <a href="../../portfolio.html" class="btn-voltar-portfolio" title="Voltar ao Portfólio">
+            <i class="fa-solid fa-arrow-left"></i> <span>Portfólio</span>
+          </a>
+          <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer" class="header-icon-link" title="GitHub (@Jhon2910)" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
           <a href="perfil_en.html" class="lang-toggle" title="Switch to English">
             <span class="active">PT</span> / <span>EN</span>
           </a>
@@ -507,9 +510,11 @@
     <div class="container">
       <span>© 2026 GameHub. Desenvolvido por Jonathan Alexandre.</span>
       <div class="footer-links">
-        <a href="../../index.html">← Voltar ao Portfólio Principal</a>
+        <a href="../../portfolio.html"><i class="fa-solid fa-arrow-left"></i> Voltar ao Portfólio</a>
         <a href="catalogo.html">Catálogo</a>
         <a href="contato.html">Contato</a>
+        <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+        <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
       </div>
     </div>
   </footer>
@@ -535,11 +540,11 @@
             <form class="form-auth" id="form-cadastro-inicial">
               <div>
                 <label for="cad-nome">Seu Nome / Gamer Tag</label>
-                <input type="text" id="cad-nome" placeholder="Ex: Jonathan Alexandre" required>
+                <input type="text" id="cad-nome" placeholder="Nome de usuario" required>
               </div>
               <div>
                 <label for="cad-email">Seu E-mail</label>
-                <input type="email" id="cad-email" placeholder="jonathanalexandre2910@gmail.com" required>
+                <input type="email" id="cad-email" placeholder="e-mail@exemplo.com" required>
               </div>
               <button type="submit" class="btn-auth-submit">
                 <i class="fa-solid fa-right-to-bracket"></i> Entrar / Cadastrar Perfil
@@ -550,15 +555,15 @@
               <span>ou acesso rápido</span>
             </div>
 
-            <button class="btn-quick-login" id="btn-quick-jonathan">
+            <button class="btn-quick-login" id="btn-quick-convidado">
               <i class="fa-solid fa-user-check"></i>
-              <span>Entrar como Jonathan Alexandre</span>
+              <span>Entrar como convidado</span>
             </button>
           </div>
         `;
 
-        document.getElementById("btn-quick-jonathan")?.addEventListener("click", () => {
-          cadastrarOuTrocarContaManual("Jonathan Alexandre", "jonathanalexandre2910@gmail.com", "img/avatar-jonathan.png");
+        document.getElementById("btn-quick-convidado")?.addEventListener("click", () => {
+          cadastrarOuTrocarContaManual("convidado");
           window.location.reload();
         });
 
@@ -627,10 +632,9 @@
                 return `
                   <div class="card-conta-item ${ehAtiva ? 'ativa' : ''}">
                     <div class="card-conta-user">
-                      <img src="${conta.foto || 'img/avatar-jonathan.png'}" class="card-conta-foto" onerror="this.src='img/avatar-jonathan.png'">
+                      <img src="${conta.foto || ''}" class="card-conta-foto">
                       <div class="card-conta-detalhes">
                         <strong>${escapeHtml(conta.nome)}</strong>
-                        <span>${escapeHtml(conta.email)}</span>
                       </div>
                     </div>
                     <div>
@@ -639,9 +643,7 @@
                           <i class="fa-solid fa-check"></i> Ativa
                         </span>
                       ` : `
-                        <button class="btn-perfil-acao" onclick="trocarParaConta('${escapeHtml(conta.email)}')" style="padding: 4px 8px; font-size: 11px;">
-                          Alternar
-                        </button>
+                      
                       `}
                     </div>
                   </div>
