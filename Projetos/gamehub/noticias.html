@@ -1,47 +1,75 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Notícias Gamer — GameHub</title>
+  <title>Notícias — GameHub</title>
+  <script>
+    (function() {
+      const saved = localStorage.getItem("theme") || localStorage.getItem("portfolio_theme");
+      const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const theme = saved ? saved : (systemDark ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
 
   <link rel="icon" type="image/png" href="img/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <header class="header">
+  <!-- Floating Background Elements -->
+  <div class="floating-elements" aria-hidden="true">
+    <div class="floating-circle"></div>
+    <div class="floating-circle"></div>
+    <div class="floating-circle"></div>
+  </div>
+
+  <!-- ================= HEADER ================= -->
+  <header class="header navbar-floating">
     <div class="container">
       <a href="index.html" class="logo">GAME<span>HUB</span></a>
 
       <div class="header-right">
-        <nav class="nav">
-          <a href="index.html">Início</a>
-          <a href="catalogo.html">Catálogo</a>
-          <a href="perfil.html">Perfil</a>
-          <a href="noticias.html" class="ativo">Notícias</a>
-          <a href="contato.html">Contato</a>
+        <nav class="nav" role="navigation" aria-label="Navegação principal">
+          <a href="index.html">
+            <i class="fa-solid fa-house nav-icon" aria-hidden="true"></i>
+            <span>Início</span>
+          </a>
+          <a href="catalogo.html">
+            <i class="fa-solid fa-th-large nav-icon" aria-hidden="true"></i>
+            <span>Catálogo</span>
+          </a>
+          <a href="noticias.html" class="ativo">
+            <i class="fa-solid fa-newspaper nav-icon" aria-hidden="true"></i>
+            <span>Notícias</span>
+          </a>
+          <a href="contato.html">
+            <i class="fa-regular fa-envelope nav-icon" aria-hidden="true"></i>
+            <span>Contato</span>
+          </a>
         </nav>
 
         <div class="header-controls">
           <a href="../../portfolio.html" class="btn-voltar-portfolio" title="Voltar ao Portfólio">
             <i class="fa-solid fa-arrow-left"></i> <span>Portfólio</span>
           </a>
+
           <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer" class="header-icon-link" title="GitHub (@Jhon2910)" aria-label="GitHub">
             <i class="fa-brands fa-github"></i>
           </a>
-          <a href="noticias_en.html" class="lang-toggle" title="Switch to English">
+
+          <a href="noticias_en.html" class="lang-toggle" title="Mudar para Inglês">
             <span class="active">PT</span> / <span>EN</span>
           </a>
 
           <button class="theme-toggle-btn" id="theme-toggle" title="Alternar tema" aria-label="Alternar tema">
-            <i class="fa-regular fa-moon"></i>
+            <i class="fa-regular fa-sun theme-icon icon-light" aria-hidden="true"></i>
+            <i class="fa-regular fa-moon theme-icon icon-dark" aria-hidden="true"></i>
           </button>
         </div>
 
@@ -57,41 +85,61 @@
   <section class="hero" style="padding: 48px 0;">
     <div class="container" style="grid-template-columns: 1fr; text-align: left;">
       <div>
-        <div class="hero-tag">VÁRIAS FONTES</div>
-        <h1 style="font-size: 36px;">Notícias de videogames</h1>
-        <p>Últimas notícias de Flow Games, IGN Brasil e Adrenaline. Leia cada matéria no site da publicação.</p>
+        <div class="hero-tag">NOTÍCIAS & ATUALIZAÇÕES</div>
+        <h1 style="font-size: 36px;">Fique por dentro</h1>
+        <p>Acompanhe as últimas notícias do mundo dos jogos, atualizações de catálogo e novidades da comunidade.</p>
       </div>
     </div>
   </section>
 
   <section class="secao" style="border-bottom: none;">
     <div class="container">
-      <div class="news-header-actions">
-        <h2 style="font-size: 22px;">Últimas Atualizações</h2>
-        <button id="btn-refresh-news" class="btn-refresh-news">
-          <i class="fa-solid fa-rotate-right"></i> Atualizar Notícias
+      <div class="cabecalho-noticias">
+        <p>Notícias recentes de fontes especializadas em jogos.</p>
+        <button class="btn-refresh-news" id="btn-refresh-news" type="button">
+          <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+          Atualizar notícias
         </button>
       </div>
-
-      <div class="grade-noticias" id="grade-noticias-completa"></div>
+      <div class="grade-noticias" id="grade-noticias-completa" aria-live="polite"></div>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container">
-      <span>© 2026 GameHub. Desenvolvido por Jonathan Alexandre.</span>
-      <div class="footer-links">
-        <a href="../../portfolio.html"><i class="fa-solid fa-arrow-left"></i> Voltar ao Portfólio</a>
-        <a href="catalogo.html">Catálogo</a>
-        <a href="perfil.html">Perfil</a>
-        <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
-        <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">GAME<span>HUB</span></div>
+          <p>Sua biblioteca e catálogo de jogos.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Navegação do rodapé">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="noticias.html">Notícias</a></li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </nav>
+        <div class="footer-social">
+          <h4>Conecte-se</h4>
+          <div class="social-links">
+            <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="../../portfolio.html" aria-label="Portfólio">
+              <i class="fa-solid fa-briefcase"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Jonathan Alexandre Rodrigues Alves. Todos os direitos reservados.</p>
       </div>
     </div>
   </footer>
 
   <script src="js/dados.js"></script>
-  <script src="js/auth.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>

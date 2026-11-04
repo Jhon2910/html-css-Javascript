@@ -4,44 +4,72 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Detalhes do Jogo — GameHub</title>
+  <script>
+    (function() {
+      const saved = localStorage.getItem("theme") || localStorage.getItem("portfolio_theme");
+      const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const theme = saved ? saved : (systemDark ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
 
   <link rel="icon" type="image/png" href="img/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <header class="header">
+  <!-- Floating Background Elements -->
+  <div class="floating-elements" aria-hidden="true">
+    <div class="floating-circle"></div>
+    <div class="floating-circle"></div>
+    <div class="floating-circle"></div>
+  </div>
+
+  <!-- ================= HEADER ================= -->
+  <header class="header navbar-floating">
     <div class="container">
       <a href="index.html" class="logo">GAME<span>HUB</span></a>
 
       <div class="header-right">
-        <nav class="nav">
-          <a href="index.html">Início</a>
-          <a href="catalogo.html" class="ativo">Catálogo</a>
-          <a href="perfil.html">Perfil</a>
-          <a href="noticias.html">Notícias</a>
-          <a href="contato.html">Contato</a>
+        <nav class="nav" role="navigation" aria-label="Navegação principal">
+          <a href="index.html">
+            <i class="fa-solid fa-house nav-icon" aria-hidden="true"></i>
+            <span>Início</span>
+          </a>
+          <a href="catalogo.html" class="ativo">
+            <i class="fa-solid fa-th-large nav-icon" aria-hidden="true"></i>
+            <span>Catálogo</span>
+          </a>
+          <a href="noticias.html">
+            <i class="fa-solid fa-newspaper nav-icon" aria-hidden="true"></i>
+            <span>Notícias</span>
+          </a>
+          <a href="contato.html">
+            <i class="fa-regular fa-envelope nav-icon" aria-hidden="true"></i>
+            <span>Contato</span>
+          </a>
         </nav>
 
         <div class="header-controls">
           <a href="../../portfolio.html" class="btn-voltar-portfolio" title="Voltar ao Portfólio">
             <i class="fa-solid fa-arrow-left"></i> <span>Portfólio</span>
           </a>
+
           <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer" class="header-icon-link" title="GitHub (@Jhon2910)" aria-label="GitHub">
             <i class="fa-brands fa-github"></i>
           </a>
-          <a href="jogo_en.html" class="lang-toggle" title="Switch to English">
+
+          <a href="jogo_en.html" class="lang-toggle" title="Mudar para Inglês">
             <span class="active">PT</span> / <span>EN</span>
           </a>
 
           <button class="theme-toggle-btn" id="theme-toggle" title="Alternar tema" aria-label="Alternar tema">
-            <i class="fa-regular fa-moon"></i>
+            <i class="fa-regular fa-sun theme-icon icon-light" aria-hidden="true"></i>
+            <i class="fa-regular fa-moon theme-icon icon-dark" aria-hidden="true"></i>
           </button>
         </div>
 
@@ -62,16 +90,12 @@
       <div class="footer-links">
         <a href="../../portfolio.html"><i class="fa-solid fa-arrow-left"></i> Voltar ao Portfólio</a>
         <a href="catalogo.html">Catálogo</a>
-        <a href="perfil.html">Perfil</a>
-        <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
         <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
       </div>
     </div>
   </footer>
 
   <script src="js/dados.js"></script>
-  <script src="js/auth.js"></script>
-  <script src="js/media-player.js"></script>
   <script src="js/script.js"></script>
   <script src="js/jogo.js"></script>
 </body>

@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfólio de Jonathan Alexandre, estudante de Sistemas de Informação no IFMG Sabará, em busca de estágio em infraestrutura, redes ou suporte técnico.">
+    <meta name="theme-color" content="#15803d">
 
     <!-- Previne flash de tema ao navegar -->
     <script>
@@ -16,31 +18,56 @@
     </script>
 
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="style.css">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <title>Jonathan Alexandre | Portfólio Profissional</title>
 </head>
 
 <body>
+    <!-- Floating Background Elements -->
+    <div class="floating-elements" aria-hidden="true">
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+    </div>
 
     <!-- ================= HEADER ================= -->
-    <header>
+    <header class="navbar-floating" role="banner">
         <div class="container nav-wrapper">
             <a href="index.html" class="brand" title="Voltar ao Início">
-                <i class="fa-solid fa-house" style="font-size: 0.85rem; margin-right: 4px; opacity: 0.7;"></i> Jonathan Alexandre
+                <span class="brand-text">Jonathan Alexandre</span>
             </a>
 
             <div class="nav-right">
-                <nav>
-                    <a href="index.html">Início</a>
-                    <a href="#sobre">Sobre</a>
-                    <a href="#projetos">Projetos</a>
-                    <a href="#habilidades">Stack</a>
-                    <a href="#formacao">Formação</a>
-                    <a href="#contato">Contato</a>
+                <nav class="nav-links" role="navigation" aria-label="Navegação principal">
+                    <a href="#sobre" class="nav-link">
+                        <i class="fa-solid fa-circle-info nav-icon" aria-hidden="true"></i>
+                        <span>Sobre</span>
+                    </a>
+                    <a href="#projetos" class="nav-link">
+                        <i class="fa-solid fa-folder-open nav-icon" aria-hidden="true"></i>
+                        <span>Projetos</span>
+                    </a>
+                    <a href="#experiencia" class="nav-link">
+                        <i class="fa-solid fa-briefcase nav-icon" aria-hidden="true"></i>
+                        <span>Experiência</span>
+                    </a>
+                    <a href="#habilidades" class="nav-link">
+                        <i class="fa-solid fa-code nav-icon" aria-hidden="true"></i>
+                        <span>Stack</span>
+                    </a>
+                    <a href="#formacao" class="nav-link">
+                        <i class="fa-solid fa-graduation-cap nav-icon" aria-hidden="true"></i>
+                        <span>Formação</span>
+                    </a>
+                    <a href="#contato" class="nav-link">
+                        <i class="fa-solid fa-envelope nav-icon" aria-hidden="true"></i>
+                        <span>Contato</span>
+                    </a>
                 </nav>
 
                 <div class="nav-tools">
@@ -49,7 +76,8 @@
                     </a>
 
                     <button class="theme-btn" id="theme-toggle" title="Alternar tema" aria-label="Alternar tema">
-                        <i class="fa-regular fa-moon"></i>
+                        <i class="fa-regular fa-sun theme-icon icon-light" aria-hidden="true"></i>
+                        <i class="fa-regular fa-moon theme-icon icon-dark" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
@@ -57,293 +85,395 @@
     </header>
 
     <!-- ================= MAIN ================= -->
-    <main class="container">
+    <main class="container" role="main">
 
         <!-- HERO / INTRO -->
-        <section class="hero" id="sobre">
-            <img src="img/imagem.png" alt="Foto de Jonathan Alexandre" class="hero-avatar">
+        <section class="hero" id="sobre" aria-labelledby="sobre-title">
+            <div class="hero-visual" aria-hidden="true">
+                <div class="hero-orb orb-1"></div>
+                <div class="hero-orb orb-2"></div>
+                <div class="hero-orb orb-3"></div>
+            </div>
 
             <div class="hero-content">
-                <div class="hero-status-badge">
-                    <span class="portal-dot"></span> Disponível para Oportunidades & Estágio
+                <h1 id="sobre-title" class="hero-name">Jonathan Alexandre</h1>
+
+                <div class="hero-role-wrapper">
+                    <p class="hero-role-label" data-typewriter aria-label="Sou estudante de Sistemas de Informação">Sou estudante de Sistemas de Informação</p>
                 </div>
 
-                <h1>Jonathan Alexandre</h1>
-                <p class="hero-subtitle">Estudante de Sistemas de Informação • Desenvolvedor de Software</p>
-
                 <p class="hero-bio">
-                    Graduando no <a href="https://www.ifmg.edu.br/sabara" target="_blank" rel="noopener noreferrer">IFMG Campus Sabará</a> com foco em <strong>desenvolvimento back-end (Java & Spring)</strong>, arquitetura de software, modelagem de banco de dados e <strong>redes de computadores</strong>.
+                    Estudante do <strong>4º semestre de Sistemas de Informação no IFMG — Campus Sabará</strong>,
+                    com interesse em <strong>Infraestrutura, Redes e Suporte Técnico</strong>.
+                    Tenho conhecimentos em redes e manutenção de computadores, além de:
+                    Java intermediário; Python, JavaScript e SQL básicos; e conhecimentos em HTML e CSS.
                 </p>
 
-                <div class="hero-quick-nav">
+                <div class="hero-quick-nav" role="navigation" aria-label="Navegação rápida">
                     <a href="#projetos" class="hero-nav-pill"><i class="fa-solid fa-code"></i> Projetos</a>
-                    <a href="#habilidades" class="hero-nav-pill"><i class="fa-solid fa-layer-group"></i> Habilidades</a>
+                    <a href="#experiencia" class="hero-nav-pill"><i class="fa-solid fa-briefcase"></i> Experiência</a>
+                    <a href="#habilidades" class="hero-nav-pill"><i class="fa-solid fa-layer-group"></i> Stack</a>
                     <a href="#formacao" class="hero-nav-pill"><i class="fa-solid fa-graduation-cap"></i> Formação</a>
                     <a href="#contato" class="hero-nav-pill"><i class="fa-regular fa-envelope"></i> Contato</a>
                 </div>
 
-                <div class="links-row">
-                    <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer" class="link-item">
-                        <i class="fa-brands fa-github"></i> GitHub
+                <div class="links-row" role="list" aria-label="Links de contato">
+                    <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer" class="link-item" role="listitem">
+                        <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
                     </a>
-                    <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer" class="link-item">
-                        <i class="fa-brands fa-linkedin"></i> LinkedIn
+                    <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer" class="link-item" role="listitem">
+                        <i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn
                     </a>
-                    <a href="https://wa.me/5531988234307?text=Ol%C3%A1%20Jonathan,%20vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar!" target="_blank" rel="noopener noreferrer" class="link-item">
-                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                    </a>
-                    <a href="mailto:jonathanalexandre2910@gmail.com" class="link-item">
-                        <i class="fa-regular fa-envelope"></i> Email
+                    <a href="mailto:jonathanalexandre2910@gmail.com" class="link-item" role="listitem">
+                        <i class="fa-regular fa-envelope" aria-hidden="true"></i> Email
                     </a>
                 </div>
+
+                <div class="hero-scroll-indicator" aria-hidden="true">
+                    <span class="scroll-text">Scroll</span>
+                    <div class="scroll-mouse">
+                        <div class="scroll-wheel"></div>
+                    </div>
+                </div>
             </div>
+
+            <img src="img/imagem.png" alt="Foto de Jonathan Alexandre" class="hero-avatar" loading="lazy">
         </section>
 
         <!-- PROJETOS -->
-        <section id="projetos">
-            <h2>Projetos Selecionados</h2>
+        <section id="projetos" aria-labelledby="projetos-title">
+            <div class="section-header">
+                <h2 id="projetos-title" class="section-title">Projetos em Destaque</h2>
+                <p class="section-subtitle">Projetos acadêmicos de desenvolvimento web e redes de computadores</p>
+                <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer" class="section-cta">
+                    Ver todos no GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
 
-            <div class="projects-list" id="projetos-container">
+            <div class="projects-grid" id="projetos-grid">
+                <!-- Projects will be loaded dynamically from backend or fallback to static -->
+            </div>
+        </section>
 
-                <article class="project-item">
-                    <div class="project-header">
-                        <a href="https://github.com/Jhon2910/html-css-Javascript/tree/main/Projetos/gamehub" target="_blank" rel="noopener noreferrer" class="project-title">
-                            GameHub <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
-                    </div>
-                    <p class="project-desc">
-                        Catálogo web de jogos com informações detalhadas, exibição de trailers e interface responsiva construída em JavaScript vanilla.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">HTML5</span>
-                        <span class="tag">CSS3</span>
-                        <span class="tag">JavaScript</span>
+        <!-- EXPERIÊNCIA -->
+        <section id="experiencia" aria-labelledby="experiencia-title">
+            <div class="section-header">
+                <h2 id="experiencia-title" class="section-title">Experiência Profissional & Projetos Acadêmicos</h2>
+                <p class="section-subtitle">Experiência em manutenção e projetos desenvolvidos durante a formação em TI</p>
+            </div>
+
+            <div class="timeline" role="list" aria-label="Experiência profissional e projetos acadêmicos">
+                <article class="timeline-item" role="listitem">
+                    <div class="timeline-marker" aria-hidden="true"><span class="timeline-dot"></span></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3 class="timeline-title">Ajustador Mecânico Júnior / Ajustador Mecânico I</h3>
+                            <span class="timeline-date">Fev. 2021 — Mar. 2025</span>
+                        </div>
+                        <p class="timeline-org">ElmeC Comércio e Indústria Ltda</p>
+                        <p class="timeline-desc">Atuação em atividades de manutenção, aplicando raciocínio lógico e resolução de problemas. Organização das atividades, atenção aos detalhes, cumprimento de procedimentos e trabalho em equipe multidisciplinar.</p>
+                        <div class="timeline-tags">
+                            <span class="tag">Manutenção</span>
+                            <span class="tag">Resolução de problemas</span>
+                            <span class="tag">Trabalho em equipe</span>
+                        </div>
                     </div>
                 </article>
 
-                <article class="project-item">
-                    <div class="project-header">
-                        <a href="https://github.com/Jhon2910/Java" target="_blank" rel="noopener noreferrer" class="project-title">
-                            Aplicações & Lógica em Java <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
-                    </div>
-                    <p class="project-desc">
-                        Exercícios e rotinas em Java aplicando Orientação a Objetos (POO), estruturas de dados, algoritmos e integração com APIs e bancos de dados.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Java</span>
-                        <span class="tag">POO</span>
-                        <span class="tag">Estruturas de Dados</span>
-                        <span class="tag">Spring Boot</span>
-                    </div>
-                </article>
-
-                <article class="project-item">
-                    <div class="project-header">
-                        <a href="https://github.com/Jhon2910/SQL" target="_blank" rel="noopener noreferrer" class="project-title">
-                            Modelagem & Consultas SQL <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
-                    </div>
-                    <p class="project-desc">
-                        Projetos de bancos relacionais com criação de esquemas, tabelas relacionais, integridade referencial e consultas com joins e agregações.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">SQL</span>
-                        <span class="tag">PostgreSQL</span>
-                        <span class="tag">MySQL</span>
-                        <span class="tag">Modelagem Relacional</span>
+                <article class="timeline-item" role="listitem">
+                    <div class="timeline-marker" aria-hidden="true"><span class="timeline-dot"></span></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3 class="timeline-title">GameHub — Portal Web</h3>
+                            <span class="timeline-date">Projeto acadêmico</span>
+                        </div>
+                        <p class="timeline-org">Disciplina de Web I</p>
+                        <p class="timeline-desc">Projeto desenvolvido sem frameworks externos, com catálogo de jogos, filtros por categoria, páginas individuais, navegação dinâmica e layout responsivo.</p>
+                        <div class="timeline-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
                     </div>
                 </article>
 
-                <article class="project-item">
-                    <div class="project-header">
-                        <a href="https://github.com/Jhon2910/Redes" target="_blank" rel="noopener noreferrer" class="project-title">
-                            Laboratórios de Redes & Packet Tracer <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
-                    </div>
-                    <p class="project-desc">
-                        Simulações práticas de topologias de rede, roteamento estático/dinâmico, endereçamento e cálculo de subnetting IPv4/IPv6 no Cisco Packet Tracer.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Cisco Packet Tracer</span>
-                        <span class="tag">IPv4 / IPv6</span>
-                        <span class="tag">TCP/IP</span>
-                        <span class="tag">DHCP / DNS</span>
+                <article class="timeline-item" role="listitem">
+                    <div class="timeline-marker" aria-hidden="true"><span class="timeline-dot"></span></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3 class="timeline-title">Sistema de Matchmaking Cliente-Servidor</h3>
+                            <span class="timeline-date">Projeto acadêmico</span>
+                        </div>
+                        <p class="timeline-org">Disciplina de Redes</p>
+                        <p class="timeline-desc">Aplicação com sockets TCP para comunicação entre cliente e servidor, gerenciamento de filas de jogadores e criação de partidas conforme a quantidade necessária de participantes.</p>
+                        <div class="timeline-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Sockets TCP</span>
+                            <span class="tag">Cliente-servidor</span>
+                        </div>
                     </div>
                 </article>
-
             </div>
         </section>
 
         <!-- HABILIDADES & STACK -->
-        <section id="habilidades">
-            <h2>Stack & Tecnologias</h2>
+        <section id="habilidades" aria-labelledby="habilidades-title">
+            <div class="section-header">
+                <h2 id="habilidades-title" class="section-title">Conhecimentos e Competências</h2>
+                <p class="section-subtitle">Tecnologias, redes e conhecimentos práticos em TI</p>
+            </div>
 
-            <div class="skills-list">
-                <div class="skill-row">
-                    <span class="skill-label">Back-end & Banco de Dados</span>
-                    <div class="skill-items">
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Spring Boot</span>
-                        <span class="skill-tag">SQL (PostgreSQL / MySQL)</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">POO</span>
-                        <span class="skill-tag">Estruturas de Dados</span>
+            <div class="skills-categories">
+                <article class="skill-category" data-category="programming">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon" aria-hidden="true">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <div>
+                            <h3 class="skill-category-title">Programação e Desenvolvimento Web</h3>
+                            <p class="skill-category-count">6 tecnologias</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="skill-row">
-                    <span class="skill-label">Front-end & Web</span>
-                    <div class="skill-items">
-                        <span class="skill-tag">HTML5 Semântico</span>
-                        <span class="skill-tag">CSS3 / Flexbox / Grid</span>
-                        <span class="skill-tag">JavaScript (ES6+)</span>
-                        <span class="skill-tag">Design Responsivo</span>
-                        <span class="skill-tag">Consumo de APIs REST</span>
+                    <div class="skill-tags">
+                        <span class="skill-tag" data-level="intermediate">Java</span>
+                        <span class="skill-tag" data-level="beginner">Python</span>
+                        <span class="skill-tag" data-level="beginner">HTML</span>
+                        <span class="skill-tag" data-level="beginner">CSS</span>
+                        <span class="skill-tag" data-level="beginner">JavaScript</span>
+                        <span class="skill-tag" data-level="beginner">SQL</span>
                     </div>
-                </div>
+                </article>
 
-                <div class="skill-row">
-                    <span class="skill-label">Redes & Infraestrutura</span>
-                    <div class="skill-items">
+                <article class="skill-category" data-category="networking">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon" aria-hidden="true">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <div>
+                            <h3 class="skill-category-title">Redes & Infraestrutura</h3>
+                            <p class="skill-category-count">6 conhecimentos</p>
+                        </div>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">TCP/IP</span>
+                        <span class="skill-tag">IPv4</span>
+                        <span class="skill-tag">Subnetting</span>
+                        <span class="skill-tag">Modelo OSI</span>
+                        <span class="skill-tag">LAN/WAN</span>
                         <span class="skill-tag">Cisco Packet Tracer</span>
-                        <span class="skill-tag">Modelo OSI / TCP-IP</span>
-                        <span class="skill-tag">Subnetting IPv4 & IPv6</span>
-                        <span class="skill-tag">DHCP & Roteamento</span>
                     </div>
-                </div>
+                </article>
 
-                <div class="skill-row">
-                    <span class="skill-label">Ferramentas & Workflow</span>
-                    <div class="skill-items">
+                <article class="skill-category" data-category="support">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon" aria-hidden="true">
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                        </div>
+                        <div>
+                            <h3 class="skill-category-title">Suporte Técnico e Manutenção</h3>
+                            <p class="skill-category-count">3 conhecimentos práticos</p>
+                        </div>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Montagem, configuração, formatação e manutenção preventiva/corretiva de computadores</span>
+                        <span class="skill-tag">Diagnóstico e resolução de falhas de hardware e software</span>
+                        <span class="skill-tag">Instalação e configuração de sistemas operacionais</span>
+                    </div>
+                </article>
+
+                <article class="skill-category" data-category="tools">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon" aria-hidden="true">
+                            <i class="fa-solid fa-tools"></i>
+                        </div>
+                        <div>
+                            <h3 class="skill-category-title">Ferramentas & Workflow</h3>
+                            <p class="skill-category-count">3 ferramentas</p>
+                        </div>
+                    </div>
+                    <div class="skill-tags">
                         <span class="skill-tag">Git</span>
                         <span class="skill-tag">GitHub</span>
-                        <span class="skill-tag">VS Code</span>
-                        <span class="skill-tag">IntelliJ IDEA</span>
-                        <span class="skill-tag">Postman</span>
-                        <span class="skill-tag">Linux / Terminal</span>
+                        <span class="skill-tag">Pacote Office</span>
                     </div>
-                </div>
+                </article>
+
+                <article class="skill-category" data-category="languages">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon" aria-hidden="true">
+                            <i class="fa-solid fa-language"></i>
+                        </div>
+                        <div>
+                            <h3 class="skill-category-title">Idiomas</h3>
+                            <p class="skill-category-count">1 idioma</p>
+                        </div>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Inglês — Intermediário (B2)</span>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Proficiency Legend -->
+            <div class="proficiency-legend" aria-label="Legenda de proficiência">
+                <span class="legend-item">
+                    <span class="legend-dot" data-level="intermediate"></span>
+                    <span>Intermediário</span>
+                </span>
+                <span class="legend-item">
+                    <span class="legend-dot" data-level="beginner"></span>
+                    <span>Básico</span>
+                </span>
             </div>
         </section>
 
         <!-- FORMAÇÃO & CERTIFICAÇÕES -->
-        <section id="formacao">
-            <h2>Formação & Cursos</h2>
+        <section id="formacao" aria-labelledby="formacao-title">
+            <div class="section-header">
+                <h2 id="formacao-title" class="section-title">Formação & Certificações</h2>
+                <p class="section-subtitle">Formação acadêmica e cursos complementares</p>
+            </div>
 
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-header">
-                        <span class="timeline-title">Bacharelado em Sistemas de Informação</span>
-                        <span class="timeline-date">Em andamento</span>
+            <div class="education-grid">
+                <article class="education-card">
+                    <div class="education-icon" aria-hidden="true">
+                        <i class="fa-solid fa-university"></i>
                     </div>
-                    <p class="timeline-org">IFMG — Campus Sabará</p>
-                    <p class="timeline-desc">Graduação focada em desenvolvimento de software, bancos de dados, estruturas de dados, algoritmos, redes de computadores e engenharia de software.</p>
-                </div>
+                    <div class="education-content">
+                        <h3 class="education-title">Bacharelado em Sistemas de Informação</h3>
+                        <p class="education-org">IFMG — Campus Sabará</p>
+                        <p class="education-date">4º semestre — Cursando</p>
+                        <p class="education-desc">Bacharelado em andamento no Instituto Federal de Minas Gerais.</p>
+                    </div>
+                </article>
 
-                <div class="timeline-item">
-                    <div class="timeline-header">
-                        <span class="timeline-title">Networking Basics</span>
-                        <span class="timeline-date">Cisco Academy</span>
+                <article class="education-card">
+                    <div class="education-icon" aria-hidden="true">
+                        <i class="fa-brands fa-cisco"></i>
                     </div>
-                    <p class="timeline-org">Cisco Networking Academy</p>
-                    <p class="timeline-desc">Fundamentos de arquitetura de redes, modelo OSI/TCP-IP, protocolos, roteamento, subnetting e simulações práticas no Packet Tracer.</p>
-                </div>
+                    <div class="education-content">
+                        <h3 class="education-title">Networking Basics</h3>
+                        <p class="education-org">Cisco Networking Academy</p>
+                        <p class="education-desc">Curso de fundamentos de redes.</p>
+                    </div>
+                </article>
 
-                <div class="timeline-item">
-                    <div class="timeline-header">
-                        <span class="timeline-title">HTML5 e CSS3</span>
-                        <span class="timeline-date">Concluído</span>
+                <article class="education-card">
+                    <div class="education-icon" aria-hidden="true">
+                        <i class="fa-solid fa-code"></i>
                     </div>
-                    <p class="timeline-org">Curso em Vídeo</p>
-                    <p class="timeline-desc">Estruturação semântica, desenvolvimento web moderno, estilização responsiva e layouts flexíveis.</p>
-                </div>
+                    <div class="education-content">
+                        <h3 class="education-title">HTML & CSS</h3>
+                        <p class="education-org">Curso em Vídeo</p>
+                        <p class="education-desc">Curso introdutório de HTML e CSS.</p>
+                    </div>
+                </article>
 
-                <div class="timeline-item">
-                    <div class="timeline-header">
-                        <span class="timeline-title">English for IT (Inglês Técnico)</span>
-                        <span class="timeline-date">Cisco Academy</span>
+                <article class="education-card">
+                    <div class="education-icon" aria-hidden="true">
+                        <i class="fa-solid fa-laptop-code"></i>
                     </div>
-                    <p class="timeline-org">Cisco Networking Academy</p>
-                    <p class="timeline-desc">Vocabulário técnico e comunicação em língua inglesa aplicada à área de tecnologia e computação.</p>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-header">
-                        <span class="timeline-title">Operador de Computador</span>
-                        <span class="timeline-date">SENAC</span>
+                    <div class="education-content">
+                        <h3 class="education-title">Operador de Computador</h3>
+                        <p class="education-org">SENAC Minas</p>
+                        <p class="education-date">2019</p>
+                        <p class="education-desc">Formação profissional.</p>
                     </div>
-                    <p class="timeline-org">SENAC Minas</p>
-                    <p class="timeline-desc">Operação de sistemas operacionais, rotinas informatizadas e pacote Office.</p>
-                </div>
+                </article>
             </div>
         </section>
 
         <!-- CONTATO -->
-        <section id="contato">
-            <h2>Contato</h2>
+        <section id="contato" aria-labelledby="contato-title">
+            <div class="section-header">
+                <h2 id="contato-title" class="section-title">Vamos Conversar?</h2>
+                <p class="section-subtitle">Para propostas ou dúvidas, entre em contato pelos canais abaixo.</p>
+            </div>
 
             <div class="contact-layout">
-                <div>
-                    <p class="contact-desc">
-                        Se quiser conversar sobre projetos, tecnologia ou oportunidades, fique à vontade para me enviar uma mensagem direta:
-                    </p>
-
-                    <form id="form-contato" class="contact-form" action="https://formspree.io/f/xkjwebrw" method="POST">
+                <div class="contact-form-wrapper">
+                    <form id="form-contato" class="contact-form" action="https://formspree.io/f/xkjwebrw" method="POST" novalidate>
                         <div class="form-row">
-                            <input type="text" name="name" id="nome" placeholder="Seu nome" required autocomplete="name">
-                            <input type="email" name="email" id="email" placeholder="Seu e-mail" required autocomplete="email">
+                            <div class="form-group">
+                                <label for="nome" class="form-label">Nome</label>
+                                <input type="text" name="name" id="nome" placeholder="Seu nome" required autocomplete="name" aria-describedby="nome-error">
+                                <span class="form-error" id="nome-error" aria-live="polite"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">E-mail</label>
+                                <input type="email" name="email" id="email" placeholder="seu@email.com" required autocomplete="email" aria-describedby="email-error">
+                                <span class="form-error" id="email-error" aria-live="polite"></span>
+                            </div>
                         </div>
-                        <input type="text" name="subject" id="assunto" placeholder="Assunto" required>
-                        <textarea name="message" id="mensagem" placeholder="Sua mensagem..." rows="4" required></textarea>
+                        <div class="form-group">
+                            <label for="assunto" class="form-label">Assunto</label>
+                            <input type="text" name="subject" id="assunto" placeholder="Sobre o que você quer falar?" required aria-describedby="assunto-error">
+                            <span class="form-error" id="assunto-error" aria-live="polite"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagem" class="form-label">Mensagem</label>
+                            <textarea name="message" id="mensagem" placeholder="Escreva sua mensagem aqui..." rows="5" required aria-describedby="mensagem-error"></textarea>
+                            <span class="form-error" id="mensagem-error" aria-live="polite"></span>
+                        </div>
                         <button type="submit" class="btn-submit" id="btn-enviar">
-                            <span>Enviar Mensagem</span>
+                            <span class="btn-text">Enviar Mensagem</span>
+                            <span class="btn-loading" aria-hidden="true">
+                                <i class="fa-solid fa-spinner fa-spin"></i> Enviando...
+                            </span>
                         </button>
-                        <div id="form-feedback" class="form-feedback"></div>
+                        <div id="form-feedback" class="form-feedback" aria-live="polite"></div>
                     </form>
                 </div>
 
-                <div class="direct-card">
-                    <h3>Canais Diretos</h3>
-                    <p class="direct-desc">Você também pode me encontrar diretamente através de:</p>
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <h3 class="contact-card-title">Canais Diretos</h3>
+                        <p class="contact-card-desc">Respondo geralmente em até 24h nos dias úteis</p>
 
-                    <div class="direct-list">
-                        <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer" class="direct-item">
-                            <i class="fa-brands fa-linkedin"></i>
-                            <div>
-                                <strong>LinkedIn</strong>
-                                <span>linkedin.com/in/jonathan-rodrigues-06a1b7442</span>
-                            </div>
-                        </a>
-                        <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer" class="direct-item">
-                            <i class="fa-brands fa-github"></i>
-                            <div>
-                                <strong>GitHub</strong>
-                                <span>github.com/Jhon2910</span>
-                            </div>
-                        </a>
-                        <a href="https://wa.me/5531988234307?text=Ol%C3%A1%20Jonathan,%20vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar!" target="_blank" rel="noopener noreferrer" class="direct-item">
-                            <i class="fa-brands fa-whatsapp"></i>
-                            <div>
-                                <strong>WhatsApp</strong>
-                                <span>(31) 98823-4307</span>
-                            </div>
-                        </a>
-                        <a href="mailto:jonathanalexandre2910@gmail.com" class="direct-item">
-                            <i class="fa-regular fa-envelope"></i>
-                            <div>
-                                 <strong>Email</strong>
-                                 <span>jonathanalexandre2910@gmail.com</span>
-                            </div>
-                        </a>
-                        <a href="https://jhon2910.github.io/html-css-Javascript/" target="_blank" rel="noopener noreferrer" class="direct-item">
-                            <i class="fa-solid fa-globe"></i>
-                            <div>
-                                 <strong>GitHub Pages</strong>
-                                 <span>jhon2910.github.io/html-css-Javascript</span>
-                            </div>
-                        </a>
+                        <ul class="contact-list" role="list">
+                            <li class="contact-item" role="listitem">
+                                <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer" class="contact-link">
+                                    <span class="contact-icon" aria-hidden="true"><i class="fa-brands fa-linkedin"></i></span>
+                                    <div class="contact-details">
+                                        <strong>LinkedIn</strong>
+                                        <span>linkedin.com/in/jonathan-rodrigues</span>
+                                    </div>
+                                    <i class="fa-solid fa-arrow-up-right-from-square contact-arrow" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="contact-item" role="listitem">
+                                <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer" class="contact-link">
+                                    <span class="contact-icon" aria-hidden="true"><i class="fa-brands fa-github"></i></span>
+                                    <div class="contact-details">
+                                        <strong>GitHub</strong>
+                                        <span>github.com/Jhon2910</span>
+                                    </div>
+                                    <i class="fa-solid fa-arrow-up-right-from-square contact-arrow" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="contact-item" role="listitem">
+                                <a href="mailto:jonathanalexandre2910@gmail.com" class="contact-link">
+                                    <span class="contact-icon" aria-hidden="true"><i class="fa-regular fa-envelope"></i></span>
+                                    <div class="contact-details">
+                                        <strong>Email</strong>
+                                        <span>jonathanalexandre2910@gmail.com</span>
+                                    </div>
+                                    <i class="fa-solid fa-arrow-up-right-from-square contact-arrow" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="contact-item" role="listitem">
+                                <a href="https://jhon2910.github.io/html-css-Javascript/" target="_blank" rel="noopener noreferrer" class="contact-link">
+                                    <span class="contact-icon" aria-hidden="true"><i class="fa-solid fa-globe"></i></span>
+                                    <div class="contact-details">
+                                        <strong>Portfólio Online</strong>
+                                        <span>jhon2910.github.io</span>
+                                    </div>
+                                    <i class="fa-solid fa-arrow-up-right-from-square contact-arrow" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -351,9 +481,17 @@
     </main>
 
     <!-- ================= FOOTER ================= -->
-    <footer class="container">
-        <p>© 2026 Jonathan Alexandre Rodrigues Alves</p>
-        <p><a href="https://www.ifmg.edu.br/sabara" target="_blank" rel="noopener noreferrer">IFMG Campus Sabará</a></p>
+    <footer class="container" role="contentinfo">
+        <div class="footer-content">
+            <p class="footer-copyright">© 2026 Jonathan Alexandre Rodrigues Alves</p>
+            <p class="footer-links">
+                <a href="https://www.ifmg.edu.br/sabara" target="_blank" rel="noopener noreferrer">IFMG Campus Sabará</a>
+                <span class="footer-separator" aria-hidden="true">·</span>
+                <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <span class="footer-separator" aria-hidden="true">·</span>
+                <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </p>
+        </div>
     </footer>
 
     <script src="main.js"></script>

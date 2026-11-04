@@ -22,17 +22,36 @@
 </head>
 <body>
 
-  <header class="header">
+  <!-- Floating Background Elements -->
+  <div class="floating-elements" aria-hidden="true">
+    <div class="floating-circle"></div>
+    <div class="floating-circle"></div>
+    <div class="floating-circle"></div>
+  </div>
+
+  <!-- ================= HEADER ================= -->
+  <header class="header navbar-floating">
     <div class="container">
       <a href="index.html" class="logo">GAME<span>HUB</span></a>
 
       <div class="header-right">
-        <nav class="nav">
-          <a href="index.html" class="ativo">Início</a>
-          <a href="catalogo.html">Catálogo</a>
-          <a href="perfil.html">Perfil</a>
-          <a href="noticias.html">Notícias</a>
-          <a href="contato.html">Contato</a>
+        <nav class="nav" role="navigation" aria-label="Navegação principal">
+          <a href="index.html" class="ativo">
+            <i class="fa-solid fa-house nav-icon" aria-hidden="true"></i>
+            <span>Início</span>
+          </a>
+          <a href="catalogo.html">
+            <i class="fa-solid fa-th-large nav-icon" aria-hidden="true"></i>
+            <span>Catálogo</span>
+          </a>
+          <a href="noticias.html">
+            <i class="fa-solid fa-newspaper nav-icon" aria-hidden="true"></i>
+            <span>Notícias</span>
+          </a>
+          <a href="contato.html">
+            <i class="fa-regular fa-envelope nav-icon" aria-hidden="true"></i>
+            <span>Contato</span>
+          </a>
         </nav>
 
         <div class="header-controls">
@@ -44,12 +63,13 @@
             <i class="fa-brands fa-github"></i>
           </a>
 
-          <a href="index_en.html" class="lang-toggle" title="Switch to English">
+          <a href="index_en.html" class="lang-toggle" title="Mudar para Inglês">
             <span class="active">PT</span> / <span>EN</span>
           </a>
 
           <button class="theme-toggle-btn" id="theme-toggle" title="Alternar tema" aria-label="Alternar tema">
-            <i class="fa-regular fa-moon"></i>
+            <i class="fa-regular fa-sun theme-icon icon-light" aria-hidden="true"></i>
+            <i class="fa-regular fa-moon theme-icon icon-dark" aria-hidden="true"></i>
           </button>
         </div>
 
@@ -72,76 +92,63 @@
         </p>
         <div class="acoes-hero">
           <a href="catalogo.html" class="btn btn-primario">Explorar catálogo</a>
-          <a href="perfil.html" class="btn btn-secundario">Meu Perfil & Favoritos</a>
-        </div>
-      </div>
-
-      <!-- FICHA DINÂMICA DO USUÁRIO -->
-      <div class="ficha" id="ficha-usuario-home">
-        <div class="ficha-topo">
-          <div class="ficha-avatar">P1</div>
-          <div>
-            <div class="ficha-nome">Carregando...</div>
-            <div class="ficha-nivel">Acesse seu perfil</div>
-          </div>
-        </div>
-        <div class="barra-xp">
-          <div class="barra-xp-preenchida" style="width: 100%;"></div>
-        </div>
-        <div class="ficha-stats">
-          <div class="ficha-stat">
-            <strong id="ficha-total-jogos">0</strong>
-            <span>Jogos na biblioteca</span>
-          </div>
-          <div class="ficha-stat">
-            <a href="perfil.html" style="color: var(--laranja); font-size: 13px; font-weight: 600; text-decoration: underline;">
-              Gerenciar →
-            </a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="secao">
+  <section class="secao secao-catalogo">
     <div class="container">
-      <div class="secao-titulo">
-        <h2>Em destaque no GameHub</h2>
-        <a href="catalogo.html" class="ver-tudo">Ver catálogo completo →</a>
-      </div>
-
-      <div class="grade-jogos" id="grade-jogos-destaque"></div>
+      <header class="secao-header">
+        <h2>Em destaque</h2>
+        <a href="catalogo.html" class="ver-tudo">Ver todos <i class="fa-solid fa-arrow-right"></i></a>
+      </header>
+      <div class="grade-jogos" id="jogos-destaque"></div>
     </div>
   </section>
 
-  <section class="secao" style="border-bottom: none;">
+  <section class="secao secao-generos">
     <div class="container">
-      <div class="secao-titulo">
-        <h2>Últimas notícias gamer</h2>
-        <a href="noticias.html" class="ver-tudo">Ver todas →</a>
-      </div>
-
-      <div class="grade-noticias" id="grade-noticias-destaque"></div>
+      <h2>Explorar por Gênero</h2>
+      <div class="tags-generos" id="generos-container"></div>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container">
-      <span>© 2026 GameHub. Desenvolvido por Jonathan Alexandre.</span>
-      <div class="footer-links">
-        <a href="../../portfolio.html"><i class="fa-solid fa-arrow-left"></i> Voltar ao Portfólio</a>
-        <a href="catalogo.html">Catálogo</a>
-        <a href="perfil.html">Perfil</a>
-        <a href="contato.html">Contato</a>
-        <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
-        <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">GAME<span>HUB</span></div>
+          <p>Sua biblioteca e catálogo de jogos.</p>
+        </div>
+        <nav class="footer-nav">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </nav>
+        <div class="footer-social">
+          <h4>Conecte-se</h4>
+          <div class="social-links">
+            <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="../../portfolio.html" aria-label="Portfólio">
+              <i class="fa-solid fa-briefcase"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Jonathan Alexandre Rodrigues Alves. Todos os direitos reservados.</p>
       </div>
     </div>
   </footer>
 
   <script src="js/dados.js"></script>
-  <script src="js/auth.js"></script>
-  <script src="js/steam-grid.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>

@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Jonathan Alexandre, an Information Systems student at IFMG Sabará seeking an internship in IT infrastructure, networking, or technical support.">
+    <meta name="theme-color" content="#15803d">
 
-    <!-- Previne flash de tema ao navegar -->
+    <!-- Prevent theme flash on navigation -->
     <script>
         (function() {
             const saved = localStorage.getItem("theme") || localStorage.getItem("portfolio_theme");
@@ -16,31 +18,56 @@
     </script>
 
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="style.css">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <title>Jonathan Alexandre | Professional Portfolio</title>
 </head>
 
 <body>
+    <!-- Floating Background Elements -->
+    <div class="floating-elements" aria-hidden="true">
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+    </div>
 
     <!-- ================= HEADER ================= -->
-    <header>
+    <header class="navbar-floating" role="banner">
         <div class="container nav-wrapper">
             <a href="index_en.html" class="brand" title="Back to Home">
-                <i class="fa-solid fa-house" style="font-size: 0.85rem; margin-right: 4px; opacity: 0.7;"></i> Jonathan Alexandre
+                <span class="brand-text">Jonathan Alexandre</span>
             </a>
 
             <div class="nav-right">
-                <nav>
-                    <a href="index_en.html">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#skills">Stack</a>
-                    <a href="#education">Education</a>
-                    <a href="#contact">Contact</a>
+                <nav class="nav-links" role="navigation" aria-label="Main navigation">
+                    <a href="#about" class="nav-link">
+                        <i class="fa-solid fa-circle-info nav-icon" aria-hidden="true"></i>
+                        <span>About</span>
+                    </a>
+                    <a href="#projects" class="nav-link">
+                        <i class="fa-solid fa-folder-open nav-icon" aria-hidden="true"></i>
+                        <span>Projects</span>
+                    </a>
+                    <a href="#experience" class="nav-link">
+                        <i class="fa-solid fa-briefcase nav-icon" aria-hidden="true"></i>
+                        <span>Experience</span>
+                    </a>
+                    <a href="#skills" class="nav-link">
+                        <i class="fa-solid fa-code nav-icon" aria-hidden="true"></i>
+                        <span>Stack</span>
+                    </a>
+                    <a href="#education" class="nav-link">
+                        <i class="fa-solid fa-graduation-cap nav-icon" aria-hidden="true"></i>
+                        <span>Education</span>
+                    </a>
+                    <a href="#contact" class="nav-link">
+                        <i class="fa-solid fa-envelope nav-icon" aria-hidden="true"></i>
+                        <span>Contact</span>
+                    </a>
                 </nav>
 
                 <div class="nav-tools">
@@ -49,7 +76,8 @@
                     </a>
 
                     <button class="theme-btn" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
-                        <i class="fa-regular fa-moon"></i>
+                        <i class="fa-regular fa-sun theme-icon icon-light" aria-hidden="true"></i>
+                        <i class="fa-regular fa-moon theme-icon icon-dark" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
@@ -57,298 +85,395 @@
     </header>
 
     <!-- ================= MAIN ================= -->
-    <main class="container">
+    <main class="container" role="main">
 
         <!-- HERO / INTRO -->
-        <section class="hero" id="about">
-            <span id="sobre" class="anchor-target"></span>
-            <img src="img/imagem.png" alt="Photo of Jonathan Alexandre" class="hero-avatar">
+        <section class="hero" id="about" aria-labelledby="about-title">
+            <div class="hero-visual" aria-hidden="true">
+                <div class="hero-orb orb-1"></div>
+                <div class="hero-orb orb-2"></div>
+                <div class="hero-orb orb-3"></div>
+            </div>
 
             <div class="hero-content">
-                <div class="hero-status-badge">
-                    <span class="portal-dot"></span> Open to Internship & Development Opportunities
+                <h1 id="about-title" class="hero-name">Jonathan Alexandre</h1>
+
+                <div class="hero-role-wrapper">
+                    <p class="hero-role-label" data-typewriter aria-label="I'm an Information Systems student">I'm an Information Systems student</p>
                 </div>
 
-                <h1>Jonathan Alexandre</h1>
-                <p class="hero-subtitle">Information Systems Student • Software Developer</p>
-
                 <p class="hero-bio">
-                    Undergraduate at <a href="https://www.ifmg.edu.br/sabara" target="_blank" rel="noopener noreferrer">IFMG Sabará Campus</a> specializing in <strong>back-end development (Java & Spring)</strong>, relational database design, software architecture, and <strong>computer networking</strong>.
+                    A <strong>4th-semester Information Systems student at IFMG — Sabará Campus</strong>,
+                    interested in <strong>IT Infrastructure, Networking, and Technical Support</strong>.
+                    My knowledge includes networking and computer maintenance, as well as:
+                    intermediate Java; basic Python, JavaScript, and SQL; and knowledge of HTML and CSS.
                 </p>
 
-                <div class="hero-quick-nav">
+                <div class="hero-quick-nav" role="navigation" aria-label="Quick navigation">
                     <a href="#projects" class="hero-nav-pill"><i class="fa-solid fa-code"></i> Projects</a>
-                    <a href="#skills" class="hero-nav-pill"><i class="fa-solid fa-layer-group"></i> Skills</a>
+                    <a href="#experience" class="hero-nav-pill"><i class="fa-solid fa-briefcase"></i> Experience</a>
+                    <a href="#skills" class="hero-nav-pill"><i class="fa-solid fa-layer-group"></i> Stack</a>
                     <a href="#education" class="hero-nav-pill"><i class="fa-solid fa-graduation-cap"></i> Education</a>
                     <a href="#contact" class="hero-nav-pill"><i class="fa-regular fa-envelope"></i> Contact</a>
                 </div>
 
-                <div class="links-row">
-                    <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer" class="link-item">
-                        <i class="fa-brands fa-github"></i> GitHub
+                <div class="links-row" role="list" aria-label="Contact links">
+                    <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer" class="link-item" role="listitem">
+                        <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
                     </a>
-                    <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer" class="link-item">
-                        <i class="fa-brands fa-linkedin"></i> LinkedIn
+                    <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer" class="link-item" role="listitem">
+                        <i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn
                     </a>
-                    <a href="https://wa.me/5531988234307?text=Hello%20Jonathan,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" rel="noopener noreferrer" class="link-item">
-                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                    </a>
-                    <a href="mailto:jonathanalexandre2910@gmail.com" class="link-item">
-                        <i class="fa-regular fa-envelope"></i> Email
+                    <a href="mailto:jonathanalexandre2910@gmail.com" class="link-item" role="listitem">
+                        <i class="fa-regular fa-envelope" aria-hidden="true"></i> Email
                     </a>
                 </div>
+
+                <div class="hero-scroll-indicator" aria-hidden="true">
+                    <span class="scroll-text">Scroll</span>
+                    <div class="scroll-mouse">
+                        <div class="scroll-wheel"></div>
+                    </div>
+                </div>
             </div>
+
+            <img src="img/imagem.png" alt="Photo of Jonathan Alexandre" class="hero-avatar" loading="lazy">
         </section>
 
         <!-- PROJECTS -->
-        <section id="projects">
-            <span id="projetos" class="anchor-target"></span>
-            <h2>Selected Projects</h2>
+        <section id="projects" aria-labelledby="projects-title">
+            <div class="section-header">
+                <h2 id="projects-title" class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Academic projects in web development and computer networking</p>
+                <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer" class="section-cta">
+                    View all on GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
 
-            <div class="projects-list" id="projetos-container">
+            <div class="projects-grid" id="projetos-grid">
+                <!-- Projects will be loaded dynamically from backend or fallback to static -->
+            </div>
+        </section>
 
-                <article class="project-item">
-                    <div class="project-header">
-                        <a href="https://github.com/Jhon2910/html-css-Javascript/tree/main/Projetos/gamehub" target="_blank" rel="noopener noreferrer" class="project-title">
-                            GameHub <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
-                    </div>
-                    <p class="project-desc">
-                        Web gaming catalog with detailed game overviews, trailer previews, and a responsive interface built with vanilla JavaScript.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">HTML5</span>
-                        <span class="tag">CSS3</span>
-                        <span class="tag">JavaScript</span>
+        <!-- EXPERIENCE -->
+        <section id="experience" aria-labelledby="experience-title">
+            <div class="section-header">
+                <h2 id="experience-title" class="section-title">Professional Experience & Academic Projects</h2>
+                <p class="section-subtitle">Maintenance experience and projects completed during my IT studies</p>
+            </div>
+
+            <div class="timeline" role="list" aria-label="Professional experience and academic projects">
+                <article class="timeline-item" role="listitem">
+                    <div class="timeline-marker" aria-hidden="true"><span class="timeline-dot"></span></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3 class="timeline-title">Junior Mechanical Fitter / Mechanical Fitter I</h3>
+                            <span class="timeline-date">Feb 2021 — Mar 2025</span>
+                        </div>
+                        <p class="timeline-org">ElmeC Comércio e Indústria Ltda</p>
+                        <p class="timeline-desc">Worked on maintenance activities, applying logical reasoning and problem-solving. Organized tasks, paid attention to detail, followed procedures, and worked in multidisciplinary teams.</p>
+                        <div class="timeline-tags">
+                            <span class="tag">Maintenance</span>
+                            <span class="tag">Problem-solving</span>
+                            <span class="tag">Teamwork</span>
+                        </div>
                     </div>
                 </article>
 
-                <article class="project-item">
-                    <div class="project-header">
-                        <a href="https://github.com/Jhon2910/Java" target="_blank" rel="noopener noreferrer" class="project-title">
-                            Java Applications & Logic <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
-                    </div>
-                    <p class="project-desc">
-                        Java projects implementing Object-Oriented Programming (OOP), data structures, algorithmic problem solving, and API/database integration.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Java</span>
-                        <span class="tag">OOP</span>
-                        <span class="tag">Data Structures</span>
-                        <span class="tag">Spring Boot</span>
-                    </div>
-                </article>
-
-                <article class="project-item">
-                    <div class="project-header">
-                        <a href="https://github.com/Jhon2910/SQL" target="_blank" rel="noopener noreferrer" class="project-title">
-                            SQL Database Modeling & Queries <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
-                    </div>
-                    <p class="project-desc">
-                        Relational database projects covering schema design, constraints, relational integrity, and optimized queries with joins and aggregations.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">SQL</span>
-                        <span class="tag">PostgreSQL</span>
-                        <span class="tag">MySQL</span>
-                        <span class="tag">Relational Modeling</span>
+                <article class="timeline-item" role="listitem">
+                    <div class="timeline-marker" aria-hidden="true"><span class="timeline-dot"></span></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3 class="timeline-title">GameHub — Web Portal</h3>
+                            <span class="timeline-date">Academic project</span>
+                        </div>
+                        <p class="timeline-org">Web I course</p>
+                        <p class="timeline-desc">Built without external frameworks, with a game catalog, category filters, individual pages, dynamic navigation, and a responsive layout.</p>
+                        <div class="timeline-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
                     </div>
                 </article>
 
-                <article class="project-item">
-                    <div class="project-header">
-                        <a href="https://github.com/Jhon2910/Redes" target="_blank" rel="noopener noreferrer" class="project-title">
-                            Networking Labs & Packet Tracer <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
-                    </div>
-                    <p class="project-desc">
-                        Network topology setups, static/dynamic routing, addressing, and IPv4/IPv6 subnetting simulations in Cisco Packet Tracer.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Cisco Packet Tracer</span>
-                        <span class="tag">IPv4 / IPv6</span>
-                        <span class="tag">TCP/IP</span>
-                        <span class="tag">DHCP / DNS</span>
+                <article class="timeline-item" role="listitem">
+                    <div class="timeline-marker" aria-hidden="true"><span class="timeline-dot"></span></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3 class="timeline-title">Client-Server Matchmaking System</h3>
+                            <span class="timeline-date">Academic project</span>
+                        </div>
+                        <p class="timeline-org">Networking course</p>
+                        <p class="timeline-desc">Used TCP sockets for client-server communication, player queue management, and match creation based on the required number of participants.</p>
+                        <div class="timeline-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">TCP sockets</span>
+                            <span class="tag">Client-server</span>
+                        </div>
                     </div>
                 </article>
-
             </div>
         </section>
 
         <!-- SKILLS & STACK -->
-        <section id="skills">
-            <span id="habilidades" class="anchor-target"></span>
-            <h2>Stack & Technologies</h2>
+        <section id="skills" aria-labelledby="skills-title">
+            <div class="section-header">
+                <h2 id="skills-title" class="section-title">Skills and Competencies</h2>
+                <p class="section-subtitle">Technologies, networking, and practical IT knowledge</p>
+            </div>
 
-            <div class="skills-list">
-                <div class="skill-row">
-                    <span class="skill-label">Back-end & Databases</span>
-                    <div class="skill-items">
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Spring Boot</span>
-                        <span class="skill-tag">SQL (PostgreSQL / MySQL)</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">OOP</span>
-                        <span class="skill-tag">Data Structures</span>
+            <div class="skills-categories">
+                <article class="skill-category" data-category="programming">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon" aria-hidden="true">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <div>
+                            <h3 class="skill-category-title">Programming and Web Development</h3>
+                            <p class="skill-category-count">6 technologies</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="skill-row">
-                    <span class="skill-label">Front-end & Web</span>
-                    <div class="skill-items">
-                        <span class="skill-tag">Semantic HTML5</span>
-                        <span class="skill-tag">Modern CSS3 / Flexbox / Grid</span>
-                        <span class="skill-tag">JavaScript (ES6+)</span>
-                        <span class="skill-tag">Responsive Design</span>
-                        <span class="skill-tag">REST API Integration</span>
+                    <div class="skill-tags">
+                        <span class="skill-tag" data-level="intermediate">Java</span>
+                        <span class="skill-tag" data-level="beginner">Python</span>
+                        <span class="skill-tag" data-level="beginner">HTML</span>
+                        <span class="skill-tag" data-level="beginner">CSS</span>
+                        <span class="skill-tag" data-level="beginner">JavaScript</span>
+                        <span class="skill-tag" data-level="beginner">SQL</span>
                     </div>
-                </div>
+                </article>
 
-                <div class="skill-row">
-                    <span class="skill-label">Networking & Infrastructure</span>
-                    <div class="skill-items">
+                <article class="skill-category" data-category="networking">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon" aria-hidden="true">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <div>
+                            <h3 class="skill-category-title">Networking & Infrastructure</h3>
+                            <p class="skill-category-count">6 areas</p>
+                        </div>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">TCP/IP</span>
+                        <span class="skill-tag">IPv4</span>
+                        <span class="skill-tag">Subnetting</span>
+                        <span class="skill-tag">OSI model</span>
+                        <span class="skill-tag">LAN/WAN</span>
                         <span class="skill-tag">Cisco Packet Tracer</span>
-                        <span class="skill-tag">OSI / TCP-IP Model</span>
-                        <span class="skill-tag">IPv4 & IPv6 Subnetting</span>
-                        <span class="skill-tag">DHCP & Routing</span>
                     </div>
-                </div>
+                </article>
 
-                <div class="skill-row">
-                    <span class="skill-label">Tools & Workflow</span>
-                    <div class="skill-items">
+                <article class="skill-category" data-category="support">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon" aria-hidden="true">
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                        </div>
+                        <div>
+                            <h3 class="skill-category-title">Technical Support and Maintenance</h3>
+                            <p class="skill-category-count">3 practical skills</p>
+                        </div>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Computer assembly, configuration, formatting, and preventive/corrective maintenance</span>
+                        <span class="skill-tag">Hardware and software troubleshooting</span>
+                        <span class="skill-tag">Operating system installation and configuration</span>
+                    </div>
+                </article>
+
+                <article class="skill-category" data-category="tools">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon" aria-hidden="true">
+                            <i class="fa-solid fa-tools"></i>
+                        </div>
+                        <div>
+                            <h3 class="skill-category-title">Tools & Workflow</h3>
+                            <p class="skill-category-count">3 tools</p>
+                        </div>
+                    </div>
+                    <div class="skill-tags">
                         <span class="skill-tag">Git</span>
                         <span class="skill-tag">GitHub</span>
-                        <span class="skill-tag">VS Code</span>
-                        <span class="skill-tag">IntelliJ IDEA</span>
-                        <span class="skill-tag">Postman</span>
-                        <span class="skill-tag">Linux / Terminal</span>
+                        <span class="skill-tag">Office suite</span>
                     </div>
-                </div>
+                </article>
+
+                <article class="skill-category" data-category="languages">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon" aria-hidden="true">
+                            <i class="fa-solid fa-language"></i>
+                        </div>
+                        <div>
+                            <h3 class="skill-category-title">Languages</h3>
+                            <p class="skill-category-count">1 language</p>
+                        </div>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">English — Intermediate (B2)</span>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Proficiency Legend -->
+            <div class="proficiency-legend" aria-label="Proficiency legend">
+                <span class="legend-item">
+                    <span class="legend-dot" data-level="intermediate"></span>
+                    <span>Intermediate</span>
+                </span>
+                <span class="legend-item">
+                    <span class="legend-dot" data-level="beginner"></span>
+                    <span>Basic</span>
+                </span>
             </div>
         </section>
 
-        <!-- EDUCATION & COURSES -->
-        <section id="education">
-            <span id="formacao" class="anchor-target"></span>
-            <h2>Education & Courses</h2>
+        <!-- EDUCATION & CERTIFICATIONS -->
+        <section id="education" aria-labelledby="education-title">
+            <div class="section-header">
+                <h2 id="education-title" class="section-title">Education & Certifications</h2>
+                <p class="section-subtitle">Academic background and additional courses</p>
+            </div>
 
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-header">
-                        <span class="timeline-title">Bachelor of Science in Information Systems</span>
-                        <span class="timeline-date">In progress</span>
+            <div class="education-grid">
+                <article class="education-card">
+                    <div class="education-icon" aria-hidden="true">
+                        <i class="fa-solid fa-university"></i>
                     </div>
-                    <p class="timeline-org">IFMG — Sabará Campus</p>
-                    <p class="timeline-desc">Curriculum focused on software development, relational databases, data structures, algorithms, computer networks, and software engineering.</p>
-                </div>
+                    <div class="education-content">
+                        <h3 class="education-title">Bachelor of Science in Information Systems</h3>
+                        <p class="education-org">IFMG — Sabará Campus</p>
+                        <p class="education-date">4th semester — In progress</p>
+                        <p class="education-desc">Bachelor's degree in progress at the Federal Institute of Minas Gerais.</p>
+                    </div>
+                </article>
 
-                <div class="timeline-item">
-                    <div class="timeline-header">
-                        <span class="timeline-title">Networking Basics</span>
-                        <span class="timeline-date">Cisco Academy</span>
+                <article class="education-card">
+                    <div class="education-icon" aria-hidden="true">
+                        <i class="fa-brands fa-cisco"></i>
                     </div>
-                    <p class="timeline-org">Cisco Networking Academy</p>
-                    <p class="timeline-desc">Network architecture fundamentals, OSI/TCP-IP model, protocols, routing, subnetting, and hands-on Packet Tracer simulations.</p>
-                </div>
+                    <div class="education-content">
+                        <h3 class="education-title">Networking Basics</h3>
+                        <p class="education-org">Cisco Networking Academy</p>
+                        <p class="education-desc">Fundamentals of computer networking.</p>
+                    </div>
+                </article>
 
-                <div class="timeline-item">
-                    <div class="timeline-header">
-                        <span class="timeline-title">HTML5 & CSS3</span>
-                        <span class="timeline-date">Completed</span>
+                <article class="education-card">
+                    <div class="education-icon" aria-hidden="true">
+                        <i class="fa-solid fa-code"></i>
                     </div>
-                    <p class="timeline-org">Curso em Vídeo</p>
-                    <p class="timeline-desc">Semantic structuring, modern web development, responsive styling, and flexible layouts.</p>
-                </div>
+                    <div class="education-content">
+                        <h3 class="education-title">HTML & CSS</h3>
+                        <p class="education-org">Curso em Vídeo</p>
+                        <p class="education-desc">Introductory HTML and CSS course.</p>
+                    </div>
+                </article>
 
-                <div class="timeline-item">
-                    <div class="timeline-header">
-                        <span class="timeline-title">English for IT</span>
-                        <span class="timeline-date">Cisco Academy</span>
+                <article class="education-card">
+                    <div class="education-icon" aria-hidden="true">
+                        <i class="fa-solid fa-laptop-code"></i>
                     </div>
-                    <p class="timeline-org">Cisco Networking Academy</p>
-                    <p class="timeline-desc">Technical vocabulary and professional English communication tailored for computing and technology.</p>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-header">
-                        <span class="timeline-title">Computer Operator</span>
-                        <span class="timeline-date">SENAC</span>
+                    <div class="education-content">
+                        <h3 class="education-title">Computer Operator</h3>
+                        <p class="education-org">SENAC Minas</p>
+                        <p class="education-date">2019</p>
+                        <p class="education-desc">Vocational training.</p>
                     </div>
-                    <p class="timeline-org">SENAC Minas</p>
-                    <p class="timeline-desc">Operating systems, office suites, and computer productivity workflows.</p>
-                </div>
+                </article>
             </div>
         </section>
 
         <!-- CONTACT -->
-        <section id="contact">
-            <span id="contato" class="anchor-target"></span>
-            <h2>Contact</h2>
+        <section id="contact" aria-labelledby="contact-title">
+            <div class="section-header">
+                <h2 id="contact-title" class="section-title">Let's Talk?</h2>
+                <p class="section-subtitle">For inquiries or professional proposals, get in touch through the channels below.</p>
+            </div>
 
             <div class="contact-layout">
-                <div>
-                    <p class="contact-desc">
-                        Feel free to reach out to discuss projects, technology, or opportunities:
-                    </p>
-
-                    <form id="form-contato" class="contact-form" action="https://formspree.io/f/xkjwebrw" method="POST">
+                <div class="contact-form-wrapper">
+                    <form id="form-contato" class="contact-form" action="https://formspree.io/f/xkjwebrw" method="POST" novalidate>
                         <div class="form-row">
-                            <input type="text" name="name" id="nome" placeholder="Your name" required autocomplete="name">
-                            <input type="email" name="email" id="email" placeholder="Your email" required autocomplete="email">
+                            <div class="form-group">
+                                <label for="nome" class="form-label">Name</label>
+                                <input type="text" name="name" id="nome" placeholder="Your name" required autocomplete="name" aria-describedby="nome-error">
+                                <span class="form-error" id="nome-error" aria-live="polite"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" name="email" id="email" placeholder="your@email.com" required autocomplete="email" aria-describedby="email-error">
+                                <span class="form-error" id="email-error" aria-live="polite"></span>
+                            </div>
                         </div>
-                        <input type="text" name="subject" id="assunto" placeholder="Subject" required>
-                        <textarea name="message" id="mensagem" placeholder="Your message..." rows="4" required></textarea>
+                        <div class="form-group">
+                            <label for="assunto" class="form-label">Subject</label>
+                            <input type="text" name="subject" id="assunto" placeholder="What would you like to talk about?" required aria-describedby="assunto-error">
+                            <span class="form-error" id="assunto-error" aria-live="polite"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagem" class="form-label">Message</label>
+                            <textarea name="message" id="mensagem" placeholder="Write your message here..." rows="5" required aria-describedby="mensagem-error"></textarea>
+                            <span class="form-error" id="mensagem-error" aria-live="polite"></span>
+                        </div>
                         <button type="submit" class="btn-submit" id="btn-enviar">
-                            <span>Send Message</span>
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-loading" aria-hidden="true">
+                                <i class="fa-solid fa-spinner fa-spin"></i> Sending...
+                            </span>
                         </button>
-                        <div id="form-feedback" class="form-feedback"></div>
+                        <div id="form-feedback" class="form-feedback" aria-live="polite"></div>
                     </form>
                 </div>
 
-                <div class="direct-card">
-                    <h3>Direct Channels</h3>
-                    <p class="direct-desc">You can also reach me directly through:</p>
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <h3 class="contact-card-title">Direct Channels</h3>
+                        <p class="contact-card-desc">I usually respond within 24h on business days</p>
 
-                    <div class="direct-list">
-                        <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer" class="direct-item">
-                            <i class="fa-brands fa-linkedin"></i>
-                            <div>
-                                <strong>LinkedIn</strong>
-                                <span>linkedin.com/in/jonathan-rodrigues-06a1b7442</span>
-                            </div>
-                        </a>
-                        <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer" class="direct-item">
-                            <i class="fa-brands fa-github"></i>
-                            <div>
-                                <strong>GitHub</strong>
-                                <span>github.com/Jhon2910</span>
-                            </div>
-                        </a>
-                        <a href="https://wa.me/5531988234307?text=Hello%20Jonathan,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!" target="_blank" rel="noopener noreferrer" class="direct-item">
-                            <i class="fa-brands fa-whatsapp"></i>
-                            <div>
-                                <strong>WhatsApp</strong>
-                                <span>+55 (31) 98823-4307</span>
-                            </div>
-                        </a>
-                        <a href="mailto:jonathanalexandre2910@gmail.com" class="direct-item">
-                            <i class="fa-regular fa-envelope"></i>
-                            <div>
-                                <strong>Email</strong>
-                                <span>jonathanalexandre2910@gmail.com</span>
-                            </div>
-                        </a>
-                        <a href="https://jhon2910.github.io/html-css-Javascript/" target="_blank" rel="noopener noreferrer" class="direct-item">
-                            <i class="fa-solid fa-globe"></i>
-                            <div>
-                                <strong>GitHub Pages</strong>
-                                <span>jhon2910.github.io/html-css-Javascript</span>
-                            </div>
-                        </a>
+                        <ul class="contact-list" role="list">
+                            <li class="contact-item" role="listitem">
+                                <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer" class="contact-link">
+                                    <span class="contact-icon" aria-hidden="true"><i class="fa-brands fa-linkedin"></i></span>
+                                    <div class="contact-details">
+                                        <strong>LinkedIn</strong>
+                                        <span>linkedin.com/in/jonathan-rodrigues</span>
+                                    </div>
+                                    <i class="fa-solid fa-arrow-up-right-from-square contact-arrow" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="contact-item" role="listitem">
+                                <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer" class="contact-link">
+                                    <span class="contact-icon" aria-hidden="true"><i class="fa-brands fa-github"></i></span>
+                                    <div class="contact-details">
+                                        <strong>GitHub</strong>
+                                        <span>github.com/Jhon2910</span>
+                                    </div>
+                                    <i class="fa-solid fa-arrow-up-right-from-square contact-arrow" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="contact-item" role="listitem">
+                                <a href="mailto:jonathanalexandre2910@gmail.com" class="contact-link">
+                                    <span class="contact-icon" aria-hidden="true"><i class="fa-regular fa-envelope"></i></span>
+                                    <div class="contact-details">
+                                        <strong>Email</strong>
+                                        <span>jonathanalexandre2910@gmail.com</span>
+                                    </div>
+                                    <i class="fa-solid fa-arrow-up-right-from-square contact-arrow" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="contact-item" role="listitem">
+                                <a href="https://jhon2910.github.io/html-css-Javascript/" target="_blank" rel="noopener noreferrer" class="contact-link">
+                                    <span class="contact-icon" aria-hidden="true"><i class="fa-solid fa-globe"></i></span>
+                                    <div class="contact-details">
+                                        <strong>Portfolio Online</strong>
+                                        <span>jhon2910.github.io</span>
+                                    </div>
+                                    <i class="fa-solid fa-arrow-up-right-from-square contact-arrow" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -356,9 +481,17 @@
     </main>
 
     <!-- ================= FOOTER ================= -->
-    <footer class="container">
-        <p>© 2026 Jonathan Alexandre Rodrigues Alves</p>
-        <p><a href="https://www.ifmg.edu.br/sabara" target="_blank" rel="noopener noreferrer">IFMG Sabará Campus</a></p>
+    <footer class="container" role="contentinfo">
+        <div class="footer-content">
+            <p class="footer-copyright">© 2026 Jonathan Alexandre Rodrigues Alves</p>
+            <p class="footer-links">
+                <a href="https://www.ifmg.edu.br/sabara" target="_blank" rel="noopener noreferrer">IFMG Sabará Campus</a>
+                <span class="footer-separator" aria-hidden="true">·</span>
+                <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <span class="footer-separator" aria-hidden="true">·</span>
+                <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </p>
+        </div>
     </footer>
 
     <script src="main.js"></script>

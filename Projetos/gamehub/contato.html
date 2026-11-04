@@ -4,29 +4,54 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contato — GameHub</title>
+  <script>
+    (function() {
+      const saved = localStorage.getItem("theme") || localStorage.getItem("portfolio_theme");
+      const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const theme = saved ? saved : (systemDark ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
 
   <link rel="icon" type="image/png" href="img/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <header class="header">
+  <!-- Floating Background Elements -->
+  <div class="floating-elements" aria-hidden="true">
+    <div class="floating-circle"></div>
+    <div class="floating-circle"></div>
+    <div class="floating-circle"></div>
+  </div>
+
+  <!-- ================= HEADER ================= -->
+  <header class="header navbar-floating">
     <div class="container">
       <a href="index.html" class="logo">GAME<span>HUB</span></a>
 
       <div class="header-right">
-        <nav class="nav">
-          <a href="index.html">Início</a>
-          <a href="catalogo.html">Catálogo</a>
-          <a href="perfil.html">Perfil</a>
-          <a href="noticias.html">Notícias</a>
-          <a href="contato.html" class="ativo">Contato</a>
+        <nav class="nav" role="navigation" aria-label="Navegação principal">
+          <a href="index.html">
+            <i class="fa-solid fa-house nav-icon" aria-hidden="true"></i>
+            <span>Início</span>
+          </a>
+          <a href="catalogo.html">
+            <i class="fa-solid fa-th-large nav-icon" aria-hidden="true"></i>
+            <span>Catálogo</span>
+          </a>
+          <a href="noticias.html">
+            <i class="fa-solid fa-newspaper nav-icon" aria-hidden="true"></i>
+            <span>Notícias</span>
+          </a>
+          <a href="contato.html" class="ativo">
+            <i class="fa-regular fa-envelope nav-icon" aria-hidden="true"></i>
+            <span>Contato</span>
+          </a>
         </nav>
 
         <div class="header-controls">
@@ -38,12 +63,13 @@
             <i class="fa-brands fa-github"></i>
           </a>
 
-          <a href="contato_en.html" class="lang-toggle" title="Switch to English">
+          <a href="contato_en.html" class="lang-toggle" title="Mudar para Inglês">
             <span class="active">PT</span> / <span>EN</span>
           </a>
 
           <button class="theme-toggle-btn" id="theme-toggle" title="Alternar tema" aria-label="Alternar tema">
-            <i class="fa-regular fa-moon"></i>
+            <i class="fa-regular fa-sun theme-icon icon-light" aria-hidden="true"></i>
+            <i class="fa-regular fa-moon theme-icon icon-dark" aria-hidden="true"></i>
           </button>
         </div>
 
@@ -69,156 +95,102 @@
   <section class="secao" style="border-bottom: none;">
     <div class="container">
       <div class="contato-layout">
+        <form class="form-contato-box" id="form-contato" action="mailto:jonathanalexandre2910@gmail.com" method="post" enctype="text/plain">
+          <div class="form-contato-grid">
+          <div class="campo-wrapper">
+            <label for="nome">Nome</label>
+            <input class="input-custom" type="text" id="nome" name="nome" placeholder="Seu nome" required autocomplete="name">
+          </div>
+          <div class="campo-wrapper">
+            <label for="email">E-mail</label>
+            <input class="input-custom" type="email" id="email" name="email" placeholder="seu@email.com" required autocomplete="email">
+          </div>
+          </div>
+          <div class="campo-wrapper">
+            <label for="assunto">Assunto</label>
+            <input class="input-custom" type="text" id="assunto" name="assunto" placeholder="Sobre o que é a mensagem?" required>
+          </div>
+          <div class="campo-wrapper">
+            <label for="mensagem">Mensagem</label>
+            <textarea class="input-custom" id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua mensagem aqui..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primario" style="width: 100%; max-width: 280px;">
+            <i class="fa-solid fa-paper-plane"></i> Enviar Mensagem
+          </button>
+          <p id="form-feedback" role="status" style="margin-top: 16px; font-size: 14px;"></p>
+        </form>
 
-        <!-- CARTÃO DE INFORMAÇÕES DE CONTATO -->
         <div class="contato-info-card">
           <div>
-            <h3>Canais Diretos</h3>
-            <p>Você pode falar diretamente com o desenvolvedor do GameHub através de qualquer um dos canais abaixo:</p>
+            <h3>Outras formas de contato</h3>
+            <p>Se preferir, fale comigo diretamente por um destes canais.</p>
           </div>
-
           <div class="contato-info-item">
-            <div class="contato-info-icon" style="color: var(--laranja); background: rgba(255, 92, 57, 0.12);">
-              <i class="fa-solid fa-globe"></i>
-            </div>
-            <div class="contato-info-text">
-              <strong>GitHub Pages (Website Oficial)</strong>
-              <a href="https://jhon2910.github.io/html-css-Javascript/" target="_blank" rel="noopener noreferrer">jhon2910.github.io/html-css-Javascript</a>
-            </div>
-          </div>
-
-          <div class="contato-info-item">
-            <div class="contato-info-icon">
-              <i class="fa-solid fa-envelope"></i>
-            </div>
-            <div class="contato-info-text">
-              <strong>E-mail Profissional</strong>
-              <a href="mailto:jonathanalexandre2910@gmail.com">jonathanalexandre2910@gmail.com</a>
-            </div>
-          </div>
-
-          <div class="contato-info-item">
-            <div class="contato-info-icon" style="color: #25D366; background: rgba(37, 211, 102, 0.12);">
-              <i class="fa-brands fa-whatsapp"></i>
-            </div>
-            <div class="contato-info-text">
-              <strong>WhatsApp</strong>
-              <a href="https://wa.me/5531988234307" target="_blank" rel="noopener noreferrer">+55 (31) 98823-4307</a>
-            </div>
-          </div>
-
-          <div class="contato-info-item">
-            <div class="contato-info-icon linkedin">
-              <i class="fa-brands fa-linkedin-in"></i>
-            </div>
-            <div class="contato-info-text">
-              <strong>LinkedIn</strong>
-              <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer">linkedin.com/in/jonathan-rodrigues-06a1b7442</a>
-            </div>
-          </div>
-
-          <div class="contato-info-item">
-            <div class="contato-info-icon">
-              <i class="fa-brands fa-github"></i>
-            </div>
+            <span class="contato-info-icon"><i class="fa-brands fa-github"></i></span>
             <div class="contato-info-text">
               <strong>GitHub</strong>
               <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer">github.com/Jhon2910</a>
             </div>
           </div>
-
+          <div class="contato-info-item">
+            <span class="contato-info-icon linkedin"><i class="fa-brands fa-linkedin"></i></span>
+            <div class="contato-info-text">
+              <strong>LinkedIn</strong>
+              <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer">linkedin.com/in/jonathan-rodrigues</a>
+            </div>
+          </div>
+          <div class="contato-info-item">
+            <span class="contato-info-icon"><i class="fa-regular fa-envelope"></i></span>
+            <div class="contato-info-text">
+              <strong>E-mail</strong>
+              <a href="mailto:jonathanalexandre2910@gmail.com">jonathanalexandre2910@gmail.com</a>
+            </div>
+          </div>
+          <div class="contato-info-item">
+            <span class="contato-info-icon"><i class="fa-solid fa-briefcase"></i></span>
+            <div class="contato-info-text">
+              <strong>Portfólio</strong>
+              <a href="../../portfolio.html">Portfólio completo</a>
+            </div>
+          </div>
         </div>
-
-        <!-- FORMULÁRIO DE MENSAGEM -->
-        <div class="form-contato-box">
-          <h3 style="font-size: 20px; margin-bottom: 8px; color: var(--texto);">Envie uma Mensagem</h3>
-          <p style="color: var(--texto-fraco); font-size: 14px; margin-bottom: 24px;">Preencha os campos abaixo para enviar sua mensagem instantaneamente.</p>
-
-          <form id="form-contato-gamehub" action="https://formspree.io/f/xkjwebrw" method="POST">
-            <div class="form-contato-grid">
-              <div class="campo-wrapper">
-                <label for="campo-nome">Seu Nome *</label>
-                <input type="text" id="campo-nome" name="name" class="input-custom" placeholder="Ex: Jonathan Alexandre" required autocomplete="name" />
-              </div>
-
-              <div class="campo-wrapper">
-                <label for="campo-email">Seu E-mail *</label>
-                <input type="email" id="campo-email" name="email" class="input-custom" placeholder="seuemail@exemplo.com" required autocomplete="email" />
-              </div>
-            </div>
-
-            <div class="campo-wrapper">
-              <label for="campo-assunto">Assunto</label>
-              <input type="text" id="campo-assunto" name="subject" class="input-custom" placeholder="Ex: Sugestão de jogo / Feedback" />
-            </div>
-
-            <div class="campo-wrapper">
-              <label for="campo-mensagem">Mensagem *</label>
-              <textarea id="campo-mensagem" name="message" class="input-custom" placeholder="Escreva sua mensagem com detalhes aqui..." required></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primario" style="width: 100%; padding: 14px; font-size: 15px;">
-              <i class="fa-solid fa-paper-plane"></i> Enviar Mensagem
-            </button>
-
-            <div id="status-contato" style="margin-top: 14px; font-size: 13px; text-align: center;"></div>
-          </form>
-        </div>
-
       </div>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container">
-      <span>© 2026 GameHub. Desenvolvido por Jonathan Alexandre.</span>
-      <div class="footer-links">
-        <a href="../../portfolio.html"><i class="fa-solid fa-arrow-left"></i> Voltar ao Portfólio</a>
-        <a href="catalogo.html">Catálogo</a>
-        <a href="perfil.html">Perfil</a>
-        <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
-        <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">GAME<span>HUB</span></div>
+          <p>Sua biblioteca e catálogo de jogos.</p>
+        </div>
+        <nav class="footer-nav">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </nav>
+        <div class="footer-social">
+          <h4>Conecte-se</h4>
+          <div class="social-links">
+            <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="../../portfolio.html" aria-label="Portfólio">
+              <i class="fa-solid fa-briefcase"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Jonathan Alexandre Rodrigues Alves. Todos os direitos reservados.</p>
       </div>
     </div>
   </footer>
 
-  <script src="js/dados.js"></script>
-  <script src="js/auth.js"></script>
   <script src="js/script.js"></script>
-
-  <script>
-    document.getElementById("form-contato-gamehub")?.addEventListener("submit", async function(e) {
-      e.preventDefault();
-      const statusDiv = document.getElementById("status-contato");
-      const btn = this.querySelector("button[type='submit']");
-      const originalText = btn.innerHTML;
-
-      btn.disabled = true;
-      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
-      statusDiv.innerHTML = "";
-
-      try {
-        const formData = new FormData(this);
-        const resposta = await fetch(this.action, {
-          method: "POST",
-          body: formData,
-          headers: { "Accept": "application/json" }
-        });
-
-        if (resposta.ok) {
-          statusDiv.innerHTML = '<span style="color: var(--verde); font-weight:600;"><i class="fa-solid fa-check-circle"></i> Mensagem enviada com sucesso! Obrigado pelo contato.</span>';
-          this.reset();
-        } else {
-          statusDiv.innerHTML = '<span style="color: #ef4444;"><i class="fa-solid fa-circle-exclamation"></i> Ocorreu um erro ao enviar. Tente pelo WhatsApp ou e-mail.</span>';
-        }
-      } catch (err) {
-        console.error("Erro ao enviar mensagem de contato:", err);
-        statusDiv.innerHTML = '<span style="color: #ef4444;"><i class="fa-solid fa-circle-exclamation"></i> Erro de conexão. Tente novamente ou fale comigo pelo WhatsApp ou e-mail.</span>';
-      } finally {
-        btn.disabled = false;
-        btn.innerHTML = originalText;
-      }
-    });
-  </script>
 </body>
 </html>

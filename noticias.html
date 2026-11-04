@@ -16,38 +16,62 @@
     </script>
 
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="style.css">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <title>Tech News & Artigos | Jonathan Alexandre</title>
 </head>
 
 <body>
+    <!-- Floating Background Elements -->
+    <div class="floating-elements" aria-hidden="true">
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+    </div>
 
     <!-- ================= HEADER ================= -->
-    <header>
+    <header class="navbar-floating">
         <div class="container nav-wrapper">
             <a href="index.html" class="brand" title="Voltar ao Início">
-                <i class="fa-solid fa-house" style="font-size: 0.85rem; margin-right: 4px; opacity: 0.7;"></i> Jonathan Alexandre
+                <span class="brand-text">Jonathan Alexandre</span>
             </a>
 
             <div class="nav-right">
-                <nav>
-                    <a href="index.html">Início</a>
-                    <a href="portfolio.html">Portfólio</a>
-                    <a href="Projetos/gamehub/index.html">GameHub</a>
-                    <a href="portfolio.html#contato">Contato</a>
+                <nav class="nav-links" role="navigation" aria-label="Navegação principal">
+                    <a href="index.html" class="nav-link">
+                        <i class="fa-solid fa-house nav-icon" aria-hidden="true"></i>
+                        <span>Início</span>
+                    </a>
+                    <a href="portfolio.html" class="nav-link">
+                        <i class="fa-solid fa-briefcase nav-icon" aria-hidden="true"></i>
+                        <span>Portfólio</span>
+                    </a>
+                    <a href="Projetos/gamehub/index.html" class="nav-link">
+                        <i class="fa-solid fa-gamepad nav-icon" aria-hidden="true"></i>
+                        <span>GameHub</span>
+                    </a>
+                    <a href="noticias.html" class="nav-link active">
+                        <i class="fa-solid fa-newspaper nav-icon" aria-hidden="true"></i>
+                        <span>Notícias</span>
+                    </a>
+                    <a href="portfolio.html#contato" class="nav-link">
+                        <i class="fa-regular fa-envelope nav-icon" aria-hidden="true"></i>
+                        <span>Contato</span>
+                    </a>
                 </nav>
 
                 <div class="nav-tools">
-                    <a href="news.html" class="lang-toggle" title="Switch to English">
+                    <a href="news.html" class="lang-toggle" title="Mudar para Inglês">
                         <span class="active">PT</span> / <span>EN</span>
                     </a>
 
                     <button class="theme-btn" id="theme-toggle" title="Alternar tema" aria-label="Alternar tema">
-                        <i class="fa-regular fa-moon"></i>
+                        <i class="fa-regular fa-sun theme-icon icon-light" aria-hidden="true"></i>
+                        <i class="fa-regular fa-moon theme-icon icon-dark" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
@@ -99,101 +123,89 @@
                 <div class="project-tags">
                     <span class="tag">SQL</span>
                     <span class="tag">PostgreSQL</span>
+                    <span class="tag">MySQL</span>
                     <span class="tag">Modelagem</span>
-                    <span class="tag">Bancos de Dados</span>
                 </div>
             </article>
 
             <article class="project-item">
                 <div class="project-header">
                     <span class="project-title" style="cursor: default;">
-                        Desmistificando Redes: Do Modelo OSI à Configuração Prática
+                        Redes de Computadores: Entendendo Subnetting IPv4 e IPv6
                     </span>
                 </div>
                 <p class="project-desc">
-                    Compreendendo como os pacotes viajam através de switches e roteadores, cálculos de máscaras de sub-rede IPv4/IPv6 e roteamento na prática.
+                    Guia prático para cálculo de sub-redes, máscaras CIDR e planejamento de endereçamento IP em redes corporativas e provedores.
                 </p>
                 <div class="project-tags">
                     <span class="tag">Redes</span>
-                    <span class="tag">TCP/IP</span>
-                    <span class="tag">Cisco</span>
-                    <span class="tag">Infraestrutura</span>
+                    <span class="tag">IPv4</span>
+                    <span class="tag">IPv6</span>
+                    <span class="tag">Subnetting</span>
                 </div>
             </article>
 
             <article class="project-item">
                 <div class="project-header">
                     <span class="project-title" style="cursor: default;">
-                        CSS Moderno: Por que Flexbox e Grid Mudaram a Web
+                        Arquitetura Limpa com Spring Boot: Separação de Responsabilidades
                     </span>
                 </div>
                 <p class="project-desc">
-                    Estratégias para construir interfaces responsivas, minimalistas e leves sem a necessidade de frameworks pesados, aproveitando recursos nativos dos navegadores.
+                    Como aplicar Clean Architecture em projetos Spring Boot, separando domínio, casos de uso, adaptadores e frameworks para código testável e manutenível.
                 </p>
                 <div class="project-tags">
-                    <span class="tag">HTML5</span>
-                    <span class="tag">CSS3</span>
-                    <span class="tag">Front-end</span>
-                    <span class="tag">Web</span>
-                </div>
-            </article>
-
-            <article class="project-item">
-                <div class="project-header">
-                    <a href="Projetos/gamehub/index.html" class="project-title">
-                        GameHub: Arquitetura e Lógica de um Catálogo Interativo <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </a>
-                </div>
-                <p class="project-desc">
-                    Bastidores do desenvolvimento do projeto GameHub, abordando manipulação do DOM, organização de dados em JSON e modularização com JavaScript.
-                </p>
-                <div class="project-tags">
-                    <span class="tag">GameHub</span>
-                    <span class="tag">JavaScript</span>
-                    <span class="tag">Games</span>
+                    <span class="tag">Java</span>
+                    <span class="tag">Spring Boot</span>
+                    <span class="tag">Arquitetura</span>
+                    <span class="tag">Clean Code</span>
                 </div>
             </article>
 
             <article class="project-item">
                 <div class="project-header">
                     <span class="project-title" style="cursor: default;">
-                        Workflow de Git: Commits Semânticos e Organização de Repositórios
+                        Otimização de Consultas SQL: Índices, Explain Plan e Performance
                     </span>
                 </div>
                 <p class="project-desc">
-                    Como manter o histórico de projetos claro, profissional e padronizado utilizando Conventional Commits e boas práticas no GitHub.
+                    Técnicas avançadas para diagnosticar consultas lentas, criar índices eficientes e interpretar planos de execução no PostgreSQL e MySQL.
                 </p>
                 <div class="project-tags">
-                    <span class="tag">Git</span>
-                    <span class="tag">GitHub</span>
-                    <span class="tag">Boas Práticas</span>
+                    <span class="tag">SQL</span>
+                    <span class="tag">PostgreSQL</span>
+                    <span class="tag">Performance</span>
+                    <span class="tag">Indexação</span>
+                </div>
+            </article>
+
+            <article class="project-item">
+                <div class="project-header">
+                    <span class="project-title" style="cursor: default;">
+                    Docker para Desenvolvedores Java: Containers em Produção
+                    </span>
+                </div>
+                <p class="project-desc">
+                    Como empacotar aplicações Spring Boot em containers Docker, multi-stage builds, docker-compose para desenvolvimento local e deploy em produção.
+                </p>
+                <div class="project-tags">
+                    <span class="tag">Docker</span>
+                    <span class="tag">Java</span>
+                    <span class="tag">DevOps</span>
+                    <span class="tag">Deploy</span>
                 </div>
             </article>
 
         </div>
-
     </main>
 
     <!-- ================= FOOTER ================= -->
     <footer class="container">
         <p>© 2026 Jonathan Alexandre Rodrigues Alves</p>
-        <p><a href="index.html">← Voltar ao Início</a></p>
+        <p><a href="https://www.ifmg.edu.br/sabara" target="_blank" rel="noopener noreferrer">IFMG Campus Sabará</a></p>
     </footer>
 
     <script src="main.js"></script>
-    <script>
-        const newsSearch = document.getElementById('news-search');
-        if (newsSearch) {
-            newsSearch.addEventListener('input', (e) => {
-                const term = e.target.value.toLowerCase().trim();
-                const cards = document.querySelectorAll('#news-container .project-item');
-                cards.forEach(card => {
-                    const text = card.innerText.toLowerCase();
-                    card.style.display = text.includes(term) ? 'flex' : 'none';
-                });
-            });
-        }
-    </script>
 </body>
 
 </html>

@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jonathan Alexandre — Information Systems student at IFMG Sabará, sharing academic and personal projects in Java, SQL, and web development.">
+    <meta name="theme-color" content="#15803d">
 
-    <!-- Previne flash de tema ao navegar -->
+    <!-- Prevent theme flash on navigation -->
     <script>
         (function() {
             const saved = localStorage.getItem("theme") || localStorage.getItem("portfolio_theme");
@@ -16,27 +18,45 @@
     </script>
 
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="style.css">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <title>Jonathan Alexandre | Dev Hub & Portfolio</title>
 </head>
 
-<body>
-
-    <!-- ================= HEADER ================= -->
-    <header>
+<body class="hub-page">
+    <!-- ================= HEADER (UNCHANGED) ================= -->
+    <header class="navbar-floating" role="banner">
         <div class="container nav-wrapper">
-            <a href="index_en.html" class="brand">Jonathan Alexandre</a>
+            <a href="index_en.html" class="brand">
+                <span class="brand-text">Jonathan Alexandre</span>
+            </a>
 
             <div class="nav-right">
-                <nav>
-                    <a href="portfolio_en.html">Portfolio</a>
-                    <a href="Projetos/gamehub/index_en.html">GameHub</a>
-                    <a href="news.html">News</a>
-                    <a href="#contact">Contact</a>
+                <nav class="nav-links" role="navigation" aria-label="Main navigation">
+                    <a href="index_en.html" class="nav-link">
+                        <i class="fa-solid fa-house nav-icon" aria-hidden="true"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="portfolio_en.html" class="nav-link">
+                        <i class="fa-solid fa-briefcase nav-icon" aria-hidden="true"></i>
+                        <span>Portfolio</span>
+                    </a>
+                    <a href="Projetos/gamehub/index_en.html" class="nav-link">
+                        <i class="fa-solid fa-gamepad nav-icon" aria-hidden="true"></i>
+                        <span>GameHub</span>
+                    </a>
+                    <a href="news.html" class="nav-link">
+                        <i class="fa-solid fa-newspaper nav-icon" aria-hidden="true"></i>
+                        <span>News</span>
+                    </a>
+                    <a href="#contact" class="nav-link">
+                        <i class="fa-regular fa-envelope nav-icon" aria-hidden="true"></i>
+                        <span>Contact</span>
+                    </a>
                 </nav>
 
                 <div class="nav-tools">
@@ -45,7 +65,8 @@
                     </a>
 
                     <button class="theme-btn" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
-                        <i class="fa-regular fa-moon"></i>
+                        <i class="fa-regular fa-sun theme-icon icon-light" aria-hidden="true"></i>
+                        <i class="fa-regular fa-moon theme-icon icon-dark" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
@@ -53,152 +74,197 @@
     </header>
 
     <!-- ================= MAIN ================= -->
-    <main class="container">
+    <main class="container" role="main">
 
-        <!-- PORTAL HERO (HOME / HUB) -->
-        <section class="portal-hero">
-            <div class="portal-hero-content">
-                <span class="portal-badge">
-                    <span class="portal-dot"></span> Jonathan Alexandre • Official Portal
-                </span>
-                <h1 class="portal-title">Explore Projects, Technology & Gaming</h1>
-                <p class="portal-desc">
-                    Welcome to my web hub. An interactive space bringing together my software engineering portfolio, the GameHub gaming platform with 100+ titles, and real-time tech news.
+        <!-- HERO SECTION -->
+        <section class="hub-hero" aria-labelledby="hub-title">
+            <div class="hub-hero-content">
+                <h1 id="hub-title" class="hub-title">Jonathan Alexandre</h1>
+
+                <p class="hub-subtitle">
+                    <strong>Information Systems</strong> student at <strong>IFMG Sabará</strong>, interested in software development and focused on studying
+                    <strong>Java & Spring</strong>, data modeling, and computer networking.
                 </p>
 
-                <div class="portal-actions">
-                    <a href="portfolio_en.html" class="portal-btn portal-btn-primary">
-                        <i class="fa-solid fa-briefcase"></i> Explore Portfolio
+                <p class="hub-description">
+                    This site brings together my academic and personal projects, portfolio, and the GameHub platform.
+                </p>
+
+                <div class="hub-actions">
+                    <a href="portfolio_en.html" class="btn btn-primary">
+                        <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+                        View Portfolio
                     </a>
-                    <a href="Projetos/gamehub/index_en.html" class="portal-btn portal-btn-accent">
-                        <i class="fa-solid fa-gamepad"></i> Open GameHub
-                    </a>
-                    <a href="#contact" class="portal-btn portal-btn-outline">
-                        <i class="fa-regular fa-paper-plane"></i> Contact
+                    <a href="Projetos/gamehub/index_en.html" class="btn btn-secondary">
+                        <i class="fa-solid fa-gamepad" aria-hidden="true"></i>
+                        Open GameHub
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- PORTAL HUB OPTIONS -->
-        <section>
-            <h2>Explore</h2>
-
-            <div class="hub-grid">
-
-                <!-- CARD 1: PORTFOLIO -->
-                <a href="portfolio_en.html" class="hub-card">
-                    <div>
-                        <div class="hub-card-header">
-                            <span class="hub-badge">Career & Projects</span>
-                            <i class="fa-solid fa-briefcase hub-icon"></i>
-                        </div>
-                        <h3>Professional Portfolio</h3>
-                        <p>
-                            Explore my background, education at IFMG Sabará, technical stack in Java, SQL, and Networking, selected projects, and contact form.
-                        </p>
-                    </div>
-                    <span class="hub-cta">
-                        View Portfolio <i class="fa-solid fa-arrow-right"></i>
-                    </span>
+        <!-- HUB SECTIONS -->
+        <section class="hub-section" aria-labelledby="projects-title">
+            <header class="section-header">
+                <h2 id="projects-title" class="section-title">Featured Projects</h2>
+                <a href="portfolio_en.html#projects" class="section-link">
+                    View all in Portfolio <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </a>
+            </header>
 
-                <!-- CARD 2: GAMEHUB -->
-                <a href="Projetos/gamehub/index_en.html" class="hub-card">
-                    <div>
-                        <div class="hub-card-header">
-                            <span class="hub-badge">Interactive • Games</span>
-                            <i class="fa-solid fa-gamepad hub-icon"></i>
-                        </div>
-                        <h3>GameHub & Games</h3>
-                        <p>
-                            Interactive web application featuring a catalog of games, dynamic trailers, game details, and a responsive interface built with JavaScript.
-                        </p>
+            <div class="project-list" id="hub-projects">
+                <article class="project-card-link">
+                    <div class="project-card-meta">
+                        <span class="project-tag">Java</span>
+                        <span class="project-tag">HTTP</span>
+                        <span class="project-tag">JUnit</span>
                     </div>
-                    <span class="hub-cta">
-                        Launch GameHub <i class="fa-solid fa-arrow-right"></i>
-                    </span>
-                </a>
+                    <h3 class="project-name">
+                        <a href="https://github.com/Jhon2910/html-css-Javascript/tree/main/TesteRequisicao" target="_blank" rel="noopener noreferrer">HTTP Request Parser in Java</a>
+                    </h3>
+                    <p class="project-desc">A Java exercise that parses an HTTP request's first line to extract its method and URL, with JUnit unit tests.</p>
+                </article>
 
-                <!-- CARD 3: TECH NEWS -->
-                <a href="news.html" class="hub-card">
-                    <div>
-                        <div class="hub-card-header">
-                            <span class="hub-badge">Readings & Insights</span>
-                            <i class="fa-solid fa-newspaper hub-icon"></i>
-                        </div>
-                        <h3>Tech Radar & Articles</h3>
-                        <p>
-                            Articles and notes covering back-end architecture, database schema design, computer networking, the Java ecosystem, and modern software development.
-                        </p>
+                <article class="project-card-link">
+                    <div class="project-card-meta">
+                        <span class="project-tag">Full-stack</span>
+                        <span class="project-tag">JavaScript</span>
+                        <span class="project-tag">HTML5/CSS3</span>
                     </div>
-                    <span class="hub-cta">
-                        Read Articles <i class="fa-solid fa-arrow-right"></i>
-                    </span>
-                </a>
+                    <h3 class="project-name">
+                        <a href="Projetos/gamehub/index_en.html">GameHub — Game Catalog</a>
+                    </h3>
+                    <p class="project-desc">A web catalog with game search and filters, trailers, and a personal library saved in the browser with localStorage.</p>
+                </article>
 
-                <!-- CARD 4: GITHUB REPOSITORIES -->
-                <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer" class="hub-card">
-                    <div>
-                        <div class="hub-card-header">
-                            <span class="hub-badge">Code • Open Source</span>
-                            <i class="fa-brands fa-github hub-icon"></i>
-                        </div>
-                        <h3>GitHub Repositories</h3>
-                        <p>
-                            Check out open-source repositories featuring algorithmic solutions, Java & Spring Boot routines, SQL scripts, and Cisco Packet Tracer network labs.
-                        </p>
+                <article class="project-card-link">
+                    <div class="project-card-meta">
+                        <span class="project-tag">Java</span>
+                        <span class="project-tag">Spring Boot</span>
+                        <span class="project-tag">PostgreSQL</span>
                     </div>
-                    <span class="hub-cta">
-                        Explore Code <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </span>
-                </a>
+                    <h3 class="project-name">
+                        <a href="https://github.com/Jhon2910/html-css-Javascript/tree/main/Projetos/Meu%20portifolio/Back/demo" target="_blank" rel="noopener noreferrer">Projects and Contact API</a>
+                    </h3>
+                    <p class="project-desc">A Spring Boot and JPA REST API for listing and creating projects and contact messages, backed by PostgreSQL and automated tests.</p>
+                </article>
 
+                <article class="project-card-link">
+                    <div class="project-card-meta">
+                        <span class="project-tag">HTML</span>
+                        <span class="project-tag">CSS</span>
+                        <span class="project-tag">Parallax</span>
+                    </div>
+                    <h3 class="project-name">
+                        <a href="Projetos/Projeto-cordel/cordel.html">Cordel Moderno</a>
+                    </h3>
+                    <p class="project-desc">A poetry-themed page featuring fixed background images and a parallax effect built with CSS.</p>
+                </article>
             </div>
         </section>
 
-        <!-- QUICK DIRECT CONTACT -->
-        <section id="contact">
-            <span id="direct-contact" class="anchor-target"></span>
-            <h2>Direct Contact</h2>
-            <div class="direct-card">
-                <h3>Let's connect</h3>
-                <p class="direct-desc">Open for projects, collaboration, and networking. Feel free to send a message:</p>
-                <div class="direct-list">
-                    <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer" class="direct-item">
-                        <i class="fa-brands fa-linkedin"></i>
-                        <div>
-                            <strong>LinkedIn</strong>
-                            <span>linkedin.com/in/jonathan-rodrigues-06a1b7442</span>
-                        </div>
+        <!-- SERVICES / SKILLS SECTION -->
+        <section class="hub-section" aria-labelledby="skills-title">
+            <header class="section-header">
+                <h2 id="skills-title" class="section-title">Areas of Study</h2>
+            </header>
+
+            <div class="skills-grid">
+                <article class="skill-block">
+                    <div class="skill-block-icon" aria-hidden="true">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                    <h3 class="skill-block-title">Programming</h3>
+                    <ul class="skill-list">
+                        <li>Java — intermediate</li>
+                        <li>Python, JavaScript, and SQL — basic</li>
+                    </ul>
+                </article>
+
+                <article class="skill-block">
+                    <div class="skill-block-icon" aria-hidden="true">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="skill-block-title">Web Development</h3>
+                    <ul class="skill-list">
+                        <li>HTML and CSS</li>
+                        <li>Academic and personal projects</li>
+                    </ul>
+                </article>
+
+                <article class="skill-block">
+                    <div class="skill-block-icon" aria-hidden="true">
+                        <i class="fa-solid fa-network-wired"></i>
+                    </div>
+                    <h3 class="skill-block-title">Networking & Infrastructure</h3>
+                    <ul class="skill-list">
+                        <li>TCP/IP, IPv4, and subnetting</li>
+                        <li>Cisco Packet Tracer</li>
+                    </ul>
+                </article>
+
+                <article class="skill-block">
+                    <div class="skill-block-icon" aria-hidden="true">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
+                    <h3 class="skill-block-title">Technical Support</h3>
+                    <ul class="skill-list">
+                        <li>Computer setup and maintenance</li>
+                        <li>Hardware and software troubleshooting</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <!-- GAMEHUB HIGHLIGHT -->
+        <section class="hub-section hub-highlight" aria-labelledby="gamehub-title">
+            <div class="hub-highlight-content">
+                <div class="hub-highlight-text">
+                    <span class="highlight-badge">Main Project</span>
+                    <h2 id="gamehub-title" class="highlight-title">GameHub</h2>
+                    <p class="highlight-desc">
+                        A complete web platform for gamers, built with vanilla JavaScript, HTML5, and CSS3.
+                        Features a 100+ game catalog, YouTube trailers, favorites system with localStorage,
+                        real-time search, genre filters, and a responsive dark/light mode interface.
+                    </p>
+                    <div class="highlight-meta">
+                        <span class="meta-item"><i class="fa-solid fa-code" aria-hidden="true"></i> Vanilla JS</span>
+                        <span class="meta-item"><i class="fa-solid fa-palette" aria-hidden="true"></i> Modern CSS3</span>
+                        <span class="meta-item"><i class="fa-solid fa-database" aria-hidden="true"></i> localStorage</span>
+                        <span class="meta-item"><i class="fa-solid fa-mobile-alt" aria-hidden="true"></i> Responsive</span>
+                    </div>
+                    <a href="Projetos/gamehub/index_en.html" class="btn btn-primary btn-large">
+                        <i class="fa-solid fa-gamepad" aria-hidden="true"></i>
+                        Explore GameHub
                     </a>
-                    <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer" class="direct-item">
-                        <i class="fa-brands fa-github"></i>
-                        <div>
-                            <strong>GitHub</strong>
-                            <span>github.com/Jhon2910</span>
-                        </div>
+                </div>
+                <div class="highlight-visual" aria-hidden="true">
+                    <div class="highlight-placeholder">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA / CONTACT SECTION -->
+        <section id="contact" class="hub-section hub-cta-section" aria-labelledby="cta-title">
+            <div class="hub-cta-content">
+                <h2 id="cta-title" class="cta-title">Let's Talk?</h2>
+                <p class="cta-description">
+                    Get in touch to discuss projects, technology, or professional proposals.
+                </p>
+                <div class="cta-actions">
+                    <a href="mailto:jonathanalexandre2910@gmail.com" class="btn btn-primary">
+                        <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+                        Send Email
                     </a>
-                    <a href="https://wa.me/5531988234307?text=Hello%20Jonathan,%20I%20saw%20your%20website%20and%20would%20like%20to%20connect!" target="_blank" rel="noopener noreferrer" class="direct-item">
-                        <i class="fa-brands fa-whatsapp"></i>
-                        <div>
-                            <strong>WhatsApp</strong>
-                            <span>+55 (31) 98823-4307</span>
-                        </div>
+                    <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                        <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+                        LinkedIn
                     </a>
-                    <a href="mailto:jonathanalexandre2910@gmail.com" class="direct-item">
-                        <i class="fa-regular fa-envelope"></i>
-                        <div>
-                            <strong>Email</strong>
-                            <span>jonathanalexandre2910@gmail.com</span>
-                        </div>
-                    </a>
-                    <a href="https://jhon2910.github.io/html-css-Javascript/" target="_blank" rel="noopener noreferrer" class="direct-item">
-                        <i class="fa-solid fa-globe"></i>
-                        <div>
-                            <strong>GitHub Pages</strong>
-                            <span>jhon2910.github.io/html-css-Javascript</span>
-                        </div>
+                    <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                        <i class="fa-brands fa-github" aria-hidden="true"></i>
+                        GitHub
                     </a>
                 </div>
             </div>
@@ -207,9 +273,17 @@
     </main>
 
     <!-- ================= FOOTER ================= -->
-    <footer class="container">
-        <p>© 2026 Jonathan Alexandre Rodrigues Alves</p>
-        <p><a href="https://www.ifmg.edu.br/sabara" target="_blank" rel="noopener noreferrer">IFMG Sabará Campus</a></p>
+    <footer class="container hub-footer" role="contentinfo">
+        <div class="footer-content">
+            <p class="footer-copyright">&copy; 2026 Jonathan Alexandre Rodrigues Alves</p>
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="portfolio_en.html">Portfolio</a>
+                <a href="Projetos/gamehub/index_en.html">GameHub</a>
+                <a href="news.html">News</a>
+                <a href="https://github.com/Jhon2910" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/jonathan-rodrigues-06a1b7442" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </nav>
+        </div>
     </footer>
 
     <script src="main.js"></script>

@@ -34,21 +34,31 @@ function salvarComentariosDoJogo(idDoJogo, listaComentarios) {
   } catch (e) {}
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   const isEn = document.documentElement.lang === "en" || window.location.pathname.includes("_en.html");
-  const idDoJogo = Number(pegarParametroDaURL("id"));
+  const parametros = new URLSearchParams(window.location.search);
+  const idDoJogo = Number(parametros.get("id"));
+  const veioDoGameDb = parametros.get("source") === "gamedb";
 
   const langToggle = document.querySelector(".lang-toggle");
   if (langToggle && idDoJogo) {
-    langToggle.href = isEn ? `jogo.html?id=${idDoJogo}` : `jogo_en.html?id=${idDoJogo}`;
+    const pagina = isEn ? "jogo.html" : "jogo_en.html";
+    langToggle.href = `${pagina}?id=${idDoJogo}${veioDoGameDb ? "&source=gamedb" : ""}`;
   }
 
   const containerJogo = document.getElementById("conteudo-jogo");
   if (!containerJogo) return;
 
-  const jogo = typeof listaDeJogos !== "undefined" 
-    ? listaDeJogos.find(item => item.id === idDoJogo) 
-    : null;
+  let jogo = null;
+  if (veioDoGameDb) {
+    try {
+      jogo = await buscarJogoGameDb(idDoJogo);
+    } catch (error) {
+      console.error("Erro ao carregar jogo do GameDB:", error);
+    }
+  } else if (typeof listaDeJogos !== "undefined") {
+    jogo = listaDeJogos.find(item => item.id === idDoJogo) || null;
+  }
 
   if (!jogo) {
     containerJogo.innerHTML = `
@@ -81,13 +91,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const mostrarDesenvolvedora = jogo.desenvolvedora
     && !jogo.desenvolvedora.toLowerCase().startsWith("estúdio reconhecido da indústria");
   const mostrarPlataformas = jogo.plataformas && jogo.plataformas !== "PC, PlayStation, Xbox";
-  const mostrarIdiomas = jogo.idiomas_en !== "English, Portuguese (Brazil)";
+  const mostrarIdiomas = Boolean(jogo.idiomas || jogo.idiomas_en);
   const idiomasExibidos = isEn 
-    ? (jogo.idiomas_en || jogo.idiomas || "English, Portuguese, Spanish, French, German, Japanese")
-    : (jogo.idiomas || "Português (Brasil), Inglês, Espanhol, Francês, Alemão, Japonês");
+    ? (jogo.idiomas_en || jogo.idiomas || "")
+    : (jogo.idiomas || jogo.idiomas_en || "");
 
   document.title = `${nomeExibido} — GameHub`;
-  const favoritado = typeof ehFavorito === "function" && ehFavorito(jogo.id);
+  const idDePersistencia = jogo.fonteGameDb ? `gamedb_${jogo.id}` : jogo.id;
+  const favoritado = !jogo.fonteGameDb && typeof ehFavorito === "function" && ehFavorito(jogo.id);
   
   // Extração do vídeo oficial
   const videoId = extrairIdYoutube(jogo.trailer || jogo.trailerUrl);
@@ -116,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const notaValida = Number.isFinite(jogo.nota);
 
   // Comentários
-  let comentarios = obterComentariosDoJogo(jogo.id, jogo.comentariosPadrao || []);
+  let comentarios = obterComentariosDoJogo(idDePersistencia, jogo.comentariosPadrao || []);
 
   containerJogo.innerHTML = `
     <!-- HERO BACKDROP CINEMATOGRÁFICO (IGDB STYLE) -->
@@ -146,10 +157,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
                 
                 <!-- BOTÃO SALVAR NA BIBLIOTECA -->
-                <button id="btn-fav-jogo" class="btn-fav-jogo-action ${favoritado ? 'ativo' : ''}">
+                ${jogo.fonteGameDb ? "" : `<button id="btn-fav-jogo" class="btn-fav-jogo-action ${favoritado ? 'ativo' : ''}">
                   <i class="${favoritado ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
                   <span id="btn-fav-jogo-texto">${favoritado ? (isEn ? 'Saved in Library' : 'Salvo na Biblioteca') : (isEn ? 'Save to Library' : 'Salvar na Biblioteca')}</span>
-                </button>
+                </button>`}
               </div>
 
               <!-- STATUS DE LANÇAMENTO & AVALIAÇÃO -->
@@ -407,7 +418,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.curtirComentario = function (index) {
     if (comentarios[index]) {
       comentarios[index].likes = (comentarios[index].likes || 0) + 1;
-      salvarComentariosDoJogo(jogo.id, comentarios);
+      salvarComentariosDoJogo(idDePersistencia, comentarios);
       renderizarListaComentarios();
     }
   };
@@ -461,7 +472,7 @@ document.addEventListener("DOMContentLoaded", function () {
       };
 
       comentarios.unshift(novoComentario);
-      salvarComentariosDoJogo(jogo.id, comentarios);
+      salvarComentariosDoJogo(idDePersistencia, comentarios);
       renderizarListaComentarios();
 
       textarea.value = "";
