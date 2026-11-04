@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Chamado - Help Desk</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" style="max-width: 700px;">
+        <div class="header-listagem">
+            <h1 id="titulo-pagina">Detalhes do Chamado</h1>
+            <a href="listagem.html" class="btn-detalhes">Voltar para a lista</a>
+        </div>
+
+        <div id="mensagem-erro" class="erro" style="display: none;"></div>
+
+        <div id="conteudo-chamado" style="display: none;">
+            <div class="card detalhe-principal">
+                <div class="card-header">
+                    <strong id="detalhe-id-titulo">Carregando...</strong>
+                    <span id="detalhe-status" class="badge"></span>
+                </div>
+                <div class="info-meta">
+                    <p><strong>Categoria:</strong> <span id="detalhe-categoria"></span></p>
+                    <p><strong>Data de criação:</strong> <span id="detalhe-data"></span></p>
+                </div>
+                <div class="descricao-box">
+                    <strong>Descrição do problema:</strong>
+                    <p id="detalhe-descricao"></p>
+                </div>
+            </div>
+
+            <div id="area-suporte-bloqueada" class="alerta-bloqueio" style="display: none;">
+                Ações de suporte bloqueadas
+            </div>
+            <div id="area-formulario-suporte" class="card" style="display: none; margin-bottom: 20px;">
+                <h3 style="margin-bottom: 12px; font-size: 16px;">Registrar atendimento</h3>
+                <form id="form-atendimento">
+                    <div class="form-group">
+                        <label for="novo-status">Novo Status:</label>
+                        <select id="novo-status" required>
+                            <option value="" disabled selected>Selecione o novo status...</option>
+                            <option value="Aberto">Aberto</option>
+                            <option value="Em atendimento">Em atendimento</option>
+                            <option value="Concluído">Concluído</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="responsavel">Responsável pelo Atendimento:</label>
+                        <input type="text" id="responsavel" placeholder="Digite seu nome" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descricao-atendimento">Descrição do Atendimento:</label>
+                        <textarea id="descricao-atendimento" rows="4" placeholder="Descreva o que foi realizado..." required></textarea>
+                    </div>
+
+                    <button type="submit">Salvar atendimento</button>
+                </form>
+            </div>
+
+            <div class="secao-historico">
+                <h3>Histórico de Atendimento</h3>
+                <div id="lista-atendimentos">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="detalhes.js"></script>
+</body>
+</html>

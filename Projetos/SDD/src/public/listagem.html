@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Chamados - Help Desk</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" style="max-width: 700px;">
+        <div class="header-listagem">
+            <h1>Chamados registrados</h1>
+            
+            <div class="seletor-perfil">
+                <label for="perfil">Perfil:</label>
+                <select id="perfil">
+                    <option value="funcionario">Funcionário</option>
+                    <option value="suporte">Equipe de suporte</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="lista-chamados" class="grid-chamados">
+            
+        </div>
+
+        <a href="index.html" class="btn-detalhes" style="margin-top: 20px; display: inline-block;">+ Novo Chamado</a>
+    </div>
+
+    <script src="listagem.js"></script>
+</body>
+</html>

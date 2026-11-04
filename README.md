@@ -30,7 +30,8 @@ O portfólio está configurado na raiz do repositório e hospedado via **GitHub 
 │   ├── 📂 Celular/              # Simulação de interface de smartphone com redes sociais
 │   ├── 📂 gamehub/              # Catálogo interativo de jogos (HTML, CSS, JS)
 │   ├── 📂 Meu portifolio/       # Aplicação Fullstack (Front-end + Back-end Spring Boot)
-│   └── 📂 Projeto-cordel/       # Página temática de Cordel com efeito parallax
+│   ├── 📂 Projeto-cordel/       # Página temática de Cordel com efeito parallax
+│   └── 📂 SDD/                  # Sistema Help Desk desenvolvido com Node.js, Express e SQLite
 ├── 📂 tabela/                   # Exercícios e exemplos práticos de tabelas em HTML
 ├── 📂 TesteRequisicao/          # Testes e rotinas em Java para requisições HTTP
 ├── 📂 img/                      # Imagens e ícones do portfólio
@@ -44,6 +45,10 @@ O portfólio está configurado na raiz do repositório e hospedado via **GitHub 
 ├── 📄 main.js                   # Scripts e interatividades do portfólio
 └── 📄 README.md                 # Documentação do repositório
 ```
+
+### Sistema Help Desk (SDD)
+
+Projeto de gerenciamento de chamados com cadastro, consulta, atualização de status e histórico de atendimentos. A documentação, instruções para executar e testes estão em [Projetos/SDD/README.md](Projetos/SDD/README.md).
 
 ---
 
