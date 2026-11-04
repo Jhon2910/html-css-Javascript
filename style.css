@@ -1606,7 +1606,7 @@ footer {
 
 /* ===== HUB PAGE STYLES (index.html & index_en.html) ===== */
 /* Adjust body padding for hub pages to account for fixed header */
-.hub-page body {
+body.hub-page {
     padding-top: 100px !important;
 }
 
