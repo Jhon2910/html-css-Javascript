@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entrada de veículos</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Estacionamento</h1>
+    <nav>
+      <a href="/entrada">Registrar entrada</a>
+      <a href="/saida">Registrar saída</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Registro de entrada</h2>
+    <p>A entrada dos veículos é feita pela Rua X.</p>
+    <p>Horário do servidor: <span id="current-datetime">Carregando...</span></p>
+
+    <section>
+      <h3>Vagas disponíveis</h3>
+      <p><strong id="available-spaces" aria-live="polite">—</strong> de 100 vagas</p>
+      <button id="refresh-spaces" type="button">Atualizar quantidade</button>
+    </section>
+
+    <form id="entry-form">
+      <h3>Dados do veículo</h3>
+      <label for="model">Modelo do veículo</label>
+      <input id="model" name="modelo" type="text" maxlength="100" required>
+
+      <label for="plate">Placa</label>
+      <input id="plate" name="placa" type="text" maxlength="15" required>
+
+      <label for="entry-time">Hora de entrada</label>
+      <input id="entry-time" type="text" value="Definida pelo servidor ao registrar" readonly>
+
+      <button type="submit">Registrar entrada</button>
+    </form>
+
+    <p class="feedback" id="feedback" role="status" aria-live="polite" hidden></p>
+  </main>
+
+  <footer>
+    <p>Capacidade do pátio: 100 veículos.</p>
+  </footer>
+</body>
+</html>

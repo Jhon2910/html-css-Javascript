@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Saída de veículos</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Estacionamento</h1>
+    <nav>
+      <a href="/entrada">Registrar entrada</a>
+      <a href="/saida">Registrar saída</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Registro de saída</h2>
+    <p>A saída dos veículos é feita pela Rua Y.</p>
+
+    <form id="lookup-form">
+      <h3>Consultar veículo</h3>
+      <label for="exit-plate">Placa</label>
+      <input id="exit-plate" name="placa" type="text" maxlength="15" required>
+      <button type="submit">Buscar veículo</button>
+    </form>
+
+    <section id="quote" aria-label="Dados do veículo" hidden>
+      <h3>Dados do veículo</h3>
+      <p>Modelo: <strong id="quote-model"></strong></p>
+      <p>Placa: <span id="quote-plate"></span></p>
+      <p>Hora de entrada: <span id="quote-entry"></span></p>
+      <p>Permanência: <span id="quote-duration"></span></p>
+      <p>Valor a cobrar: <strong id="quote-amount"></strong></p>
+      <button id="confirm-exit" type="button">Confirmar saída</button>
+    </section>
+
+    <section>
+      <h3>Veículos estacionados</h3>
+      <p>A lista é ordenada pelo maior tempo de permanência.</p>
+      <p>Quantidade: <span id="vehicle-count">0</span></p>
+      <table class="vehicle-table">
+        <thead>
+          <tr>
+            <th>Modelo</th>
+            <th>Placa</th>
+            <th>Entrada</th>
+            <th>Permanência</th>
+          </tr>
+        </thead>
+        <tbody id="vehicle-list">
+          <tr><td class="empty-state" colspan="4">Carregando veículos...</td></tr>
+        </tbody>
+      </table>
+      <p>O tempo de permanência é atualizado a cada minuto.</p>
+    </section>
+
+    <p class="feedback" id="feedback" role="status" aria-live="polite" hidden></p>
+  </main>
+
+  <footer>
+    <p>Capacidade do pátio: 100 veículos.</p>
+  </footer>
+</body>
+</html>
